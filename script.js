@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('.hero-slider .slide');
     if (slides.length > 0) {
         let currentSlide = 0;
-        const slideInterval = 4000; // 4 seconds
+        const slideInterval = 2500; // 2.5 seconds
 
         setInterval(() => {
             slides[currentSlide].classList.remove('active');
