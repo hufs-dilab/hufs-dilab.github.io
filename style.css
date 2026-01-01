@@ -1,12 +1,12 @@
 :root {
     /* Color Palette */
-    --color-bg: #0f172a; /* Slate 900 */
-    --color-bg-alt: #1e293b; /* Slate 800 */
-    --color-text-main: #f8fafc; /* Slate 50 */
-    --color-text-muted: #94a3b8; /* Slate 400 */
-    --color-accent: #3b82f6; /* Blue 500 */
-    --color-accent-hover: #2563eb; /* Blue 600 */
-    --color-border: #334155; /* Slate 700 */
+    --color-bg: #ffffff; /* White */
+    --color-bg-alt: #ffffff; /* Slate 50 */
+    --color-text-main: #0f172a; /* Slate 900 */
+    --color-text-muted: #000000; /* Slate 500 */
+    --color-accent: #1D4999; /* Blue 600 */
+    --color-accent-hover: #EE6C4D; /* Blue 700 */
+    --color-border: #1D4999; /* Slate 200 */
     
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -23,6 +23,13 @@
     --radius-lg: 16px;
 }
 
+@font-face {
+    font-family: 'HUFS Font';
+    src: url('fonts/fontL.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -30,7 +37,7 @@
 }
 
 body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'HUFS Font', 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--color-bg);
     color: var(--color-text-main);
     line-height: 1.6;
@@ -61,10 +68,10 @@ section {
 /* Navbar */
 .navbar {
     height: var(--nav-height);
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgb(255, 255, 255, 0.5);
+    backdrop-filter: blur(0px); /* 블러 일단은 0으로 처리 */
     border-bottom: 1px solid var(--color-border);
-    position: fixed;
+    position: fixed; /* Follows on scroll */
     top: 0;
     left: 0;
     width: 100%;
@@ -79,13 +86,15 @@ section {
 }
 
 .brand {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--color-text-main);
+    display: flex;
+    align-items: center;
 }
 
-.brand span {
-    color: var(--color-accent);
+.brand-logo {
+    height: calc(var(--nav-height) * 0.98); 
+    width: auto;
+    display: block;
+    padding: 0; /* Full height as requested */
 }
 
 .nav-links {
@@ -94,14 +103,14 @@ section {
 }
 
 .nav-links a {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 0.95rem;
-    color: var(--color-text-muted);
+    color: rgb(29, 73, 153); /* Base color */
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: var(--color-text-main);
+    color: rgb(238, 108, 77); /* Active/Hover color */
 }
 
 /* Hero Section */
@@ -111,7 +120,34 @@ section {
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding-top: var(--nav-height);
+    padding-top: 0; /* Content goes under transparent header */
+}
+
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+
+
+.slide.active {
+    opacity: 1;
 }
 
 .hero-content {
@@ -125,8 +161,9 @@ section {
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: var(--spacing-md);
-    background: linear-gradient(to right, #fff, #94a3b8);
+    background: linear-gradient(to right, #0f172a, #475569);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -151,6 +188,45 @@ section {
     background-color: var(--color-accent-hover);
     transform: translateY(-2px);
     color: white;
+}
+
+/* Highlight Section */
+.highlight-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none; /* Remove underline from link */
+    color: inherit; /* Inherit text color */
+    transition: transform 0.2s ease; /* Add hover effect */
+}
+
+.highlight-item:hover {
+    transform: translateY(-4px); /* Slight lift on hover */
+}
+
+.highlight-item:hover .highlight-conf {
+    color: rgb(238, 108, 77); /* Requested color on hover */
+    transition: color 0.3s ease;
+}
+
+.highlight-img {
+    width: 100%;
+    height: auto; /* Allow natural height to prevent cropping */
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    border: 1px solid var(--color-border);
+}
+
+.highlight-desc {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    flex: 1; /* Pushes the conference tag down */
+}
+
+.highlight-conf {
+    color: var(--color-accent); /* Optional: use accent color or keep it text-main */
+    margin-top: 0.5rem;
 }
 
 /* Section Headers */
@@ -185,11 +261,10 @@ h2::after {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: border-color 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-4px);
     border-color: var(--color-accent);
 }
 
@@ -205,11 +280,50 @@ h2::after {
 
 /* Footer */
 footer {
-    border-top: 1px solid var(--color-border);
+    background-image: url('background-image/1.JPG');
+    background-size: cover;
+    background-position: center;
     padding: var(--spacing-lg) 0;
     margin-top: var(--spacing-xl);
-    text-align: center;
-    color: var(--color-text-muted);
+    color: white;
+    font-weight: 500;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Or center if preferred */
+    gap: var(--spacing-md);
+    text-align: left;
+}
+
+.footer-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.footer-logo {
+    height: 50px; /* Adjust as needed */
+    width: auto;
+    filter: brightness(0) invert(1); /* Make sure it's white if it's a dark logo, or remove if colored */
+}
+
+.footer-right {
+    flex: 1;
+    text-align: right;
+    font-size: 0.9em; /* Keeping valid address size */
+    line-height: 1.6;
+}
+
+.hufs-brand {
+    font-weight: 500; /* Adjust weight if needed */
+}
+
+.hufs-cap {
+    font-size: 1.5em; /* 3:2 ratio relative to base text (1em) */
+    vertical-align: baseline;
 }
 
 /* Publications List */
@@ -228,6 +342,12 @@ footer {
     font-weight: 600;
     margin-bottom: 0.25rem;
     display: block;
+    width: fit-content; /* Ensure hover only triggers on text width */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+.pub-title:hover {
+    color: rgb(238, 108, 77); /* Requested color on hover */
 }
 
 .pub-authors {
@@ -242,6 +362,12 @@ footer {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 600;
+    text-decoration: none; /* Ensure links don't have underline */
+    transition: opacity 0.2s ease;
+}
+
+.pub-meta:hover {
+    opacity: 0.8; /* Subtle hover effect for links */
 }
 
 /* People Grid Override */
