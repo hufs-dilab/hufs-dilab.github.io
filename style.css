@@ -50,8 +50,19 @@ a {
     transition: color 0.2s ease;
 }
 
+.link-underline {
+    color: var(--color-text-main);
+    border-bottom: 1px solid var(--color-text-main);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.link-underline:hover {
+    color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+}
+
 a:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-hover);
 }
 
 /* Layout */
@@ -358,9 +369,16 @@ section {
 }
 
 /* Section Headers */
-h2 {
+h1 {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.0;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: 500;
     margin-bottom: var(--spacing-md);
     position: relative;
     display: inline-block;
@@ -378,20 +396,61 @@ h2 {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .card:hover {
     border-color: var(--color-accent);
 }
 
+a.card:hover {
+    transform: translateY(-4px);
+}
+
 .card h3 {
     margin-bottom: var(--spacing-sm);
     font-size: 1.25rem;
+    color: var(--color-accent);
+    font-weight: 700;
 }
 
 .card p {
     color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+#research .card h3 {
+    font-size: 1.1rem;
+    color: var(--color-text-main);
+}
+
+#research .card p {
+    font-size: 0.95rem;
+}
+
+/* For research.html specifically - separate class for layout isolation */
+.research-card {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.research-card:hover {
+    border-color: var(--color-accent);
+}
+
+.research-card h3 {
+    font-size: 1.1rem;
+    color: var(--color-text-main);
+    margin-bottom: 1rem;
+}
+
+.research-card p {
     font-size: 0.95rem;
 }
 
@@ -408,30 +467,36 @@ footer {
 
 footer .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start; /* Or center if preferred */
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
     text-align: left;
 }
 
-.footer-left {
-    flex: 1;
+.footer-content {
     display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
+    align-items: flex-start;
+    gap: var(--spacing-md);
 }
 
 .footer-logo {
-    height: 50px; /* Adjust as needed */
+    height: 40px;
     width: auto;
-    filter: brightness(0) invert(1); /* Make sure it's white if it's a dark logo, or remove if colored */
+    filter: brightness(0) invert(1);
+    margin-top: 4px; /* Align with text baseline roughly */
 }
 
-.footer-right {
+.footer-text {
     flex: 1;
-    text-align: right;
-    font-size: 0.9em; /* Keeping valid address size */
-    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 .hufs-brand {
@@ -452,6 +517,19 @@ footer .container {
 
 .pub-item:last-child {
     border-bottom: none;
+}
+
+.pub-year {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-main);
+    display: block;
+    margin-top: var(--spacing-lg);
+}
+
+.pub-year:first-of-type {
+    margin-top: var(--spacing-md);
 }
 
 .pub-title {
@@ -489,7 +567,7 @@ footer .container {
 
 /* People Grid Override */
 .people-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
 .person-card {
@@ -518,6 +596,11 @@ footer .container {
     font-size: 0.85rem;
     font-weight: 500;
     margin-bottom: 0.5rem;
+}
+
+.person-desc, .person-email {
+    text-align: left;
+    margin-top: 5px;
 }
 
 /* Modal Styles */
@@ -562,4 +645,36 @@ footer .container {
     text-align: center;
     font-size: 1.1rem;
     font-weight: 500;
+}
+
+.research-area + .research-area {
+    margin-top: var(--spacing-lg);
+}
+
+.research-topic {
+    flex: 1;
+    text-align: left;
+}
+
+.research-topic ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.research-topic + .research-topic {
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: 3rem;
+}
+
+@media (max-width: 768px) {
+    .research-card {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .research-topic + .research-topic {
+        padding-left: 0;
+        padding-top: 2rem;
+    }
 }
