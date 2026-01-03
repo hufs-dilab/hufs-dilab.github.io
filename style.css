@@ -25,8 +25,8 @@
 
 @font-face {
     font-family: 'HUFS Font';
-    src: url('fonts/fontL.otf') format('opentype');
-    font-weight: normal;
+    src: url('fonts/malgunsl.ttf') format('truetype');
+    font-weight: 100;
     font-style: normal;
 }
 
