@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="People at Data Intelligence Lab">
     <title>People | DILAB</title>
-    <link rel="icon" type="image/png" href="UI/farvicon_colored.png">
+    <link rel="icon" type="image/png" href="/UI/farvicon_colored.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="brand">
-                <img src="UI/logo13.PNG" alt="DILAB Logo" class="brand-logo">
+            <a href="/" class="brand">
+                <img src="/UI/logo13.PNG" alt="DILAB Logo" class="brand-logo">
             </a>
             <button class="menu-toggle">☰</button>
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="people.html" class="active">People</a>
-                <a href="publications.html">Publications</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="join.html">Join Us</a>
+                <a href="/">Home</a>
+                <a href="/people/" class="active">People</a>
+                <a href="/publications/">Publications</a>
+                <a href="/gallery/">Gallery</a>
+                <a href="/join/">Join Us</a>
             </div>
         </div>
     </nav>
@@ -39,13 +39,17 @@
             <h2 style="margin-bottom: 2rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 0.5rem; display: block; font-size: 1.5rem;">Professor</h2>
             <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap; margin-top: 2rem;">
                 <div class="person-img" style="width: 200px; height: 200px;">
-                    <img src="people/professor.jpeg" alt="Seungtaek Choi" style="width: 100%; height: 100%; border-radius: 0; object-fit: cover;">
+                    <img src="professor.jpeg" alt="Seungtaek Choi" style="width: 100%; height: 100%; border-radius: 0; object-fit: cover;">
                 </div>
                 <div style="flex: 1; min-width: 300px;">
                     <h3>Seungtaek Choi</h3>
                     <p style="color: var(--color-accent); font-weight: 600; margin-bottom: 1rem;">Assistant Professor</p>
                     <p style="margin-bottom: 1rem; color: var(--color-text-muted);">
-                        <strong>Research Interests:</strong> Assessment framework and methodology, Foundation Models, Multimodal Large Language Models, Data-driven Understanding
+                        <strong>Research Interests:</strong>
+                        <span class="interest-tag">Assessment framework and methodology</span>
+                        <span class="interest-tag">Foundation Models</span>
+                        <span class="interest-tag">Multimodal Large Language Models</span>
+                        <span class="interest-tag">Data-driven Understanding</span>
                     </p>
                     <p style="margin-bottom: 1rem; color: var(--color-text-muted);">
                         <strong>Email:</strong> seungtaek.choi@hufs.ac.kr
@@ -61,35 +65,42 @@
             <h2 style="margin-bottom: 2rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 0.5rem; display: block; font-size: 1.5rem;">Current Members</h2>
             <div class="grid people-grid" style="margin-top: 2rem;">
                 <div class="card person-card">
-                    <img src="people/jisoo.jpg" class="person-img" alt="Student Name">
+                    <img src="jisoo.jpg" class="person-img" alt="Student Name">
                     <div class="person-name">Jisoo Jang</div>
                     <div class="person-role">Undergraduate Student</div>
-                    <p class="person-desc"><strong>Research Interest:</strong> Emotional Intelligence</p>
+                    <div class="person-desc">
+                        <strong>Research Interest:</strong>
+                        <span class="interest-tag">Emotional Intelligence</span>
+                    </div>
                     <p class="person-email"><strong>Email:</strong> jsjang0104@naver.com</p>
                 </div>
                 <div class="card person-card">
-                    <img src="people/default.png" class="person-img" alt="Student Name">
+                    <img src="default.png" class="person-img" alt="Student Name">
                     <div class="person-name">Seoyeon Hwang</div>
                     <div class="person-role">Undergraduate Student</div>
-                    <p class="person-desc"><strong>Research Interest:</strong> NLP, Speech AI</p>
+                    <div class="person-desc">
+                        <strong>Research Interest:</strong>
+                        <span class="interest-tag">NLP</span>
+                        <span class="interest-tag">Speech AI</span>
+                    </div>
                     <p class="person-email"><strong>Email:</strong> seoyon0401@naver.com</p>
                 </div>
                 <div class="card person-card">
-                    <img src="people/default.png" class="person-img" alt="Student Name">
+                    <img src="default.png" class="person-img" alt="Student Name">
                     <div class="person-name">Yeonjoo Yoo</div>
                     <div class="person-role">Undergraduate Student</div>
                     <p class="person-desc"><strong>Research Interest:</strong></p>
                     <p class="person-email"><strong>Email:</strong> yyj@hufs.ac.kr</p>
                 </div>
                 <div class="card person-card">
-                    <img src="people/default.png" class="person-img" alt="Student Name">
+                    <img src="default.png" class="person-img" alt="Student Name">
                     <div class="person-name">Hyunah Cho</div>
                     <div class="person-role">Undergraduate Student</div>
                     <p class="person-desc"><strong>Research Interest:</strong></p>
                     <p class="person-email"><strong>Email:</strong> hyunah12977@hufs.ac.kr</p>
                 </div>
                 <div class="card person-card">
-                    <img src="people/default.png" class="person-img" alt="Student Name">
+                    <img src="default.png" class="person-img" alt="Student Name">
                     <div class="person-name">Seoyeon Choi</div>
                     <div class="person-role">Undergraduate Student</div>
                     <p class="person-desc"><strong>Research Interest:</strong></p>
@@ -102,7 +113,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <img src="UI/hufs.gif" alt="HUFS Logo" class="footer-logo">
+                <img src="/UI/hufs.gif" alt="HUFS Logo" class="footer-logo">
                 <div class="footer-text">
                     <p>&copy; <span id="current-year">2026</span> Data Intelligence Lab (DILAB). Division of Language & AI, College of AI Convergence, Hankuk University of Foreign Studies</p>
                     <p>Suite 435, Faculty Office Building, 107, Imun-ro, Dongdaemun-gu, Seoul, 02450, Republic of Korea</p>
@@ -115,6 +126,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>
