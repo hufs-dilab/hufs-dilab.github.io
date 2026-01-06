@@ -608,7 +608,7 @@ footer .container {
     display: inline-block;
     padding: 2px 10px;
     border-radius: 12px;
-    font-size: 0.60rem;
+    font-size: 0.80rem; /* Increased from 0.60rem */
     font-weight: 600;
     margin-right: 5px;
     margin-bottom: 5px;
