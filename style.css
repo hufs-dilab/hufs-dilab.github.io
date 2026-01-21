@@ -603,6 +603,18 @@ footer .container {
     margin-top: 5px;
 }
 
+.person-desc {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+}
+
+.person-desc strong {
+    width: 100%;
+    margin-bottom: 3px;
+}
+
 /* Research Interest Tags */
 .interest-tag {
     display: inline-block;
