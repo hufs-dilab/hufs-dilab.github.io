@@ -1,20 +1,5 @@
 [
   {
-    "name": "SIGIR 2026 (Industry)",
-    "date": "2026-02-26 20:59",
-    "url": "https://sigir2026.org/"
-  },
-  {
-    "name": "InterSpeech 2026",
-    "date": "2026-02-26 20:59",
-    "url": "https://interspeech2026.org/"
-  },
-  {
-    "name": "ECCV 2026",
-    "date": "2026-03-06 20:00",
-    "url": "https://eccv.ecva.net/"
-  },
-  {
     "name": "COLM 2026",
     "date": "2026-04-01 20:59",
     "url": "https://colmweb.org/cfp.html"
@@ -28,5 +13,15 @@
     "name": "IEEE ICDM 2026",
     "date": "2026-06-07 20:59",
     "url": "http://icdm2026.neu.edu.cn/?"
+  },
+  {
+    "name": "AAAI 2027 (predicted)",
+    "date": "2026-08-08 20:59",
+    "url": "https://aaai.org/conference/aaai/aaai-27/"
+  },
+  {
+    "name": "ICLR 2027 (predicted)",
+    "date": "2026-09-24 20:59",
+    "url": "https://iclr.cc/"
   }
 ]
