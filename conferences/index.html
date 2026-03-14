@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="container">
@@ -32,7 +34,7 @@
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 2rem;">
         <div class="container">
             <h1 style="margin-bottom: var(--spacing-sm);">Conference Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.9rem;">Last Update: 2026-02-22</p>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem;">Last Update: 2026-03-14</p>
         </div>
     </section>
 
@@ -52,7 +54,7 @@
                 const response = await fetch('conferences.json');
                 const conferences = await response.json();
                 const container = document.getElementById('conference-list');
-                
+
                 if (conferences.length === 0) {
                     container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem;"><p>No deadlines found.</p></div>';
                     return;
@@ -75,7 +77,7 @@
                         </div>
                     `;
                     container.appendChild(card);
-                    
+
                     startCountdown(conf.date, `countdown-${index}`);
                 });
             } catch (error) {
@@ -86,12 +88,12 @@
 
         function startCountdown(dateStr, elementId) {
             const targetDate = new Date(dateStr).getTime();
-            
+
             const timer = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = targetDate - now;
                 const element = document.getElementById(elementId);
-                
+
                 if (!element) {
                     clearInterval(timer);
                     return;
@@ -122,8 +124,10 @@
             <div class="footer-content">
                 <img src="/UI/hufs.gif" alt="HUFS Logo" class="footer-logo">
                 <div class="footer-text">
-                    <p>&copy; <span id="current-year">2026</span> Data Intelligence Lab (DILAB). Division of Language & AI, College of AI Convergence, Hankuk University of Foreign Studies</p>
-                    <p>Suite 435, Faculty Office Building, 107, Imun-ro, Dongdaemun-gu, Seoul, 02450, Republic of Korea</p>
+                    <p>&copy; <span id="current-year">2026</span> Data Intelligence Lab (DILAB). Division of Language &
+                        AI, College of AI Convergence, Hankuk University of Foreign Studies</p>
+                    <p>Suite 435, Faculty Office Building, 107, Imun-ro, Dongdaemun-gu, Seoul, 02450, Republic of Korea
+                    </p>
                     <p>한국외국어대학교 AI융합대학 Language & AI 융합학부</p>
                     <p>(02450) 서울특별시 동대문구 이문로 107 한국외국어대학교 서울캠퍼스 교수회관 435호</p>
                     <p>TEL. 02-2173-3149</p>
@@ -135,4 +139,5 @@
 
     <script src="/script.js"></script>
 </body>
+
 </html>
