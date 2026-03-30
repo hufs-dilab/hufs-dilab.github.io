@@ -40,9 +40,22 @@
 
     <section id="deadlines" style="padding-top: var(--spacing-md);">
         <div class="container">
+            <h2 style="margin-bottom: var(--spacing-md); font-size: 1.4rem;">Upcoming Deadlines</h2>
             <div id="conference-list" class="grid">
                 <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
                     <p>Loading deadlines...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="predicted" style="padding-top: var(--spacing-lg);">
+        <div class="container">
+            <h2 style="margin-bottom: var(--spacing-sm); font-size: 1.4rem;">Predicted Deadlines</h2>
+            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: var(--spacing-md);">Estimated based on previous year's deadline. Links point to the most recent edition.</p>
+            <div id="predicted-list" class="grid">
+                <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                    <p>Loading...</p>
                 </div>
             </div>
         </div>
@@ -53,37 +66,51 @@
             try {
                 const response = await fetch('conferences.json');
                 const conferences = await response.json();
-                const container = document.getElementById('conference-list');
 
-                if (conferences.length === 0) {
-                    container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem;"><p>No deadlines found.</p></div>';
-                    return;
-                }
+                const upcoming = conferences.filter(c => !c.name.includes('(Predicted)'));
+                const predicted = conferences.filter(c => c.name.includes('(Predicted)'));
 
-                container.innerHTML = '';
-                conferences.forEach((conf, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                            <h3 style="margin: 0; font-size: 1.2rem;">${conf.name}</h3>
-                            <a href="${conf.url}" target="_blank" class="pub-meta">Link</a>
-                        </div>
-                        <p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--color-text-main);">
-                            Deadline: ${conf.date}
-                        </p>
-                        <div id="countdown-${index}" style="font-family: monospace; font-size: 1.1rem; color: var(--color-accent-hover); font-weight: 500; background: var(--color-bg-alt); padding: 0.5rem; border: 1px dashed var(--color-accent);">
-                            Calculating...
-                        </div>
-                    `;
-                    container.appendChild(card);
+                const upcomingContainer = document.getElementById('conference-list');
+                const predictedContainer = document.getElementById('predicted-list');
 
-                    startCountdown(conf.date, `countdown-${index}`);
-                });
+                renderSection(upcoming, upcomingContainer, 'upcoming');
+                renderSection(predicted, predictedContainer, 'predicted');
             } catch (error) {
                 console.error('Error loading deadlines:', error);
                 document.getElementById('conference-list').innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: red;"><p>Failed to load deadlines. Please ensure "conferences.json" exists.</p></div>';
             }
+        }
+
+        function renderSection(conferences, container, prefix) {
+            if (conferences.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem;"><p>No deadlines found.</p></div>';
+                return;
+            }
+
+            container.innerHTML = '';
+            conferences.forEach((conf, index) => {
+                const id = `${prefix}-countdown-${index}`;
+                const linkHtml = conf.url
+                    ? `<a href="${conf.url}" target="_blank" class="pub-meta">Link</a>`
+                    : '';
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <h3 style="margin: 0; font-size: 1.2rem;">${conf.name}</h3>
+                        ${linkHtml}
+                    </div>
+                    <p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--color-text-main);">
+                        Deadline: ${conf.date}
+                    </p>
+                    <div id="${id}" style="font-family: monospace; font-size: 1.1rem; color: var(--color-accent-hover); font-weight: 500; background: var(--color-bg-alt); padding: 0.5rem; border: 1px dashed var(--color-accent);">
+                        Calculating...
+                    </div>
+                `;
+                container.appendChild(card);
+
+                startCountdown(conf.date, id);
+            });
         }
 
         function startCountdown(dateStr, elementId) {
