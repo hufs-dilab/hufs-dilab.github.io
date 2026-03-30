@@ -5,23 +5,133 @@
     "url": "https://colmweb.org/cfp.html"
   },
   {
+    "name": "RecSys 2026",
+    "date": "2026-04-22 20:59",
+    "url": "https://recsys.acm.org/recsys26/"
+  },
+  {
+    "name": "NeurIPS 2026",
+    "date": "2026-05-07 20:59",
+    "url": "https://neurips.cc/Conferences/2026"
+  },
+  {
+    "name": "CIKM 2026",
+    "date": "2026-05-24 20:59",
+    "url": "https://cikm2026.diag.uniroma1.it/"
+  },
+  {
     "name": "EMNLP 2026",
-    "date": "2026-05-25 20:59",
+    "date": "2026-05-26 20:59",
     "url": "https://2026.emnlp.org/"
+  },
+  {
+    "name": "CoRL 2026",
+    "date": "2026-05-30 20:59",
+    "url": "https://www.corl.org/"
   },
   {
     "name": "IEEE ICDM 2026",
     "date": "2026-06-07 20:59",
-    "url": "http://icdm2026.neu.edu.cn/?"
+    "url": "http://icdm2026.neu.edu.cn/"
   },
   {
     "name": "AAAI 2027 (Predicted)",
     "date": "2026-08-08 20:59",
-    "url": "https://aaai.org/conference/aaai/aaai-27/"
+    "url": "https://aaai.org/conference/aaai/aaai-26/"
+  },
+  {
+    "name": "WSDM 2027 (Predicted)",
+    "date": "2026-08-15 20:59",
+    "url": "https://wsdm-conference.org/2026/"
+  },
+  {
+    "name": "COLING 2027 (Predicted)",
+    "date": "2026-08-15 20:59",
+    "url": "https://coling2025.org/"
+  },
+  {
+    "name": "ICRA 2027 (Predicted)",
+    "date": "2026-09-17 20:59",
+    "url": "https://2026.ieee-icra.org/"
+  },
+  {
+    "name": "ICASSP 2027 (Predicted)",
+    "date": "2026-09-18 20:59",
+    "url": "https://2026.ieeeicassp.org/"
   },
   {
     "name": "ICLR 2027 (Predicted)",
     "date": "2026-09-24 20:59",
-    "url": "https://iclr.cc/"
+    "url": "https://iclr.cc/Conferences/2026"
+  },
+  {
+    "name": "AISTATS 2027 (Predicted)",
+    "date": "2026-10-03 20:59",
+    "url": "https://aistats.org/aistats2026/"
+  },
+  {
+    "name": "EACL 2027 (Predicted)",
+    "date": "2026-10-07 20:59",
+    "url": "https://2026.eacl.org/"
+  },
+  {
+    "name": "WWW 2027 (Predicted)",
+    "date": "2026-10-08 20:59",
+    "url": "https://www2026.thewebconf.org/"
+  },
+  {
+    "name": "NAACL 2027 (Predicted)",
+    "date": "2026-10-15 20:59",
+    "url": "https://2025.naacl.org/"
+  },
+  {
+    "name": "CVPR 2027 (Predicted)",
+    "date": "2026-11-14 20:59",
+    "url": "https://cvpr.thecvf.com/Conferences/2026"
+  },
+  {
+    "name": "SIGIR 2027 (Predicted)",
+    "date": "2026-12-16 20:59",
+    "url": "https://sigir2026.org/"
+  },
+  {
+    "name": "ACL 2027 (Predicted)",
+    "date": "2027-01-06 20:59",
+    "url": "https://2026.aclweb.org/"
+  },
+  {
+    "name": "IJCAI 2027 (Predicted)",
+    "date": "2027-01-20 20:59",
+    "url": "https://2026.ijcai.org/"
+  },
+  {
+    "name": "ICML 2027 (Predicted)",
+    "date": "2027-01-29 20:59",
+    "url": "https://icml.cc/Conferences/2026"
+  },
+  {
+    "name": "RSS 2027 (Predicted)",
+    "date": "2027-01-31 20:59",
+    "url": "https://roboticsconference.org/"
+  },
+  {
+    "name": "KDD 2027 (Predicted)",
+    "date": "2027-02-09 20:59",
+    "url": "https://kdd2026.kdd.org/"
+  },
+  {
+    "name": "InterSpeech 2027 (Predicted)",
+    "date": "2027-02-26 20:59",
+    "url": "https://interspeech2026.org/"
+  },
+  {
+    "name": "ECCV 2028 (Predicted)",
+    "date": "2027-03-06 20:59",
+    "url": "https://eccv.ecva.net/Conferences/2026"
+  },
+  {
+    "name": "ICCV 2027 (Predicted)",
+    "date": "2027-03-08 20:59",
+    "url": "https://iccv.thecvf.com/Conferences/2025"
   }
 ]
