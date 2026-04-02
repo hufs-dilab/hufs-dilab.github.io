@@ -1,12 +1,12 @@
 :root {
     /* Color Palette */
     --color-bg: #ffffff; /* White */
-    --color-bg-alt: #ffffff; /* Slate 50 */
+    --color-bg-alt: #f8fafc; /* Slate 50 */
     --color-text-main: #0f172a; /* Slate 900 */
     --color-text-muted: #000000; /* Slate 500 */
     --color-accent: #1D4999; /* Blue 600 */
     --color-accent-hover: #EE6C4D; /* Blue 700 */
-    --color-border: #1D4999; /* Slate 200 */
+    --color-border: #e2e8f0; /* Slate 200 */
     
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -376,6 +376,12 @@ h1 {
     line-height: 1.0;
 }
 
+.page-header h1 {
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--color-accent);
+}
+
 h2 {
     font-size: 1rem;
     font-weight: 500;
@@ -396,7 +402,8 @@ h2 {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .card:hover {
@@ -513,10 +520,24 @@ footer .container {
     margin-bottom: var(--spacing-md);
     border-bottom: 1px solid var(--color-border);
     padding-bottom: var(--spacing-md);
+    transition: background-color 0.2s ease;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.pub-item:hover {
+    background-color: var(--color-bg-alt);
 }
 
 .pub-item:last-child {
     border-bottom: none;
+}
+
+.author-highlight {
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 2px;
+    font-weight: 600;
 }
 
 .pub-year {
