@@ -600,9 +600,9 @@ footer .container {
 }
 
 .person-img {
-    width: 80px;
-    height: 80px;
-    min-width: 80px;
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
     border-radius: 0;
     background-color: var(--color-border);
     margin: 0;
