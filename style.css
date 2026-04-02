@@ -232,24 +232,25 @@ section {
 }
 
 .hero-text-box h1 {
-    font-size: 0.7rem;
-    font-weight: 100;
+    font-size: 2rem;
+    font-weight: 300;
     color: #fff !important;
-    margin: 4rem auto 0 auto;
-    line-height: 1;
+    margin: 0;
+    line-height: 1.2;
     background: none !important;
     -webkit-background-clip: unset !important;
     background-clip: unset !important;
     -webkit-text-fill-color: #fff !important;
-    opacity: 0.90;
+    letter-spacing: 0.05em;
 }
 
 .hero-text-box p {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #fff !important;
-    font-weight: 150;
-    margin: -2.0rem auto 0 auto;
-    opacity: 0.85;
+    font-weight: 300;
+    margin: 0.5rem auto 0 auto;
+    opacity: 0.8;
+    letter-spacing: 0.1em;
 }
 
 /* Responsive Hero Text */
@@ -290,14 +291,15 @@ section {
 }
 
 .hero h1 {
-    font-size: 4rem;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: var(--spacing-md);
-    background: linear-gradient(to right, #0f172a, #475569);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 0;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: #fff;
+    color: #fff;
 }
 
 .hero p {
