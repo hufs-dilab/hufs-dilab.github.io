@@ -67,7 +67,7 @@ a:hover {
 }
 
 section {
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-md) 0;
 }
 
 /* Navbar */
@@ -463,7 +463,7 @@ footer {
     background-size: cover;
     background-position: center;
     padding: var(--spacing-lg) 0;
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
     color: white;
     font-weight: 500;
 }
