@@ -23,13 +23,6 @@
     --radius-lg: 0px;
 }
 
-@font-face {
-    font-family: 'HUFS Font';
-    src: url('fonts/malgunsl.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -37,7 +30,7 @@
 }
 
 body {
-    font-family: 'HUFS Font', 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--color-bg);
     color: var(--color-text-main);
     line-height: 1.6;
