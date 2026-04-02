@@ -542,7 +542,7 @@ footer .container {
     font-weight: 600;
     margin-bottom: var(--spacing-sm);
     color: var(--color-text-main);
-    display: block;
+    display: inline-block;
     margin-top: var(--spacing-lg);
 }
 
