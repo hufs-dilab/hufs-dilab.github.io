@@ -403,7 +403,7 @@ h2 {
 }
 
 .card:hover {
-    border-color: var(--color-accent);
+    border-color: var(--color-border);
 }
 
 a.card:hover {
