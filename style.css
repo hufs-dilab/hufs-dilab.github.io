@@ -382,20 +382,9 @@ h2 {
     font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: var(--spacing-md);
-    position: relative;
-    display: block;
-    padding-bottom: 0.75rem;
-    border-bottom: none;
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background-color: var(--color-accent);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-accent);
 }
 
 /* Cards Grid */
