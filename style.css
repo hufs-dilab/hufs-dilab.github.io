@@ -379,11 +379,13 @@ h1 {
 }
 
 h2 {
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: var(--spacing-md);
     position: relative;
-    display: inline-block;
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-accent);
 }
 
 /* Cards Grid */
