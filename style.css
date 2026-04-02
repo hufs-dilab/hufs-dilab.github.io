@@ -585,12 +585,12 @@ footer .container {
 
 /* People Grid Override */
 .people-grid {
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-sm);
 }
 
 .people-grid .card {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
 }
 
 .person-card {
