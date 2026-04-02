@@ -232,7 +232,7 @@ section {
 }
 
 .hero-text-box h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 400;
     color: #fff !important;
     margin: 0;
@@ -245,7 +245,7 @@ section {
 }
 
 .hero-text-box p {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #fff !important;
     font-weight: 400;
     margin: 0.5rem auto 0 auto;
@@ -291,7 +291,7 @@ section {
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 400;
     line-height: 1.2;
     margin-bottom: 0;
