@@ -31,6 +31,7 @@
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 300;
     background-color: var(--color-bg);
     color: var(--color-text-main);
     line-height: 1.6;
