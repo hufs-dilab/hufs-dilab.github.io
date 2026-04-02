@@ -65,15 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return Math.abs(hash);
     }
 
-    // Apply colors to all interest tags based on their text content
-    const interestTags = document.querySelectorAll('.interest-tag');
-    interestTags.forEach(tag => {
-        const text = tag.textContent.trim().toLowerCase();
-        const colorIndex = hashString(text) % interestColors.length;
-        const color = interestColors[colorIndex];
-        tag.style.backgroundColor = color.bg;
-        tag.style.color = color.text;
-    });
+    // Interest tag colors are now handled by CSS only
 
     // Hero Image Slider
     const slides = document.querySelectorAll('.hero-slider .slide');
