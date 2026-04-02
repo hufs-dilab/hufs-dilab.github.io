@@ -166,7 +166,7 @@ section {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    height: 60vh;
     display: flex;
     align-items: center;
     position: relative;
