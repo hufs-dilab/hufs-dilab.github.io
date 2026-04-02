@@ -232,8 +232,8 @@ section {
 }
 
 .hero-text-box h1 {
-    font-size: 3rem;
-    font-weight: 300;
+    font-size: 2.5rem;
+    font-weight: 400;
     color: #fff !important;
     margin: 0;
     line-height: 1.2;
@@ -241,16 +241,16 @@ section {
     -webkit-background-clip: unset !important;
     background-clip: unset !important;
     -webkit-text-fill-color: #fff !important;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.02em;
 }
 
 .hero-text-box p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #fff !important;
-    font-weight: 300;
+    font-weight: 400;
     margin: 0.5rem auto 0 auto;
-    opacity: 0.85;
-    letter-spacing: 0.15em;
+    opacity: 0.9;
+    letter-spacing: 0.05em;
 }
 
 /* Responsive Hero Text */
@@ -291,8 +291,8 @@ section {
 }
 
 .hero h1 {
-    font-size: 3rem;
-    font-weight: 300;
+    font-size: 2.5rem;
+    font-weight: 400;
     line-height: 1.2;
     margin-bottom: 0;
     background: none;
