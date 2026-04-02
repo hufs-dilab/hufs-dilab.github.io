@@ -623,9 +623,14 @@ footer .container {
     margin-bottom: 0.5rem;
 }
 
+.person-info {
+    flex: 1;
+    min-width: 0;
+}
+
 .person-desc, .person-email {
     text-align: left;
-    margin-top: 5px;
+    margin-top: 0.5rem;
 }
 
 .person-desc {
@@ -635,9 +640,22 @@ footer .container {
     gap: 4px;
 }
 
-.person-desc strong {
+.person-label {
+    display: block;
     width: 100%;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
     margin-bottom: 2px;
+}
+
+.person-email {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.person-email a {
+    color: var(--color-accent);
+    font-weight: 400;
 }
 
 /* Research Interest Tags */
