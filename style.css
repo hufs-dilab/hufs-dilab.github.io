@@ -568,8 +568,7 @@ footer .container {
 .pub-meta {
     font-size: 0.85rem;
     color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
     font-weight: 600;
     text-decoration: none; /* Ensure links don't have underline */
     transition: opacity 0.2s ease;
