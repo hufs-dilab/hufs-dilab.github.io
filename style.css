@@ -597,6 +597,7 @@ footer .container {
     display: flex;
     gap: 1rem;
     text-align: left;
+    align-items: center;
 }
 
 .person-img {
