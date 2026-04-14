@@ -89,6 +89,24 @@
             font-weight: 400;
         }
 
+        .conf-link {
+            font-size: 0.78rem;
+            font-weight: 400;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: border-color 0.15s ease, color 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .conf-link:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
         .tag-NLP { background: #e3f2fd; color: #1565c0; }
         .tag-ML { background: #f3e5f5; color: #7b1fa2; }
         .tag-AI { background: #e8eaf6; color: #283593; }
@@ -395,7 +413,7 @@
             conferences.forEach((conf, index) => {
                 const id = `${prefix}-countdown-${index}`;
                 const linkHtml = conf.url
-                    ? `<a href="${conf.url}" target="_blank" class="pub-meta">Link</a>`
+                    ? `<a href="${conf.url}" target="_blank" class="conf-link">Link ↗</a>`
                     : '';
                 const card = document.createElement('div');
                 card.className = 'card';
