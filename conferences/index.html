@@ -100,10 +100,22 @@
         .tag-Web { background: #e0f7fa; color: #00838f; }
         .tag-Student { background: #fce4ec; color: #ad1457; }
 
-        /* Timeline View */
-        #timeline-view {
-            display: none;
+        /* Card grid fixed sizing */
+        .conf-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-sm);
         }
+
+        @media (max-width: 900px) {
+            .conf-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 560px) {
+            .conf-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Timeline View */
 
         .timeline-month {
             margin-bottom: var(--spacing-md);
@@ -245,7 +257,7 @@
         <section id="deadlines" style="padding-top: var(--spacing-md);">
             <div class="container">
                 <h2>Upcoming Deadlines</h2>
-                <div id="conference-list" class="grid">
+                <div id="conference-list" class="conf-grid">
                     <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
                         <p>Loading deadlines...</p>
                     </div>
@@ -257,7 +269,7 @@
             <div class="container">
                 <h2>Predicted Deadlines</h2>
                 <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: var(--spacing-md);">Estimated based on previous year's deadline. Links point to the most recent edition.</p>
-                <div id="predicted-list" class="grid">
+                <div id="predicted-list" class="conf-grid">
                     <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
                         <p>Loading...</p>
                     </div>
@@ -267,7 +279,7 @@
     </div>
 
     <!-- Timeline View -->
-    <div id="timeline-view">
+    <div id="timeline-view" style="display: none;">
         <section style="padding-top: var(--spacing-md);">
             <div class="container" id="timeline-container"></div>
         </section>
@@ -275,7 +287,7 @@
 
     <script>
         let allConferences = [];
-        let activeTag = 'all';
+        let activeTags = new Set();  // empty = show all
         let activeView = 'cards';
         const countdownTimers = [];
 
@@ -311,9 +323,21 @@
         }
 
         function setFilter(tag) {
-            activeTag = tag;
+            if (tag === 'all') {
+                activeTags.clear();
+            } else {
+                if (activeTags.has(tag)) {
+                    activeTags.delete(tag);
+                } else {
+                    activeTags.add(tag);
+                }
+            }
             document.querySelectorAll('.filter-btn').forEach(b => {
-                b.classList.toggle('active', b.dataset.tag === tag);
+                if (b.dataset.tag === 'all') {
+                    b.classList.toggle('active', activeTags.size === 0);
+                } else {
+                    b.classList.toggle('active', activeTags.has(b.dataset.tag));
+                }
             });
             render();
         }
@@ -323,14 +347,18 @@
             document.querySelectorAll('.view-btn').forEach(b => {
                 b.classList.toggle('active', b.dataset.view === view);
             });
-            document.getElementById('cards-view').style.display = view === 'cards' ? '' : 'none';
-            document.getElementById('timeline-view').style.display = view === 'timeline' ? '' : 'none';
+            document.getElementById('cards-view').style.display = view === 'cards' ? 'block' : 'none';
+            document.getElementById('timeline-view').style.display = view === 'timeline' ? 'block' : 'none';
             render();
         }
 
         function getFiltered() {
-            if (activeTag === 'all') return allConferences;
-            return allConferences.filter(c => (c.tags || []).includes(activeTag));
+            if (activeTags.size === 0) return allConferences;
+            return allConferences.filter(c => (c.tags || []).some(t => activeTags.has(t)));
+        }
+
+        function displayName(conf) {
+            return conf.predicted ? `${conf.name} (Predicted)` : conf.name;
         }
 
         function render() {
@@ -373,7 +401,7 @@
                 card.className = 'card';
                 card.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
-                        <h3 style="margin: 0; font-size: 1.2rem;">${conf.name}</h3>
+                        <h3 style="margin: 0; font-size: 1.2rem;">${displayName(conf)}</h3>
                         ${linkHtml}
                     </div>
                     ${renderTagBadges(conf.tags)}
@@ -436,10 +464,10 @@
                 if (!months[key]) months[key] = { label, items: [] };
 
                 const dayStr = `${monthNames[d.getMonth()]} ${d.getDate()}`;
-                const displayName = conf.name;
+                const name = displayName(conf);
                 const linkHtml = conf.url
-                    ? `<a href="${conf.url}" target="_blank">${displayName}</a>`
-                    : displayName;
+                    ? `<a href="${conf.url}" target="_blank">${name}</a>`
+                    : name;
                 const tagsHtml = (conf.tags || []).map(t => `<span class="tag-badge tag-${t}">${t}</span>`).join('');
                 const id = `tl-${section}-${i}`;
 
