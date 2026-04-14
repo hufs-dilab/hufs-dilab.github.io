@@ -1,137 +1,213 @@
 [
   {
-    "name": "COLM 2026",
-    "date": "2026-04-01 20:59",
-    "url": "https://colmweb.org/cfp.html"
-  },
-  {
     "name": "RecSys 2026",
     "date": "2026-04-22 20:59",
-    "url": "https://recsys.acm.org/recsys26/"
+    "url": "https://recsys.acm.org/recsys26/",
+    "tags": ["IR"]
   },
   {
     "name": "NeurIPS 2026",
     "date": "2026-05-07 20:59",
-    "url": "https://neurips.cc/Conferences/2026"
+    "url": "https://neurips.cc/Conferences/2026",
+    "tags": ["ML"]
   },
   {
     "name": "CIKM 2026",
     "date": "2026-05-24 20:59",
-    "url": "https://cikm2026.diag.uniroma1.it/"
+    "url": "https://cikm2026.diag.uniroma1.it/",
+    "tags": ["IR", "Data"]
   },
   {
     "name": "EMNLP 2026",
     "date": "2026-05-26 20:59",
-    "url": "https://2026.emnlp.org/"
+    "url": "https://2026.emnlp.org/",
+    "tags": ["NLP"]
   },
   {
     "name": "CoRL 2026",
     "date": "2026-05-30 20:59",
-    "url": "https://www.corl.org/"
+    "url": "https://www.corl.org/",
+    "tags": ["Robotics", "ML"]
   },
   {
     "name": "IEEE ICDM 2026",
     "date": "2026-06-07 20:59",
-    "url": "http://icdm2026.neu.edu.cn/"
+    "url": "http://icdm2026.neu.edu.cn/",
+    "tags": ["Data"]
   },
   {
-    "name": "AAAI 2027 (Predicted)",
+    "name": "AAAI 2027",
     "date": "2026-08-08 20:59",
-    "url": "https://aaai.org/conference/aaai/aaai-26/"
+    "url": "https://aaai.org/conference/aaai/",
+    "tags": ["AI"],
+    "predicted": true
   },
   {
-    "name": "WSDM 2027 (Predicted)",
+    "name": "WSDM 2027",
     "date": "2026-08-15 20:59",
-    "url": "https://wsdm-conference.org/2026/"
+    "url": "https://wsdm-conference.org/2026/",
+    "tags": ["IR", "Web"],
+    "predicted": true
   },
   {
-    "name": "COLING 2027 (Predicted)",
+    "name": "COLING 2027",
     "date": "2026-08-15 20:59",
-    "url": "https://coling2025.org/"
+    "url": "https://coling2025.org/",
+    "tags": ["NLP"],
+    "predicted": true
   },
   {
-    "name": "ICRA 2027 (Predicted)",
+    "name": "AAAI 2027 Student Abstract",
+    "date": "2026-09-15 20:59",
+    "url": "https://aaai.org/conference/aaai/",
+    "tags": ["AI", "Student"],
+    "predicted": true
+  },
+  {
+    "name": "ICRA 2027",
     "date": "2026-09-17 20:59",
-    "url": "https://2026.ieee-icra.org/"
+    "url": "https://2026.ieee-icra.org/",
+    "tags": ["Robotics"],
+    "predicted": true
   },
   {
-    "name": "ICASSP 2027 (Predicted)",
+    "name": "ICASSP 2027",
     "date": "2026-09-18 20:59",
-    "url": "https://2026.ieeeicassp.org/"
+    "url": "https://2027.ieeeicassp.org/",
+    "tags": ["Speech"],
+    "predicted": true
   },
   {
-    "name": "ICLR 2027 (Predicted)",
+    "name": "ICLR 2027",
     "date": "2026-09-24 20:59",
-    "url": "https://iclr.cc/Conferences/2026"
+    "url": "https://iclr.cc/Conferences/2026",
+    "tags": ["ML"],
+    "predicted": true
   },
   {
-    "name": "AISTATS 2027 (Predicted)",
+    "name": "AISTATS 2027",
     "date": "2026-10-03 20:59",
-    "url": "https://aistats.org/aistats2026/"
+    "url": "https://aistats.org/aistats2026/",
+    "tags": ["ML"],
+    "predicted": true
   },
   {
-    "name": "EACL 2027 (Predicted)",
+    "name": "EACL 2027",
     "date": "2026-10-07 20:59",
-    "url": "https://2026.eacl.org/"
+    "url": "https://2026.eacl.org/",
+    "tags": ["NLP"],
+    "predicted": true
   },
   {
-    "name": "WWW 2027 (Predicted)",
+    "name": "WWW 2027",
     "date": "2026-10-08 20:59",
-    "url": "https://www2026.thewebconf.org/"
+    "url": "https://www2026.thewebconf.org/",
+    "tags": ["Web"],
+    "predicted": true
   },
   {
-    "name": "NAACL 2027 (Predicted)",
+    "name": "NAACL 2027",
     "date": "2026-10-15 20:59",
-    "url": "https://2025.naacl.org/"
+    "url": "https://2025.naacl.org/",
+    "tags": ["NLP"],
+    "predicted": true
   },
   {
-    "name": "CVPR 2027 (Predicted)",
+    "name": "CVPR 2027",
     "date": "2026-11-14 20:59",
-    "url": "https://cvpr.thecvf.com/Conferences/2026"
+    "url": "https://cvpr.thecvf.com/Conferences/2026",
+    "tags": ["CV"],
+    "predicted": true
   },
   {
-    "name": "SIGIR 2027 (Predicted)",
+    "name": "SIGIR 2027",
     "date": "2026-12-16 20:59",
-    "url": "https://sigir2026.org/"
+    "url": "https://sigir2026.org/",
+    "tags": ["IR"],
+    "predicted": true
   },
   {
-    "name": "ACL 2027 (Predicted)",
+    "name": "EACL 2027 SRW",
+    "date": "2026-12-22 20:59",
+    "url": "https://2026.eacl.org/",
+    "tags": ["NLP", "Student"],
+    "predicted": true
+  },
+  {
+    "name": "ACL 2027",
     "date": "2027-01-06 20:59",
-    "url": "https://2026.aclweb.org/"
+    "url": "https://2026.aclweb.org/",
+    "tags": ["NLP"],
+    "predicted": true
   },
   {
-    "name": "IJCAI 2027 (Predicted)",
+    "name": "IJCAI 2027",
     "date": "2027-01-20 20:59",
-    "url": "https://2026.ijcai.org/"
+    "url": "https://2026.ijcai.org/",
+    "tags": ["AI"],
+    "predicted": true
   },
   {
-    "name": "ICML 2027 (Predicted)",
+    "name": "ICML 2027",
     "date": "2027-01-29 20:59",
-    "url": "https://icml.cc/Conferences/2026"
+    "url": "https://icml.cc/Conferences/2026",
+    "tags": ["ML"],
+    "predicted": true
   },
   {
-    "name": "RSS 2027 (Predicted)",
+    "name": "RSS 2027",
     "date": "2027-01-31 20:59",
-    "url": "https://roboticsconference.org/"
+    "url": "https://roboticsconference.org/",
+    "tags": ["Robotics"],
+    "predicted": true
   },
   {
-    "name": "KDD 2027 (Predicted)",
+    "name": "KDD 2027",
     "date": "2027-02-09 20:59",
-    "url": "https://kdd2026.kdd.org/"
+    "url": "https://kdd2026.kdd.org/",
+    "tags": ["Data"],
+    "predicted": true
   },
   {
-    "name": "InterSpeech 2027 (Predicted)",
+    "name": "NAACL 2027 SRW",
+    "date": "2027-02-15 20:59",
+    "url": "https://2025.naacl.org/",
+    "tags": ["NLP", "Student"],
+    "predicted": true
+  },
+  {
+    "name": "InterSpeech 2027",
     "date": "2027-02-26 20:59",
-    "url": "https://interspeech2026.org/"
+    "url": "https://interspeech2027.org/",
+    "tags": ["Speech"],
+    "predicted": true
   },
   {
-    "name": "ECCV 2028 (Predicted)",
+    "name": "ECCV 2028",
     "date": "2027-03-06 20:59",
-    "url": "https://eccv.ecva.net/Conferences/2026"
+    "url": "https://eccv.ecva.net/Conferences/2026",
+    "tags": ["CV"],
+    "predicted": true
   },
   {
-    "name": "ICCV 2027 (Predicted)",
+    "name": "ICCV 2027",
     "date": "2027-03-08 20:59",
-    "url": "https://iccv.thecvf.com/Conferences/2025"
+    "url": "https://iccv.thecvf.com/Conferences/2025",
+    "tags": ["CV"],
+    "predicted": true
+  },
+  {
+    "name": "ACL 2027 SRW",
+    "date": "2027-03-18 20:59",
+    "url": "https://2026.aclweb.org/",
+    "tags": ["NLP", "Student"],
+    "predicted": true
+  },
+  {
+    "name": "COLM 2027",
+    "date": "2027-04-01 20:59",
+    "url": "https://colmweb.org/",
+    "tags": ["NLP"],
+    "predicted": true
   }
 ]

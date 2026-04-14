@@ -11,6 +11,195 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
+    <style>
+        /* Filter & View Controls */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .controls-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            align-items: center;
+        }
+
+        .controls-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            margin-right: 0.25rem;
+        }
+
+        .controls-divider {
+            width: 1px;
+            height: 1.5rem;
+            background: var(--color-border);
+            margin: 0 0.75rem;
+        }
+
+        .filter-btn, .view-btn {
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg);
+            color: var(--color-text-muted);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .filter-btn:hover, .view-btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .filter-btn.active {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .view-btn.active {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Tag Badges */
+        .tag-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag-badge {
+            display: inline-block;
+            padding: 0.1rem 0.45rem;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .tag-NLP { background: #e3f2fd; color: #1565c0; }
+        .tag-ML { background: #f3e5f5; color: #7b1fa2; }
+        .tag-AI { background: #e8eaf6; color: #283593; }
+        .tag-CV { background: #e8f5e9; color: #2e7d32; }
+        .tag-IR { background: #fff3e0; color: #e65100; }
+        .tag-Robotics { background: #fbe9e7; color: #bf360c; }
+        .tag-Speech { background: #e0f2f1; color: #00695c; }
+        .tag-Data { background: #fff8e1; color: #f57f17; }
+        .tag-Web { background: #e0f7fa; color: #00838f; }
+        .tag-Student { background: #fce4ec; color: #ad1457; }
+
+        /* Timeline View */
+        #timeline-view {
+            display: none;
+        }
+
+        .timeline-month {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .timeline-month-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.9rem;
+            transition: background 0.15s ease;
+        }
+
+        .timeline-item:hover {
+            background: var(--color-bg-alt);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-date {
+            flex-shrink: 0;
+            width: 5rem;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+        }
+
+        .timeline-name {
+            flex: 1;
+            font-weight: 400;
+        }
+
+        .timeline-name a {
+            color: var(--color-text-main);
+        }
+
+        .timeline-name a:hover {
+            color: var(--color-accent-hover);
+        }
+
+        .timeline-tags {
+            display: flex;
+            gap: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-countdown {
+            flex-shrink: 0;
+            width: 10rem;
+            text-align: right;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--color-accent-hover);
+        }
+
+        .timeline-predicted {
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        .timeline-section-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: 0.4rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-countdown {
+                display: none;
+            }
+            .timeline-date {
+                width: 4rem;
+            }
+            .controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .controls-divider {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -34,51 +223,138 @@
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 2rem;">
         <div class="container">
             <h1 style="margin-bottom: var(--spacing-sm);">Conference Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.9rem;">Last Update: 2026-03-14</p>
-        </div>
-    </section>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: var(--spacing-md);">Last Update: 2026-04-14</p>
 
-    <section id="deadlines" style="padding-top: var(--spacing-md);">
-        <div class="container">
-            <h2>Upcoming Deadlines</h2>
-            <div id="conference-list" class="grid">
-                <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-                    <p>Loading deadlines...</p>
+            <div class="controls">
+                <div class="controls-group">
+                    <span class="controls-label">View</span>
+                    <button class="view-btn active" data-view="cards">Cards</button>
+                    <button class="view-btn" data-view="timeline">Timeline</button>
+                </div>
+                <div class="controls-divider"></div>
+                <div class="controls-group" id="filter-buttons">
+                    <span class="controls-label">Filter</span>
+                    <button class="filter-btn active" data-tag="all">All</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="predicted" style="padding-top: var(--spacing-lg);">
-        <div class="container">
-            <h2>Predicted Deadlines</h2>
-            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: var(--spacing-md);">Estimated based on previous year's deadline. Links point to the most recent edition.</p>
-            <div id="predicted-list" class="grid">
-                <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-                    <p>Loading...</p>
+    <!-- Card View -->
+    <div id="cards-view">
+        <section id="deadlines" style="padding-top: var(--spacing-md);">
+            <div class="container">
+                <h2>Upcoming Deadlines</h2>
+                <div id="conference-list" class="grid">
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                        <p>Loading deadlines...</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="predicted" style="padding-top: var(--spacing-lg);">
+            <div class="container">
+                <h2>Predicted Deadlines</h2>
+                <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: var(--spacing-md);">Estimated based on previous year's deadline. Links point to the most recent edition.</p>
+                <div id="predicted-list" class="grid">
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Timeline View -->
+    <div id="timeline-view">
+        <section style="padding-top: var(--spacing-md);">
+            <div class="container" id="timeline-container"></div>
+        </section>
+    </div>
 
     <script>
+        let allConferences = [];
+        let activeTag = 'all';
+        let activeView = 'cards';
+        const countdownTimers = [];
+
         async function loadDeadlines() {
             try {
                 const response = await fetch('conferences.json');
-                const conferences = await response.json();
+                allConferences = await response.json();
 
-                const upcoming = conferences.filter(c => !c.name.includes('(Predicted)'));
-                const predicted = conferences.filter(c => c.name.includes('(Predicted)'));
-
-                const upcomingContainer = document.getElementById('conference-list');
-                const predictedContainer = document.getElementById('predicted-list');
-
-                renderSection(upcoming, upcomingContainer, 'upcoming');
-                renderSection(predicted, predictedContainer, 'predicted');
+                buildFilterButtons();
+                render();
             } catch (error) {
                 console.error('Error loading deadlines:', error);
-                document.getElementById('conference-list').innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: red;"><p>Failed to load deadlines. Please ensure "conferences.json" exists.</p></div>';
+                document.getElementById('conference-list').innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: red;"><p>Failed to load deadlines.</p></div>';
             }
+        }
+
+        function buildFilterButtons() {
+            const tagSet = new Set();
+            allConferences.forEach(c => (c.tags || []).forEach(t => tagSet.add(t)));
+
+            const order = ['NLP', 'ML', 'AI', 'CV', 'IR', 'Data', 'Web', 'Speech', 'Robotics', 'Student'];
+            const sorted = order.filter(t => tagSet.has(t));
+
+            const container = document.getElementById('filter-buttons');
+            sorted.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.dataset.tag = tag;
+                btn.textContent = tag;
+                btn.addEventListener('click', () => setFilter(tag));
+                container.appendChild(btn);
+            });
+        }
+
+        function setFilter(tag) {
+            activeTag = tag;
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.tag === tag);
+            });
+            render();
+        }
+
+        function setView(view) {
+            activeView = view;
+            document.querySelectorAll('.view-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.view === view);
+            });
+            document.getElementById('cards-view').style.display = view === 'cards' ? '' : 'none';
+            document.getElementById('timeline-view').style.display = view === 'timeline' ? '' : 'none';
+            render();
+        }
+
+        function getFiltered() {
+            if (activeTag === 'all') return allConferences;
+            return allConferences.filter(c => (c.tags || []).includes(activeTag));
+        }
+
+        function render() {
+            // Clear existing timers
+            countdownTimers.forEach(t => clearInterval(t));
+            countdownTimers.length = 0;
+
+            const filtered = getFiltered();
+
+            if (activeView === 'cards') {
+                const upcoming = filtered.filter(c => !c.predicted);
+                const predicted = filtered.filter(c => c.predicted);
+                renderSection(upcoming, document.getElementById('conference-list'), 'upcoming');
+                renderSection(predicted, document.getElementById('predicted-list'), 'predicted');
+            } else {
+                renderTimeline(filtered);
+            }
+        }
+
+        function renderTagBadges(tags) {
+            if (!tags || tags.length === 0) return '';
+            return '<div class="tag-badges">' +
+                tags.map(t => `<span class="tag-badge tag-${t}">${t}</span>`).join('') +
+                '</div>';
         }
 
         function renderSection(conferences, container, prefix) {
@@ -96,11 +372,12 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
                         <h3 style="margin: 0; font-size: 1.2rem;">${conf.name}</h3>
                         ${linkHtml}
                     </div>
-                    <p style="margin-bottom: 0.25rem; font-weight: 300; color: var(--color-text-muted); font-size: 0.85rem;">
+                    ${renderTagBadges(conf.tags)}
+                    <p style="margin-top: 0.75rem; margin-bottom: 0.25rem; font-weight: 300; color: var(--color-text-muted); font-size: 0.85rem;">
                         Deadline
                     </p>
                     <p style="margin-bottom: 0.5rem; font-weight: 500; font-size: 1rem;">
@@ -111,29 +388,95 @@
                     </div>
                 `;
                 container.appendChild(card);
-
                 startCountdown(conf.date, id);
             });
+        }
+
+        function renderTimeline(conferences) {
+            const container = document.getElementById('timeline-container');
+            const upcoming = conferences.filter(c => !c.predicted);
+            const predicted = conferences.filter(c => c.predicted);
+
+            let html = '';
+
+            if (upcoming.length > 0) {
+                html += '<h2>Upcoming Deadlines</h2>';
+                html += buildTimelineMonths(upcoming, 'upcoming');
+            }
+
+            if (predicted.length > 0) {
+                html += '<h2 style="margin-top: var(--spacing-lg);">Predicted Deadlines</h2>';
+                html += '<p style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: var(--spacing-md);">Estimated based on previous year\'s deadline.</p>';
+                html += buildTimelineMonths(predicted, 'predicted');
+            }
+
+            if (upcoming.length === 0 && predicted.length === 0) {
+                html = '<p style="text-align: center; padding: 3rem;">No deadlines found.</p>';
+            }
+
+            container.innerHTML = html;
+
+            // Start countdowns for timeline items
+            conferences.forEach((conf, i) => {
+                const section = conf.predicted ? 'predicted' : 'upcoming';
+                const id = `tl-${section}-${i}`;
+                const el = document.getElementById(id);
+                if (el) startCountdown(conf.date, id);
+            });
+        }
+
+        function buildTimelineMonths(conferences, section) {
+            const months = {};
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+            conferences.forEach((conf, i) => {
+                const d = new Date(conf.date);
+                const key = `${d.getFullYear()}-${String(d.getMonth()).padStart(2, '0')}`;
+                const label = `${monthNames[d.getMonth()]} ${d.getFullYear()}`;
+                if (!months[key]) months[key] = { label, items: [] };
+
+                const dayStr = `${monthNames[d.getMonth()]} ${d.getDate()}`;
+                const displayName = conf.name;
+                const linkHtml = conf.url
+                    ? `<a href="${conf.url}" target="_blank">${displayName}</a>`
+                    : displayName;
+                const tagsHtml = (conf.tags || []).map(t => `<span class="tag-badge tag-${t}">${t}</span>`).join('');
+                const id = `tl-${section}-${i}`;
+
+                months[key].items.push(`
+                    <div class="timeline-item">
+                        <span class="timeline-date">${dayStr}</span>
+                        <span class="timeline-name">${linkHtml}</span>
+                        <span class="timeline-tags">${tagsHtml}</span>
+                        <span class="timeline-countdown" id="${id}"></span>
+                    </div>
+                `);
+            });
+
+            let html = '';
+            Object.keys(months).sort().forEach(key => {
+                const m = months[key];
+                html += `<div class="timeline-month">
+                    <div class="timeline-month-label">${m.label}</div>
+                    ${m.items.join('')}
+                </div>`;
+            });
+            return html;
         }
 
         function startCountdown(dateStr, elementId) {
             const targetDate = new Date(dateStr).getTime();
 
-            const timer = setInterval(() => {
+            const update = () => {
                 const now = new Date().getTime();
                 const distance = targetDate - now;
                 const element = document.getElementById(elementId);
 
-                if (!element) {
-                    clearInterval(timer);
-                    return;
-                }
+                if (!element) return;
 
                 if (distance < 0) {
-                    clearInterval(timer);
                     element.innerHTML = "PASSED";
                     element.style.color = "var(--color-text-muted)";
-                    element.style.borderColor = "var(--color-border)";
                     return;
                 }
 
@@ -143,8 +486,19 @@
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 element.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }, 1000);
+            };
+
+            update();
+            const timer = setInterval(update, 1000);
+            countdownTimers.push(timer);
         }
+
+        // Event listeners
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => setView(btn.dataset.view));
+        });
+
+        document.querySelector('.filter-btn[data-tag="all"]').addEventListener('click', () => setFilter('all'));
 
         document.addEventListener('DOMContentLoaded', loadDeadlines);
     </script>
