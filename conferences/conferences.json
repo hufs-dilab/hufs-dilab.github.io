@@ -3,211 +3,242 @@
     "name": "RecSys 2026",
     "date": "2026-04-22 20:59",
     "url": "https://recsys.acm.org/recsys26/",
-    "tags": ["IR"]
+    "tags": ["IR"],
+    "venue": "Minneapolis, USA"
   },
   {
     "name": "NeurIPS 2026",
     "date": "2026-05-07 20:59",
     "url": "https://neurips.cc/Conferences/2026",
-    "tags": ["ML"]
+    "tags": ["ML"],
+    "venue": "Sydney, Australia"
   },
   {
     "name": "CIKM 2026",
     "date": "2026-05-24 20:59",
     "url": "https://cikm2026.diag.uniroma1.it/",
-    "tags": ["IR", "Data"]
+    "tags": ["IR", "Data"],
+    "venue": "Rome, Italy"
   },
   {
     "name": "EMNLP 2026",
     "date": "2026-05-26 20:59",
     "url": "https://2026.emnlp.org/",
-    "tags": ["NLP"]
+    "tags": ["NLP"],
+    "venue": "Budapest, Hungary"
   },
   {
     "name": "CoRL 2026",
     "date": "2026-05-30 20:59",
     "url": "https://www.corl.org/",
-    "tags": ["Robotics", "ML"]
+    "tags": ["Robotics", "ML"],
+    "venue": "Austin, USA"
   },
   {
     "name": "IEEE ICDM 2026",
     "date": "2026-06-07 20:59",
     "url": "http://icdm2026.neu.edu.cn/",
-    "tags": ["Data"]
+    "tags": ["Data"],
+    "venue": "Shenyang, China"
   },
   {
     "name": "AAAI 2027",
     "date": "2026-08-08 20:59",
     "url": "https://aaai.org/conference/aaai/",
     "tags": ["AI"],
-    "predicted": true
+    "predicted": true,
+    "venue": "Montreal, Canada"
   },
   {
     "name": "WSDM 2027",
     "date": "2026-08-15 20:59",
     "url": "https://wsdm-conference.org/2026/",
     "tags": ["IR", "Web"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "COLING 2027",
     "date": "2026-08-15 20:59",
     "url": "https://coling2025.org/",
     "tags": ["NLP"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "AAAI 2027 Student Abstract",
     "date": "2026-09-15 20:59",
     "url": "https://aaai.org/conference/aaai/",
     "tags": ["AI", "Student"],
-    "predicted": true
+    "predicted": true,
+    "venue": "Montreal, Canada"
   },
   {
     "name": "ICRA 2027",
     "date": "2026-09-17 20:59",
     "url": "https://2026.ieee-icra.org/",
     "tags": ["Robotics"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "ICASSP 2027",
     "date": "2026-09-18 20:59",
     "url": "https://2027.ieeeicassp.org/",
     "tags": ["Speech"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "ICLR 2027",
     "date": "2026-09-24 20:59",
     "url": "https://iclr.cc/Conferences/2026",
     "tags": ["ML"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "AISTATS 2027",
     "date": "2026-10-03 20:59",
     "url": "https://aistats.org/aistats2026/",
     "tags": ["ML"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "EACL 2027",
     "date": "2026-10-07 20:59",
     "url": "https://2026.eacl.org/",
     "tags": ["NLP"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "WWW 2027",
     "date": "2026-10-08 20:59",
     "url": "https://www2026.thewebconf.org/",
     "tags": ["Web"],
-    "predicted": true
+    "predicted": true,
+    "venue": "Dublin, Ireland"
   },
   {
     "name": "NAACL 2027",
     "date": "2026-10-15 20:59",
     "url": "https://2025.naacl.org/",
     "tags": ["NLP"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "CVPR 2027",
     "date": "2026-11-14 20:59",
     "url": "https://cvpr.thecvf.com/Conferences/2026",
     "tags": ["CV"],
-    "predicted": true
+    "predicted": true,
+    "venue": "Seattle, USA"
   },
   {
     "name": "SIGIR 2027",
     "date": "2026-12-16 20:59",
     "url": "https://sigir2026.org/",
     "tags": ["IR"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "EACL 2027 SRW",
     "date": "2026-12-22 20:59",
     "url": "https://2026.eacl.org/",
     "tags": ["NLP", "Student"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "ACL 2027",
     "date": "2027-01-06 20:59",
     "url": "https://2026.aclweb.org/",
     "tags": ["NLP"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "IJCAI 2027",
     "date": "2027-01-20 20:59",
     "url": "https://2026.ijcai.org/",
     "tags": ["AI"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "ICML 2027",
     "date": "2027-01-29 20:59",
     "url": "https://icml.cc/Conferences/2026",
     "tags": ["ML"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "RSS 2027",
     "date": "2027-01-31 20:59",
     "url": "https://roboticsconference.org/",
     "tags": ["Robotics"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "KDD 2027",
     "date": "2027-02-09 20:59",
     "url": "https://kdd2026.kdd.org/",
     "tags": ["Data"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "NAACL 2027 SRW",
     "date": "2027-02-15 20:59",
     "url": "https://2025.naacl.org/",
     "tags": ["NLP", "Student"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "InterSpeech 2027",
     "date": "2027-02-26 20:59",
     "url": "https://interspeech2027.org/",
     "tags": ["Speech"],
-    "predicted": true
+    "predicted": true,
+    "venue": "São Paulo, Brazil"
   },
   {
     "name": "ECCV 2028",
     "date": "2027-03-06 20:59",
     "url": "https://eccv.ecva.net/Conferences/2026",
     "tags": ["CV"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "ICCV 2027",
     "date": "2027-03-08 20:59",
     "url": "https://iccv.thecvf.com/Conferences/2025",
     "tags": ["CV"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "ACL 2027 SRW",
     "date": "2027-03-18 20:59",
     "url": "https://2026.aclweb.org/",
     "tags": ["NLP", "Student"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   },
   {
     "name": "COLM 2027",
     "date": "2027-04-01 20:59",
     "url": "https://colmweb.org/",
     "tags": ["NLP"],
-    "predicted": true
+    "predicted": true,
+    "venue": "TBD"
   }
 ]

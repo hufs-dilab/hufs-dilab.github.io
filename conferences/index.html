@@ -223,6 +223,12 @@
             padding-bottom: 0.4rem;
         }
 
+        .timeline-venue {
+            flex-shrink: 0;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
         @media (max-width: 768px) {
             .timeline-countdown {
                 display: none;
@@ -262,7 +268,7 @@
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 0.5rem;">
         <div class="container">
             <h1 style="margin-bottom: var(--spacing-sm);">Conference Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.9rem;">Last Update: 2026-04-14</p>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem;">Last Update: 2026-04-18</p>
         </div>
     </section>
 
@@ -416,6 +422,11 @@
                 '</div>';
         }
 
+        function renderVenue(venue) {
+            if (!venue || venue === 'TBD') return '';
+            return `<p style="margin-top: 0.5rem; margin-bottom: 0; font-weight: 400; font-size: 0.85rem; color: var(--color-text-muted);">${venue}</p>`;
+        }
+
         function renderSection(conferences, container, prefix) {
             if (conferences.length === 0) {
                 container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem;"><p>No deadlines found.</p></div>';
@@ -436,6 +447,7 @@
                         ${linkHtml}
                     </div>
                     ${renderTagBadges(conf.tags)}
+                    ${renderVenue(conf.venue)}
                     <p style="margin-top: 0.75rem; margin-bottom: 0.25rem; font-weight: 300; color: var(--color-text-muted); font-size: 0.85rem;">
                         Deadline
                     </p>
@@ -500,12 +512,16 @@
                     ? `<a href="${conf.url}" target="_blank">${name}</a>`
                     : name;
                 const tagsHtml = (conf.tags || []).map(t => `<span class="tag-badge tag-${t}">${t}</span>`).join('');
+                const venueHtml = conf.venue && conf.venue !== 'TBD'
+                    ? `<span class="timeline-venue">${conf.venue}</span>`
+                    : '';
                 const id = `tl-${section}-${i}`;
 
                 months[key].items.push(`
                     <div class="timeline-item">
                         <span class="timeline-date">${dayStr}</span>
                         <span class="timeline-name">${linkHtml}</span>
+                        ${venueHtml}
                         <span class="timeline-tags">${tagsHtml}</span>
                         <span class="timeline-countdown" id="${id}"></span>
                     </div>
