@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Conference Deadlines">
+    <meta name="description" content="AI Conference & Challenge Deadlines">
     <title>Deadlines | DILAB</title>
     <link rel="icon" type="image/png" href="/UI/farvicon_colored.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -126,6 +126,7 @@
         .tag-Data { background: #fff8e1; color: #f57f17; }
         .tag-Web { background: #e0f7fa; color: #00838f; }
         .tag-Student { background: #fce4ec; color: #ad1457; }
+        .tag-Challenge { background: #ede7f6; color: #4527a0; }
 
         /* Card grid fixed sizing */
         .conf-grid {
@@ -258,7 +259,7 @@
                 <a href="/">Home</a>
                 <a href="/people/">People</a>
                 <a href="/publications/">Publications</a>
-                <a href="/conferences/" class="active">Conferences</a>
+                <a href="/deadlines/" class="active">Deadlines</a>
 
                 <a href="/join/">Join Us</a>
             </div>
@@ -267,8 +268,8 @@
 
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 0.5rem;">
         <div class="container">
-            <h1 style="margin-bottom: var(--spacing-sm);">Conference Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.9rem;">Last Update: 2026-04-18</p>
+            <h1 style="margin-bottom: var(--spacing-sm);">Deadlines</h1>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem;">Last Update: 2026-04-21</p>
         </div>
     </section>
 
@@ -330,7 +331,7 @@
 
         async function loadDeadlines() {
             try {
-                const response = await fetch('conferences.json');
+                const response = await fetch('deadlines.json');
                 allConferences = await response.json();
 
                 buildFilterButtons();
@@ -345,7 +346,7 @@
             const tagSet = new Set();
             allConferences.forEach(c => (c.tags || []).forEach(t => tagSet.add(t)));
 
-            const order = ['NLP', 'ML', 'AI', 'CV', 'IR', 'Data', 'Web', 'Speech', 'Robotics', 'Student'];
+            const order = ['NLP', 'ML', 'AI', 'CV', 'IR', 'Data', 'Web', 'Speech', 'Robotics', 'Student', 'Challenge'];
             const sorted = order.filter(t => tagSet.has(t));
 
             const container = document.getElementById('filter-buttons');

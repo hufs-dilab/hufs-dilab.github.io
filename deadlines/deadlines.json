@@ -42,6 +42,13 @@
     "venue": "Shenyang, China"
   },
   {
+    "name": "WMT26 MT Eval Shared Task",
+    "date": "2026-07-30 20:59",
+    "url": "https://www2.statmt.org/wmt26/mteval-task.html",
+    "tags": ["NLP", "Challenge"],
+    "venue": "Budapest, Hungary"
+  },
+  {
     "name": "AAAI 2027",
     "date": "2026-08-08 20:59",
     "url": "https://aaai.org/conference/aaai/",
