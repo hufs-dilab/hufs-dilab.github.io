@@ -49,6 +49,13 @@
     "venue": "Budapest, Hungary"
   },
   {
+    "name": "EACL 2027",
+    "date": "2026-08-04 20:59",
+    "url": "https://2027.eacl.org/",
+    "tags": ["NLP"],
+    "venue": "Athens, Greece"
+  },
+  {
     "name": "AAAI 2027",
     "date": "2026-08-08 20:59",
     "url": "https://aaai.org/conference/aaai/",
@@ -113,14 +120,6 @@
     "venue": "TBD"
   },
   {
-    "name": "EACL 2027",
-    "date": "2026-10-07 20:59",
-    "url": "https://2026.eacl.org/",
-    "tags": ["NLP"],
-    "predicted": true,
-    "venue": "TBD"
-  },
-  {
     "name": "WWW 2027",
     "date": "2026-10-08 20:59",
     "url": "https://www2026.thewebconf.org/",
@@ -155,10 +154,10 @@
   {
     "name": "EACL 2027 SRW",
     "date": "2026-12-22 20:59",
-    "url": "https://2026.eacl.org/",
+    "url": "https://2027.eacl.org/",
     "tags": ["NLP", "Student"],
     "predicted": true,
-    "venue": "TBD"
+    "venue": "Athens, Greece"
   },
   {
     "name": "ACL 2027",
