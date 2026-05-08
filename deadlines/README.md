@@ -35,8 +35,22 @@
 
 - **추정 URL을 검증 없이 저장 금지**. 학회 차회 사이트가 미개설인 경우 다수
 - 후보 URL은 `url-patterns.md` 카탈로그를 참고해 생성 → `curl -s -L -o /dev/null -w "%{http_code}" <url>` 로 200 확인
-- 차회 페이지 미개설이면 카탈로그의 fallback (부모 도메인) 사용
 - subagent에 위임할 때도 "URL은 HTTP 200 확인 후에만 기재" 명시, 결과 받을 때 재검증
+
+### URL 우선순위 (높은 → 낮은)
+
+1. **차회 공식 사이트** (예: `https://2027.eacl.org/`)
+2. **공식 모학회 사이트의 차회 공지/announcement 페이지** — 차회 페이지가 없어도 모학회 사이트에서 "AAAI-27 will be held in Montreal, January 2027"같이 명시한 페이지가 있으면 그것을 link로 사용 (사용자가 클릭했을 때 일정·장소를 확인할 수 있는 근거 링크)
+3. **부모 도메인** (예: `https://aaai.org/conference/aaai/`) — 위 둘 다 없을 때 최후 수단
+
+### 검증 규칙을 도입/변경할 때
+
+규칙을 추가하면 그 시점의 **JSON 안의 모든 URL을 즉시 전수 검증**할 것. "내가 새로 바꾼 것만 확인"은 검증이 아님. 한 번에:
+
+```bash
+python3 -c "import json; [print(x['url']) for x in json.load(open('deadlines/deadlines.json'))]" \
+  | xargs -I{} sh -c 'echo "$(curl -s -L -o /dev/null -w "%{http_code}" "{}") {}"'
+```
 
 ## 시간대 규칙
 
