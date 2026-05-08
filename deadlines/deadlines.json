@@ -37,7 +37,7 @@
   {
     "name": "AAAI 2027",
     "date": "2026-08-01 20:59",
-    "url": "https://aaai.org/conference/aaai/aaai-27/",
+    "url": "https://aaai.org/conference/aaai/",
     "tags": ["AI"],
     "venue": "Montréal, Canada"
   },
@@ -67,7 +67,7 @@
   {
     "name": "AAAI 2027 Student Abstract",
     "date": "2026-09-15 20:59",
-    "url": "https://aaai.org/conference/aaai/aaai-27/",
+    "url": "https://aaai.org/conference/aaai/",
     "tags": ["AI", "Student"],
     "predicted": true,
     "venue": "Montréal, Canada"

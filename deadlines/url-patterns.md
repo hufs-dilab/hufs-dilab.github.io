@@ -24,7 +24,7 @@
 | NeurIPS | `https://neurips.cc/Conferences/{YYYY}` | `https://neurips.cc/` | |
 | ICML | `https://icml.cc/Conferences/{YYYY}` | `https://icml.cc/` | |
 | AISTATS | `https://aistats.org/aistats{YYYY}/` | `https://aistats.org/` | |
-| AAAI | `https://aaai.org/conference/aaai/aaai-{YY}/` | `https://aaai.org/` | 2-digit year |
+| AAAI | `https://aaai.org/conference/aaai/aaai-{YY}/` | `https://aaai.org/conference/aaai/` | 2-digit year, 차회 페이지 늦게 개설 |
 | IJCAI | `https://{YYYY}.ijcai.org/` | `https://ijcai.org/` | |
 
 ## CV
