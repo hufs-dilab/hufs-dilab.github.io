@@ -54,9 +54,30 @@ python3 -c "import json; [print(x['url']) for x in json.load(open('deadlines/dea
 
 ## 시간대 규칙
 
-- 대부분 학회는 **AoE (Anywhere on Earth)** = UTC-12 사용 → 마감 시점 = UTC 23:59 = **KST 익일 13:59**
-- `deadlines.json` 의 시간은 KST 기준. 출처가 명확하지 않으면 보수적으로 KST 당일 20:59 정도로 표기 (기존 관례)
+- 대부분 학회는 **AoE (Anywhere on Earth)** = UTC-12 사용
+- **변환식**: AoE `MM-DD 23:59` = UTC `MM-(DD+1) 11:59` = **KST `MM-(DD+1) 20:59`**
+- 즉 JSON에 적는 KST 날짜 = **AoE 날짜 + 1일**, 시간은 `20:59`
+  - 예: EACL 2027 공식 "ARR submission deadline: August 3, 2026 (AoE)" → JSON `2026-08-04 20:59`
+  - 예: WSDM 2027 공식 "Aug 18, 2026 Papers Due (AoE)" → JSON `2026-08-19 20:59`
+- AoE가 아닌 학회 자체 시간대(예: 중국 학회의 CST)인 경우 변환식이 다르므로 별도 확인
 
-## 자동화 힌트
+## 자동화 (전수 검증 시 필수)
 
-전체 일괄 검증은 토큰을 많이 쓰므로 researcher subagent (sonnet) 위임 권장. 입력으로 현재 JSON 전체 + 오늘 날짜를 넘기면 검색·갱신·저장까지 한 번에 처리 가능.
+학회별 검증은 **독립 작업이므로 sub-agent 병렬화** (CLAUDE.md "ALWAYS spawn ALL agents in ONE message", `memory/feedback_parallelize_subagents.md`).
+
+### 카테고리 분할 예시 (6 sub-agents)
+
+- NLP: ACL/EACL/EMNLP/NAACL/COLING/COLM/WMT
+- ML: ICLR/NeurIPS/ICML/AISTATS/AAAI/IJCAI
+- CV: CVPR/ICCV/ECCV
+- IR/Web/Data: SIGIR/WSDM/RecSys/CIKM/ICDM/KDD/WWW
+- Robotics: ICRA/CoRL/RSS
+- Speech: ICASSP/InterSpeech
+
+### Sub-agent 지시 사항 (필수)
+
+각 agent에게:
+1. 담당 학회의 공식 URL을 fetch해 차회 마감일/장소 명시 여부 확인
+2. URL은 HTTP 200 검증 후에만 보고
+3. JSON 항목 vs 공식 정보 불일치를 표로 보고
+4. 추정/외삽 금지 — 페이지에 명시 안 된 정보는 "no info" 로 보고

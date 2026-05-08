@@ -8,7 +8,7 @@
   },
   {
     "name": "EMNLP 2026",
-    "date": "2026-05-25 20:59",
+    "date": "2026-05-26 20:59",
     "url": "https://2026.emnlp.org/",
     "tags": ["NLP"],
     "venue": "Budapest, Hungary"
@@ -29,7 +29,7 @@
   },
   {
     "name": "WMT26 MT Eval Shared Task",
-    "date": "2026-07-30 20:59",
+    "date": "2026-07-31 20:59",
     "url": "https://www2.statmt.org/wmt26/mteval-task.html",
     "tags": ["NLP", "Challenge"],
     "venue": "Budapest, Hungary"
@@ -50,7 +50,7 @@
   },
   {
     "name": "WSDM 2027",
-    "date": "2026-08-18 20:59",
+    "date": "2026-08-19 20:59",
     "url": "https://wsdm-conference.org/2027/",
     "tags": ["IR", "Web"],
     "venue": "Hong Kong"
@@ -85,7 +85,7 @@
     "url": "https://2027.ieeeicassp.org/",
     "tags": ["Speech"],
     "predicted": true,
-    "venue": "TBD"
+    "venue": "Toronto, Canada"
   },
   {
     "name": "ICLR 2027",
@@ -165,7 +165,7 @@
     "url": "https://icml.cc/",
     "tags": ["ML"],
     "predicted": true,
-    "venue": "TBD"
+    "venue": "South America"
   },
   {
     "name": "RSS 2027",
