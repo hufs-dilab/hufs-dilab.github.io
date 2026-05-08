@@ -50,11 +50,10 @@
   },
   {
     "name": "WSDM 2027",
-    "date": "2026-08-15 20:59",
+    "date": "2026-08-18 20:59",
     "url": "https://wsdm-conference.org/2027/",
     "tags": ["IR", "Web"],
-    "predicted": true,
-    "venue": "Asia/Oceania (TBD)"
+    "venue": "Hong Kong"
   },
   {
     "name": "COLING 2027",
