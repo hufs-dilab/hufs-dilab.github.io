@@ -31,6 +31,13 @@
 4. [paperpilot.com/deadlines](https://www.getpaperpilot.com/deadlines/), [mlciv.com/ai-deadlines](https://mlciv.com/ai-deadlines/), [trybibby.com/conference-deadlines](https://trybibby.com/conference-deadlines)
 5. 공식 X(Twitter) 계정의 CFP 공지
 
+## URL 검증 규칙 (필수)
+
+- **연도 패턴 추정으로 URL을 만들지 말 것**. 예: `iclr.cc/Conferences/2026` 가 있다고 `/2027` 도 있을 거라 가정 금지
+- 새/변경 URL은 반드시 `curl -s -L -o /dev/null -w "%{http_code}" <url>` 로 200 확인
+- 차회 페이지가 아직 없으면 부모 도메인 (예: `https://iclr.cc/`, `https://aistats.org/`) 사용
+- subagent에 검증 위임할 때도 "URL은 HTTP 200 확인 후에만 기재" 명시
+
 ## 시간대 규칙
 
 - 대부분 학회는 **AoE (Anywhere on Earth)** = UTC-12 사용 → 마감 시점 = UTC 23:59 = **KST 익일 13:59**
