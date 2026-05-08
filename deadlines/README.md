@@ -33,10 +33,10 @@
 
 ## URL 검증 규칙 (필수)
 
-- **연도 패턴 추정으로 URL을 만들지 말 것**. 예: `iclr.cc/Conferences/2026` 가 있다고 `/2027` 도 있을 거라 가정 금지
-- 새/변경 URL은 반드시 `curl -s -L -o /dev/null -w "%{http_code}" <url>` 로 200 확인
-- 차회 페이지가 아직 없으면 부모 도메인 (예: `https://iclr.cc/`, `https://aistats.org/`) 사용
-- subagent에 검증 위임할 때도 "URL은 HTTP 200 확인 후에만 기재" 명시
+- **추정 URL을 검증 없이 저장 금지**. 학회 차회 사이트가 미개설인 경우 다수
+- 후보 URL은 `url-patterns.md` 카탈로그를 참고해 생성 → `curl -s -L -o /dev/null -w "%{http_code}" <url>` 로 200 확인
+- 차회 페이지 미개설이면 카탈로그의 fallback (부모 도메인) 사용
+- subagent에 위임할 때도 "URL은 HTTP 200 확인 후에만 기재" 명시, 결과 받을 때 재검증
 
 ## 시간대 규칙
 
