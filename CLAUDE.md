@@ -21,3 +21,11 @@ HUFS DILAB 공식 사이트 (`hufs-dilab.github.io`) 정적 페이지 레포.
 - 모든 페이지 수정 시 페이지 상단의 `Last Update: YYYY-MM-DD` 표기가 있다면 갱신
 - `style.css` 의 CSS 변수 (`--color-accent` 등) 와 디자인 토큰을 임의 변경하지 말 것
 - 외부 라이브러리 추가는 지양, 가능한 vanilla JS / CSS 유지
+
+## 자동 갱신 트리거
+
+사용자가 다음 문구 중 하나를 말하면 `deadlines/CLAUDE.md` Section 11의 자동 갱신 절차 (6 sub-agent 병렬 검증 → 결과 통합 → JSON 갱신 → commit·push) 실행:
+
+- `deadlines 갱신해줘`
+- `deadlines 업데이트해줘`
+- `/update-deadlines`

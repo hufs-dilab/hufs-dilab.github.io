@@ -575,3 +575,79 @@ ICML 2027 venue: 대륙만 발표된 경우 ("South America" 트윗, 공식 사�
 - IR·Web·Data: SIGIR / WSDM / RecSys / CIKM / ICDM / KDD / WWW
 - Robotics: ICRA / CoRL / RSS
 - Speech: ICASSP / InterSpeech
+
+---
+
+## 11. 자동 갱신 트리거 (Auto-Update Workflow)
+
+사용자 입력에 다음 트리거 문구 중 하나가 포함되면 agent는 이 절차를 자동 실행:
+
+- `deadlines 갱신해줘`
+- `deadlines 업데이트해줘`
+- `/update-deadlines`
+
+### 절차
+
+#### Step 1 — 현재 상태 점검
+
+- inline JSON 파싱 + 일관성 검사 (Section 4)
+- 모든 URL HTTP 200 일괄 확인 (병렬 curl)
+- 이상 항목 (404, 일관성 위반) 사용자에게 보고. 명백한 fix는 자동 적용, 모호하면 사용자 확인
+
+#### Step 2 — 6개 병렬 sub-agent 디스패치
+
+분야별 분담 (Section 10 예시 D 와 동일).
+
+각 sub-agent 지시 템플릿:
+
+> 오늘 날짜 [YYYY-MM-DD]. 담당 학회들의 공식 사이트를 fetch해서 다음 변화 detection:
+>
+> 1. **upcoming.date 정확한지** — 페이지 명시 마감과 비교
+> 2. **venue 새로 발표** — TBD/추정값 → 구체적 도시·국가
+> 3. **predicted → confirmed 가능한지** — 공식 발표되면 `predicted: false`
+> 4. **마감 지난 것 history 이동** — `upcoming.date < today` 면 history에 push, 차회 추정으로 새 upcoming
+> 5. **sub_event 새 추가/변경** — Student Abstract / SRW / Cycle 2 등
+>
+> 출력: 학회별 변경 사항 표 (current / proposed / source URL).
+>
+> **추정 금지** — 페이지에 명시 안 된 변경은 보고 안 함.
+> **URL 변경 시 HTTP 200 검증 필수**.
+
+#### Step 3 — 결과 통합 + 사용자 검토
+
+- 6 agent 결과를 학회별 변경 표로 정리
+- 사용자가 항목별 accept/reject/modify 가능
+- 사용자 명시 거부 외에는 자동 적용
+
+#### Step 4 — JSON 갱신
+
+- inline JSON 직접 수정 (Edit 도구)
+- `Last Update: YYYY-MM-DD` 텍스트 갱신
+- 재검증:
+  - JSON 유효성
+  - URL HTTP 200 (변경된 것만이 아니라 전수)
+  - 일관성 (필수 필드, 시간 역순, KST 포맷)
+
+#### Step 5 — 시각 검증
+
+- headless Chrome 스크린샷 (desktop 1280px + mobile 600px)
+- 렌더링 이상 시 사용자 보고
+
+#### Step 6 — Commit + push
+
+- 사용자 별도 거부 없으면 자동 commit + push
+- Commit 메시지: `[hufs-dilab.github.io] Auto-update deadlines (YYYY-MM-DD)`
+- 변경 학회 수 + 주요 변경 (predicted→confirmed, venue 발표 등) 본문에 요약
+
+### 사용자 개입 포인트
+
+자동 진행하지 않고 사용자 확인이 필요한 경우:
+- URL 404/000 다수 발견
+- 사용자가 manually 관리하던 항목과 모순 detection
+- 학회 schema 자체 변경이 필요해 보일 때 (새 sub_event 라벨 등)
+
+### 보수적 원칙
+
+- **추정 금지** — 공식 페이지 명시 없으면 변경 안 함
+- **사용자 의도 추정 금지** — 모호하면 항상 확인
+- **URL 추정 금지** — 패턴으로 만든 URL은 HTTP 200 확인 후만 사용
