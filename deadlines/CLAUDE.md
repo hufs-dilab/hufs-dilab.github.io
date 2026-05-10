@@ -83,7 +83,7 @@
 | `upcoming.date` | string | 필수 | 마감일. KST `YYYY-MM-DD HH:MM` |
 | `upcoming.venue` | string | 필수 | 도시·국가. 미정 시 `"TBD"` |
 | `upcoming.venue_confirmed` | boolean | 필수 | **공식 학회 사이트 또는 공식 모학회 announcement에 명시된 venue만 `true`**. 제3자 트래커(aideadlin.es / mlciv / trybibby 등)나 짐작 출처는 `false`. venue 문자열이 specific city여도 출처가 비공식이면 `false` |
-| `upcoming.venue_source_url` | string | 선택 | venue가 비공식 출처에서 왔을 때 그 출처 URL. UI에서 `src ↗` dashed 버튼으로 별도 표시. `venue_confirmed: false` 인 항목에 채움 (예: `https://mlciv.com/ai-deadlines/`). 공식이면 생략 (`url`이 곧 출처) |
+| `upcoming.venue_source_url` | string | 선택 | venue가 비공식 출처에서 왔을 때 그 출처 URL. UI에서 `src ↗` dashed 버튼으로 별도 표시. **수용 가능한 출처**: 학회 공식 X(트위터) 계정 발표, 학회 공식 발표자료(closing slides 등), 학회 공식 홈페이지의 블로그/news 페이지. **수용 불가**: 단순 deadline 모음 트래커 (aideadlin.es / mlciv / trybibby / ccfddl / paperpilot 등) — 이런 경우 `venue_source_url` 자체를 채우지 말 것. 적절한 출처 못 찾으면 venue 자체를 `"TBD"` 로 처리하거나 venue 유지하되 src 비움 |
 | `upcoming.url` | string | 필수 | 공식 사이트. HTTP 200 검증 필수 |
 | `upcoming.predicted` | boolean | 필수 | 마감 예측치 여부. 공식 발표 시 `false` |
 | `upcoming.sub_events` | array | 선택 | 같은 회차의 부속 마감 (Student Abstract, SRW, Cycle 2 등) |
