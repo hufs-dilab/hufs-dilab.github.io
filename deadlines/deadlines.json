@@ -1,5 +1,19 @@
 [
   {
+    "name": "RecSys 2026",
+    "date": "2026-04-22 20:59",
+    "url": "https://recsys.acm.org/recsys26/",
+    "tags": ["IR"],
+    "venue": "Minneapolis, USA"
+  },
+  {
+    "name": "NeurIPS 2026",
+    "date": "2026-05-06 20:59",
+    "url": "https://neurips.cc/Conferences/2026",
+    "tags": ["ML"],
+    "venue": "Sydney, Australia"
+  },
+  {
     "name": "CIKM 2026",
     "date": "2026-05-23 20:59",
     "url": "https://cikm2026.diag.uniroma1.it/",
