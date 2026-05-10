@@ -488,6 +488,7 @@ UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. �
 | venue 문자열이 specific city라고 자동으로 `venue_confirmed: true` 처리 | **출처가 공식 사이트일 때만 `true`**. 제3자 트래커/짐작은 `false` (이번 세션 CVPR 2027 Seattle 케이스 — 출처 불명인데 confirmed로 라벨링됨) |
 | history 같은 year에 label 없이 두 항목 추가 | multi-cycle은 반드시 `label` 필드로 구분 |
 | `sub_events` 필드 자체를 누락 | `sub_events` 없으면 빈 배열 `[]` 로 명시 |
+| Parent (upcoming) 가 predicted인데 sub_event도 predicted로 추가 (이중 예측) | parent 미발표면 sub_event도 미발표 상태. 단순 추측 sub_event 추가 금지. **예외**: structural invariant (KDD multi-cycle처럼 매년 동일하게 존재하는 구조)는 유지. SRW/Student Abstract 같은 derivative event는 parent 확정 후에만 추가 |
 
 ---
 
