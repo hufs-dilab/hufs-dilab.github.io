@@ -845,7 +845,8 @@
     </script>
 
     <script>
-        const today = new Date();
+        const CONFERENCES = JSON.parse(document.getElementById('deadlines-data').textContent).conferences;
+        let today = new Date();
 
         const FLAGS = {
             'Italy': '🇮🇹', 'USA': '🇺🇸', 'United States': '🇺🇸',
@@ -874,11 +875,6 @@
             return '';
         }
 
-        function parseData() {
-            const raw = document.getElementById('deadlines-data').textContent;
-            return JSON.parse(raw).conferences;
-        }
-
         function dateOf(s) { return new Date(s.replace(' ', 'T') + ':00+09:00'); }
         function isPast(d) { return d.getTime() < today.getTime(); }
         function fmtDate(d) {
@@ -892,7 +888,7 @@
         function shortYear(y) { return "'" + String(y).slice(-2); }
 
         function countdown(d) {
-            const ms = d.getTime() - new Date().getTime();
+            const ms = d.getTime() - today.getTime();
             if (ms < 0) return 'PASSED';
             const days = Math.floor(ms / 86400000);
             const hours = Math.floor((ms % 86400000) / 3600000);
@@ -1011,16 +1007,15 @@
         }
 
         function render() {
-            const data = parseData();
-            const filtered = applyFilter(data);
+            today = new Date();
+            const filtered = applyFilter(CONFERENCES);
             const sorted = sortConferences(filtered);
             document.getElementById('conf-tbody').innerHTML = sorted.map(renderRow).join('');
         }
 
         function buildFilters() {
-            const data = parseData();
             const tagSet = new Set();
-            data.forEach(c => c.tags.forEach(t => tagSet.add(t)));
+            CONFERENCES.forEach(c => c.tags.forEach(t => tagSet.add(t)));
             const order = ['NLP','ML','AI','CV','IR','Data','Web','Speech','Robotics','Student','Challenge'];
             const sorted = order.filter(t => tagSet.has(t));
             const container = document.getElementById('filter-buttons');
