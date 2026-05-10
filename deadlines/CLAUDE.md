@@ -82,7 +82,7 @@
 | `upcoming.year` | string | 필수 | 학회 연도 (예: `"2027"`) |
 | `upcoming.date` | string | 필수 | 마감일. KST `YYYY-MM-DD HH:MM` |
 | `upcoming.venue` | string | 필수 | 도시·국가. 미정 시 `"TBD"` |
-| `upcoming.venue_confirmed` | boolean | 필수 | 공식 발표된 venue인지. predicted 마감이어도 venue는 독립적으로 확정 가능 |
+| `upcoming.venue_confirmed` | boolean | 필수 | **공식 학회 사이트 또는 공식 모학회 announcement에 명시된 venue만 `true`**. 제3자 트래커(aideadlin.es / mlciv / trybibby 등)나 짐작 출처는 `false`. venue 문자열이 specific city여도 출처가 비공식이면 `false` |
 | `upcoming.url` | string | 필수 | 공식 사이트. HTTP 200 검증 필수 |
 | `upcoming.predicted` | boolean | 필수 | 마감 예측치 여부. 공식 발표 시 `false` |
 | `upcoming.sub_events` | array | 선택 | 같은 회차의 부속 마감 (Student Abstract, SRW, Cycle 2 등) |
@@ -484,6 +484,7 @@ UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. �
 | 마감 지난 학회 entry 삭제 | `history` 로 보존 (삭제 금지) |
 | 사용자 의도 추정으로 혼자 결정 진행 | 선택지 제시 후 확인받고 진행 |
 | `venue_confirmed: true` 이면 `predicted: false` 라고 가정 | 두 필드는 독립. venue 확정 + 마감 미발표 = `venue_confirmed: true, predicted: true` 동시 가능 |
+| venue 문자열이 specific city라고 자동으로 `venue_confirmed: true` 처리 | **출처가 공식 사이트일 때만 `true`**. 제3자 트래커/짐작은 `false` (이번 세션 CVPR 2027 Seattle 케이스 — 출처 불명인데 confirmed로 라벨링됨) |
 | history 같은 year에 label 없이 두 항목 추가 | multi-cycle은 반드시 `label` 필드로 구분 |
 | `sub_events` 필드 자체를 누락 | `sub_events` 없으면 빈 배열 `[]` 로 명시 |
 
