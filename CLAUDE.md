@@ -12,7 +12,7 @@ HUFS DILAB 공식 사이트 (`hufs-dilab.github.io`) 정적 페이지 레포.
 
 | 항목 | 위치 | 절차 문서 |
 |---|---|---|
-| Conference deadlines | `deadlines/deadlines.json` | `deadlines/README.md` |
+| Conference deadlines | `deadlines/index.html` (inline JSON) | `deadlines/CLAUDE.md` |
 | 멤버 정보 | `people/index.html` | (정해지면 추가) |
 | 논문 목록 | `publications/index.html` | (정해지면 추가) |
 
