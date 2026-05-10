@@ -284,6 +284,7 @@
         }
         .history-chip-venue { color: var(--color-text-main); display: inline-flex; align-items: center; gap: 0.25rem; }
         .history-chip-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--color-text-muted); }
+        .history-chip-label { font-size: 0.66rem; color: var(--color-text-muted); padding: 0 4px; background: var(--color-bg); border: 1px solid var(--color-border); text-transform: uppercase; letter-spacing: 0.04em; }
         .history-chip-link { color: var(--color-accent); margin-left: 0.1rem; font-size: 0.7rem; text-decoration: none; }
         .history-chip-link:hover { color: var(--color-accent-hover); }
         .history-empty { color: #94a3b8; font-size: 0.78rem; font-style: italic; }
@@ -363,7 +364,9 @@
     {
       "name": "RecSys",
       "full_name": "ACM Conference on Recommender Systems",
-      "tags": ["IR"],
+      "tags": [
+        "IR"
+      ],
       "url_pattern": "https://recsys.acm.org/recsys{YY}/",
       "url_fallback": "https://recsys.acm.org/",
       "upcoming": {
@@ -374,12 +377,27 @@
         "url": "https://recsys.acm.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-04-22 20:59",
+          "venue": "Minneapolis, USA",
+          "url": "https://recsys.acm.org/recsys26/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-04-09 20:59",
+          "venue": "Prague, Czech Republic",
+          "url": "https://recsys.acm.org/recsys25/"
+        }
+      ]
     },
     {
       "name": "NeurIPS",
       "full_name": "Conference on Neural Information Processing Systems",
-      "tags": ["ML"],
+      "tags": [
+        "ML"
+      ],
       "url_pattern": "https://neurips.cc/Conferences/{YYYY}",
       "url_fallback": "https://neurips.cc/",
       "upcoming": {
@@ -390,12 +408,28 @@
         "url": "https://neurips.cc/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-05-07 20:59",
+          "venue": "Sydney, Australia",
+          "url": "https://neurips.cc/Conferences/2026"
+        },
+        {
+          "year": "2025",
+          "date": "2025-05-16 20:59",
+          "venue": "San Diego, USA",
+          "url": "https://neurips.cc/Conferences/2025"
+        }
+      ]
     },
     {
       "name": "CIKM",
       "full_name": "Conference on Information and Knowledge Management",
-      "tags": ["IR", "Data"],
+      "tags": [
+        "IR",
+        "Data"
+      ],
       "url_pattern": "https://cikm{YYYY}.<host>/",
       "url_fallback": null,
       "upcoming": {
@@ -406,12 +440,21 @@
         "url": "https://cikm2026.diag.uniroma1.it/",
         "predicted": false
       },
-      "history": []
+      "history": [
+        {
+          "year": "2025",
+          "date": "2025-05-24 20:59",
+          "venue": "Seoul, South Korea",
+          "url": "https://cikm2025.org/"
+        }
+      ]
     },
     {
       "name": "EMNLP",
       "full_name": "Conference on Empirical Methods in Natural Language Processing",
-      "tags": ["NLP"],
+      "tags": [
+        "NLP"
+      ],
       "url_pattern": "https://{YYYY}.emnlp.org/",
       "url_fallback": null,
       "upcoming": {
@@ -422,12 +465,28 @@
         "url": "https://2026.emnlp.org/",
         "predicted": false
       },
-      "history": []
+      "history": [
+        {
+          "year": "2025",
+          "date": "2025-05-20 20:59",
+          "venue": "Suzhou, China",
+          "url": "https://2025.emnlp.org/"
+        },
+        {
+          "year": "2024",
+          "date": "2024-06-16 20:59",
+          "venue": "Miami, USA",
+          "url": "https://2024.emnlp.org/"
+        }
+      ]
     },
     {
       "name": "CoRL",
       "full_name": "Conference on Robot Learning",
-      "tags": ["Robotics", "ML"],
+      "tags": [
+        "Robotics",
+        "ML"
+      ],
       "url_pattern": "https://www.corl.org/",
       "url_fallback": null,
       "upcoming": {
@@ -438,12 +497,27 @@
         "url": "https://www.corl.org/",
         "predicted": false
       },
-      "history": []
+      "history": [
+        {
+          "year": "2025",
+          "date": "2025-05-01 20:59",
+          "venue": "Seoul, South Korea",
+          "url": "https://2025.corl.org/"
+        },
+        {
+          "year": "2024",
+          "date": "2024-06-07 20:59",
+          "venue": "Munich, Germany",
+          "url": "https://2024.corl.org/"
+        }
+      ]
     },
     {
       "name": "ICDM",
       "full_name": "IEEE International Conference on Data Mining",
-      "tags": ["Data"],
+      "tags": [
+        "Data"
+      ],
       "url_pattern": "http://icdm{YYYY}.<host>/",
       "url_fallback": null,
       "upcoming": {
@@ -454,12 +528,22 @@
         "url": "http://icdm2026.neu.edu.cn/",
         "predicted": false
       },
-      "history": []
+      "history": [
+        {
+          "year": "2025",
+          "date": "2025-06-07 20:59",
+          "venue": "Washington DC, USA",
+          "url": "https://www3.cs.stonybrook.edu/~icdm2025/index.html"
+        }
+      ]
     },
     {
       "name": "WMT MT Eval",
       "full_name": "WMT Machine Translation Evaluation Shared Task",
-      "tags": ["NLP", "Challenge"],
+      "tags": [
+        "NLP",
+        "Challenge"
+      ],
       "url_pattern": "https://www2.statmt.org/wmt{YY}/",
       "url_fallback": null,
       "upcoming": {
@@ -470,12 +554,27 @@
         "url": "https://www2.statmt.org/wmt26/mteval-task.html",
         "predicted": false
       },
-      "history": []
+      "history": [
+        {
+          "year": "2025",
+          "date": "2025-08-15 20:59",
+          "venue": "Suzhou, China",
+          "url": "https://www2.statmt.org/wmt25/mteval-subtask.html"
+        },
+        {
+          "year": "2024",
+          "date": "2024-08-21 20:59",
+          "venue": "Miami, USA",
+          "url": "https://www2.statmt.org/wmt24/"
+        }
+      ]
     },
     {
       "name": "AAAI",
       "full_name": "AAAI Conference on Artificial Intelligence",
-      "tags": ["AI"],
+      "tags": [
+        "AI"
+      ],
       "url_pattern": "https://aaai.org/conference/aaai/aaai-{YY}/",
       "url_fallback": "https://aaai.org/conference/aaai/",
       "upcoming": {
@@ -494,12 +593,27 @@
           }
         ]
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2025-08-02 20:59",
+          "venue": "Singapore",
+          "url": "https://aaai.org/conference/aaai/aaai-26/"
+        },
+        {
+          "year": "2025",
+          "date": "2024-08-16 20:59",
+          "venue": "Philadelphia, USA",
+          "url": "https://aaai.org/conference/aaai/aaai-25/"
+        }
+      ]
     },
     {
       "name": "EACL",
       "full_name": "European Chapter of the ACL",
-      "tags": ["NLP"],
+      "tags": [
+        "NLP"
+      ],
       "url_pattern": "https://{YYYY}.eacl.org/",
       "url_fallback": null,
       "upcoming": {
@@ -518,12 +632,28 @@
           }
         ]
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2025-10-07 20:59",
+          "venue": "Rabat, Morocco",
+          "url": "https://2026.eacl.org/"
+        },
+        {
+          "year": "2024",
+          "date": "2023-10-16 20:59",
+          "venue": "Malta",
+          "url": "https://2024.eacl.org/"
+        }
+      ]
     },
     {
       "name": "WSDM",
       "full_name": "International Conference on Web Search and Data Mining",
-      "tags": ["IR", "Web"],
+      "tags": [
+        "IR",
+        "Web"
+      ],
       "url_pattern": "https://wsdm-conference.org/{YYYY}/",
       "url_fallback": null,
       "upcoming": {
@@ -534,12 +664,27 @@
         "url": "https://wsdm-conference.org/2027/",
         "predicted": false
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2025-08-15 20:59",
+          "venue": "Boise, USA",
+          "url": "https://wsdm-conference.org/2026/"
+        },
+        {
+          "year": "2025",
+          "date": "2024-08-15 20:59",
+          "venue": "Hannover, Germany",
+          "url": "https://www.wsdm-conference.org/2025/"
+        }
+      ]
     },
     {
       "name": "COLING",
       "full_name": "International Conference on Computational Linguistics",
-      "tags": ["NLP"],
+      "tags": [
+        "NLP"
+      ],
       "url_pattern": "https://coling{YYYY}.org/",
       "url_fallback": null,
       "upcoming": {
@@ -550,12 +695,21 @@
         "url": "https://coling2027.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2025",
+          "date": "2024-09-17 20:59",
+          "venue": "Abu Dhabi, UAE",
+          "url": "https://coling2025.org/"
+        }
+      ]
     },
     {
       "name": "ICRA",
       "full_name": "International Conference on Robotics and Automation",
-      "tags": ["Robotics"],
+      "tags": [
+        "Robotics"
+      ],
       "url_pattern": "https://{YYYY}.ieee-icra.org/",
       "url_fallback": null,
       "upcoming": {
@@ -566,12 +720,27 @@
         "url": "https://2027.ieee-icra.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2025-09-16 16:59",
+          "venue": "Vienna, Austria",
+          "url": "https://2026.ieee-icra.org/"
+        },
+        {
+          "year": "2025",
+          "date": "2024-09-17 16:59",
+          "venue": "Atlanta, USA",
+          "url": "https://2025.ieee-icra.org/"
+        }
+      ]
     },
     {
       "name": "ICASSP",
       "full_name": "International Conference on Acoustics, Speech, and Signal Processing",
-      "tags": ["Speech"],
+      "tags": [
+        "Speech"
+      ],
       "url_pattern": "https://{YYYY}.ieeeicassp.org/",
       "url_fallback": null,
       "upcoming": {
@@ -582,12 +751,27 @@
         "url": "https://2027.ieeeicassp.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2025-09-18 20:59",
+          "venue": "Barcelona, Spain",
+          "url": "https://2026.ieeeicassp.org/"
+        },
+        {
+          "year": "2025",
+          "date": "2024-09-10 20:59",
+          "venue": "Hyderabad, India",
+          "url": "https://2025.ieeeicassp.org/"
+        }
+      ]
     },
     {
       "name": "ICLR",
       "full_name": "International Conference on Learning Representations",
-      "tags": ["ML"],
+      "tags": [
+        "ML"
+      ],
       "url_pattern": "https://iclr.cc/Conferences/{YYYY}",
       "url_fallback": "https://iclr.cc/",
       "upcoming": {
@@ -598,12 +782,27 @@
         "url": "https://iclr.cc/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2025-09-25 20:59",
+          "venue": "Rio de Janeiro, Brazil",
+          "url": "https://iclr.cc/Conferences/2026"
+        },
+        {
+          "year": "2025",
+          "date": "2024-10-02 20:59",
+          "venue": "Singapore",
+          "url": "https://iclr.cc/Conferences/2025"
+        }
+      ]
     },
     {
       "name": "AISTATS",
       "full_name": "International Conference on Artificial Intelligence and Statistics",
-      "tags": ["ML"],
+      "tags": [
+        "ML"
+      ],
       "url_pattern": "https://aistats.org/aistats{YYYY}/",
       "url_fallback": "https://aistats.org/",
       "upcoming": {
@@ -614,12 +813,27 @@
         "url": "https://aistats.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2025-10-03 20:59",
+          "venue": "Tangier, Morocco",
+          "url": "https://virtual.aistats.org/Conferences/2026"
+        },
+        {
+          "year": "2025",
+          "date": "2024-10-11 20:59",
+          "venue": "Mai Khao, Thailand",
+          "url": "https://aistats.org/aistats2025/"
+        }
+      ]
     },
     {
       "name": "WWW",
       "full_name": "The Web Conference",
-      "tags": ["Web"],
+      "tags": [
+        "Web"
+      ],
       "url_pattern": "https://www{YYYY}.thewebconf.org/",
       "url_fallback": "https://thewebconf.org/",
       "upcoming": {
@@ -630,12 +844,27 @@
         "url": "https://thewebconf.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2025-10-08 20:59",
+          "venue": "Dubai, UAE",
+          "url": "https://www2026.thewebconf.org/"
+        },
+        {
+          "year": "2025",
+          "date": "2024-10-15 20:59",
+          "venue": "Sydney, Australia",
+          "url": "https://thewebconf.org/"
+        }
+      ]
     },
     {
       "name": "NAACL",
       "full_name": "North American Chapter of the ACL",
-      "tags": ["NLP"],
+      "tags": [
+        "NLP"
+      ],
       "url_pattern": "https://{YYYY}.naacl.org/",
       "url_fallback": "https://naacl.org/",
       "upcoming": {
@@ -654,12 +883,27 @@
           }
         ]
       },
-      "history": []
+      "history": [
+        {
+          "year": "2025",
+          "date": "2024-10-16 20:59",
+          "venue": "Albuquerque, USA",
+          "url": "https://2025.naacl.org/"
+        },
+        {
+          "year": "2024",
+          "date": "2023-12-16 20:59",
+          "venue": "Mexico City, Mexico",
+          "url": "https://2024.naacl.org/"
+        }
+      ]
     },
     {
       "name": "CVPR",
       "full_name": "Conference on Computer Vision and Pattern Recognition",
-      "tags": ["CV"],
+      "tags": [
+        "CV"
+      ],
       "url_pattern": "https://cvpr.thecvf.com/Conferences/{YYYY}",
       "url_fallback": "https://cvpr.thecvf.com/",
       "upcoming": {
@@ -670,12 +914,27 @@
         "url": "https://cvpr.thecvf.com/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2025-11-14 20:59",
+          "venue": "Denver, USA",
+          "url": "https://cvpr.thecvf.com/Conferences/2026"
+        },
+        {
+          "year": "2025",
+          "date": "2024-11-15 20:59",
+          "venue": "Nashville, USA",
+          "url": "https://cvpr.thecvf.com/Conferences/2025"
+        }
+      ]
     },
     {
       "name": "SIGIR",
       "full_name": "ACM SIGIR Conference on Research and Development in Information Retrieval",
-      "tags": ["IR"],
+      "tags": [
+        "IR"
+      ],
       "url_pattern": "https://sigir{YYYY}.org/",
       "url_fallback": "https://sigir.org/",
       "upcoming": {
@@ -686,12 +945,27 @@
         "url": "https://sigir.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-01-23 20:59",
+          "venue": "Melbourne, Australia",
+          "url": "https://sigir2026.org/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-01-24 20:59",
+          "venue": "Padua, Italy",
+          "url": "https://sigir2025.dei.unipd.it/"
+        }
+      ]
     },
     {
       "name": "ACL",
       "full_name": "Annual Meeting of the Association for Computational Linguistics",
-      "tags": ["NLP"],
+      "tags": [
+        "NLP"
+      ],
       "url_pattern": "https://{YYYY}.aclweb.org/",
       "url_fallback": "https://www.aclweb.org/",
       "upcoming": {
@@ -710,12 +984,27 @@
           }
         ]
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-01-06 20:59",
+          "venue": "San Diego, USA",
+          "url": "https://2026.aclweb.org/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-02-16 20:59",
+          "venue": "Vienna, Austria",
+          "url": "https://2025.aclweb.org/"
+        }
+      ]
     },
     {
       "name": "IJCAI",
       "full_name": "International Joint Conference on Artificial Intelligence",
-      "tags": ["AI"],
+      "tags": [
+        "AI"
+      ],
       "url_pattern": "https://{YYYY}.ijcai.org/",
       "url_fallback": "https://ijcai.org/",
       "upcoming": {
@@ -726,12 +1015,27 @@
         "url": "https://ijcai.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-01-20 20:59",
+          "venue": "Bremen, Germany",
+          "url": "https://2026.ijcai.org/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-01-24 20:59",
+          "venue": "Montreal, Canada",
+          "url": "https://2025.ijcai.org/"
+        }
+      ]
     },
     {
       "name": "ICML",
       "full_name": "International Conference on Machine Learning",
-      "tags": ["ML"],
+      "tags": [
+        "ML"
+      ],
       "url_pattern": "https://icml.cc/Conferences/{YYYY}",
       "url_fallback": "https://icml.cc/",
       "upcoming": {
@@ -742,12 +1046,27 @@
         "url": "https://icml.cc/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-01-29 20:59",
+          "venue": "Seoul, South Korea",
+          "url": "https://icml.cc/Conferences/2026"
+        },
+        {
+          "year": "2025",
+          "date": "2025-01-31 20:59",
+          "venue": "Vancouver, Canada",
+          "url": "https://icml.cc/Conferences/2025"
+        }
+      ]
     },
     {
       "name": "RSS",
       "full_name": "Robotics: Science and Systems",
-      "tags": ["Robotics"],
+      "tags": [
+        "Robotics"
+      ],
       "url_pattern": "https://roboticsconference.org/",
       "url_fallback": null,
       "upcoming": {
@@ -758,28 +1077,82 @@
         "url": "https://roboticsconference.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-01-31 20:59",
+          "venue": "Sydney, Australia",
+          "url": "https://roboticsconference.org/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-01-25 20:59",
+          "venue": "Los Angeles, USA",
+          "url": "https://roboticsconference.org/2025/"
+        }
+      ]
     },
     {
       "name": "KDD",
       "full_name": "ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
-      "tags": ["Data"],
+      "tags": [
+        "Data"
+      ],
       "url_pattern": "https://kdd{YYYY}.kdd.org/",
       "url_fallback": "https://kdd.org/",
       "upcoming": {
         "year": "2027",
-        "date": "2027-02-09 20:59",
+        "date": "2026-08-02 20:59",
         "venue": "TBD",
         "venue_confirmed": false,
         "url": "https://kdd.org/",
-        "predicted": true
+        "predicted": true,
+        "sub_events": [
+          {
+            "label": "Cycle 2",
+            "date": "2027-02-10 20:59",
+            "predicted": true,
+            "url": "https://kdd.org/"
+          }
+        ]
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "label": "Cycle 2",
+          "date": "2026-02-09 20:59",
+          "venue": "Jeju, South Korea",
+          "url": "https://kdd2026.kdd.org/"
+        },
+        {
+          "year": "2026",
+          "label": "Cycle 1",
+          "date": "2025-08-02 20:59",
+          "venue": "Jeju, South Korea",
+          "url": "https://kdd2026.kdd.org/"
+        },
+        {
+          "year": "2025",
+          "label": "Cycle 2",
+          "date": "2025-02-11 20:59",
+          "venue": "Toronto, Canada",
+          "url": "https://kdd2025.kdd.org/"
+        },
+        {
+          "year": "2025",
+          "label": "Cycle 1",
+          "date": "2024-08-09 20:59",
+          "venue": "Toronto, Canada",
+          "url": "https://kdd2025.kdd.org/"
+        }
+      ]
     },
     {
       "name": "InterSpeech",
       "full_name": "Annual Conference of the International Speech Communication Association",
-      "tags": ["Speech"],
+      "tags": [
+        "Speech"
+      ],
       "url_pattern": "https://interspeech{YYYY}.org/",
       "url_fallback": null,
       "upcoming": {
@@ -790,12 +1163,27 @@
         "url": "https://interspeech2027.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-02-26 20:59",
+          "venue": "Sydney, Australia",
+          "url": "https://interspeech2026.org/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-02-13 20:59",
+          "venue": "Rotterdam, Netherlands",
+          "url": "https://interspeech2025.org/"
+        }
+      ]
     },
     {
       "name": "ECCV",
       "full_name": "European Conference on Computer Vision",
-      "tags": ["CV"],
+      "tags": [
+        "CV"
+      ],
       "url_pattern": "https://eccv.ecva.net/Conferences/{YYYY}",
       "url_fallback": "https://eccv.ecva.net/",
       "upcoming": {
@@ -806,12 +1194,27 @@
         "url": "https://eccv.ecva.net/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-03-06 20:59",
+          "venue": "Malmö, Sweden",
+          "url": "https://eccv.ecva.net/Conferences/2026"
+        },
+        {
+          "year": "2024",
+          "date": "2024-03-08 20:59",
+          "venue": "Milan, Italy",
+          "url": "https://eccv.ecva.net/Conferences/2024"
+        }
+      ]
     },
     {
       "name": "ICCV",
       "full_name": "International Conference on Computer Vision",
-      "tags": ["CV"],
+      "tags": [
+        "CV"
+      ],
       "url_pattern": "https://iccv.thecvf.com/Conferences/{YYYY}",
       "url_fallback": "https://iccv.thecvf.com/",
       "upcoming": {
@@ -822,12 +1225,27 @@
         "url": "https://iccv.thecvf.com/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2025",
+          "date": "2025-03-08 20:59",
+          "venue": "Honolulu, USA",
+          "url": "https://iccv.thecvf.com/Conferences/2025"
+        },
+        {
+          "year": "2023",
+          "date": "2023-03-09 20:59",
+          "venue": "Paris, France",
+          "url": "https://iccv2023.thecvf.com/"
+        }
+      ]
     },
     {
       "name": "COLM",
       "full_name": "Conference on Language Modeling",
-      "tags": ["NLP"],
+      "tags": [
+        "NLP"
+      ],
       "url_pattern": "https://colmweb.org/",
       "url_fallback": null,
       "upcoming": {
@@ -838,11 +1256,24 @@
         "url": "https://colmweb.org/",
         "predicted": true
       },
-      "history": []
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-04-01 20:59",
+          "venue": "San Francisco, USA",
+          "url": "https://colmweb.org/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-03-29 20:59",
+          "venue": "Montreal, Canada",
+          "url": "https://colmweb.org/2025/"
+        }
+      ]
     }
   ]
 }
-    </script>
+</script>
 
     <script>
         const CONFERENCES = JSON.parse(document.getElementById('deadlines-data').textContent).conferences;
@@ -972,8 +1403,12 @@
                 const linkHtml = h.url
                     ? `<a href="${h.url}" target="_blank" class="history-chip-link" title="Open ${h.year} site">↗</a>`
                     : '';
+                const labelHtml = h.label
+                    ? `<span class="history-chip-label">${h.label}</span>`
+                    : '';
                 return `<span class="history-chip">
                     <span class="history-chip-year">${shortYear(h.year)}</span>
+                    ${labelHtml}
                     <span class="history-chip-venue">${flagHtml}${h.venue}</span>
                     <span class="history-chip-date">${fmtShort(d)}</span>
                     ${linkHtml}
