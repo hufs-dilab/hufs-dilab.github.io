@@ -693,7 +693,8 @@
         "venue": "Macau",
         "venue_confirmed": false,
         "url": "https://coling2027.org/",
-        "predicted": true
+        "predicted": true,
+        "venue_source_url": "https://trybibby.com/conference-deadlines"
       },
       "history": [
         {
@@ -780,7 +781,8 @@
         "venue": "Toronto, Canada",
         "venue_confirmed": false,
         "url": "https://iclr.cc/",
-        "predicted": true
+        "predicted": true,
+        "venue_source_url": "https://mlciv.com/ai-deadlines/"
       },
       "history": [
         {
@@ -811,7 +813,8 @@
         "venue": "Helsinki, Finland",
         "venue_confirmed": false,
         "url": "https://aistats.org/",
-        "predicted": true
+        "predicted": true,
+        "venue_source_url": "https://trybibby.com/conference-deadlines"
       },
       "history": [
         {
@@ -1352,6 +1355,9 @@
             const linkHtml = up.url
                 ? `<a href="${up.url}" target="_blank" class="${linkClass}">Site<span class="link-btn-arrow">↗</span></a>`
                 : '';
+            const sourceLinkHtml = up.venue_source_url
+                ? `<a href="${up.venue_source_url}" target="_blank" class="link-btn dashed" title="비공식 venue 출처 (3rd-party tracker)">src<span class="link-btn-arrow">↗</span></a>`
+                : '';
 
             const badgeHtml = (status === 'confirmed') ? '' :
                 `<span class="deadline-status-badge ${status}">${status}</span>`;
@@ -1369,6 +1375,7 @@
                     <div class="deadline-meta">
                         <span class="deadline-venue ${venueClass}">${flagHtml}${venueText}${venueMark}</span>
                         ${linkHtml}
+                        ${sourceLinkHtml}
                     </div>`;
 
             if (up.sub_events && up.sub_events.length) {

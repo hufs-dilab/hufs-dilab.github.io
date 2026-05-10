@@ -83,6 +83,7 @@
 | `upcoming.date` | string | 필수 | 마감일. KST `YYYY-MM-DD HH:MM` |
 | `upcoming.venue` | string | 필수 | 도시·국가. 미정 시 `"TBD"` |
 | `upcoming.venue_confirmed` | boolean | 필수 | **공식 학회 사이트 또는 공식 모학회 announcement에 명시된 venue만 `true`**. 제3자 트래커(aideadlin.es / mlciv / trybibby 등)나 짐작 출처는 `false`. venue 문자열이 specific city여도 출처가 비공식이면 `false` |
+| `upcoming.venue_source_url` | string | 선택 | venue가 비공식 출처에서 왔을 때 그 출처 URL. UI에서 `src ↗` dashed 버튼으로 별도 표시. `venue_confirmed: false` 인 항목에 채움 (예: `https://mlciv.com/ai-deadlines/`). 공식이면 생략 (`url`이 곧 출처) |
 | `upcoming.url` | string | 필수 | 공식 사이트. HTTP 200 검증 필수 |
 | `upcoming.predicted` | boolean | 필수 | 마감 예측치 여부. 공식 발표 시 `false` |
 | `upcoming.sub_events` | array | 선택 | 같은 회차의 부속 마감 (Student Abstract, SRW, Cycle 2 등) |
