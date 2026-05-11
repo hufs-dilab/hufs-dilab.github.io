@@ -41,14 +41,18 @@
         .legend-dot.predicted { background: var(--color-predicted-text, #7c3aed); }
         .legend-dot.passed { background: var(--color-passed-text, #94a3b8); }
 
+        /* ── Sticky wrapper (legend + toolbar) ── */
+        .deadlines-sticky-wrap {
+            position: sticky;
+            top: var(--nav-height, 3.5rem);
+            z-index: 50;
+        }
+
         /* ── Toolbar ── */
         .deadlines-toolbar {
             background: var(--color-bg-alt);
             border-bottom: 1px solid var(--color-border);
             padding: 0.75rem 0;
-            position: sticky;
-            top: var(--nav-height, 3.5rem);
-            z-index: 50;
         }
         .toolbar-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
         .toolbar-label {
@@ -322,21 +326,23 @@
         </div>
     </section>
 
-    <div class="deadlines-legend">
-        <div class="container">
-            <span class="legend-item"><span class="legend-dot confirmed"></span> Officially announced deadline</span>
-            <span class="legend-item"><span class="legend-dot predicted"></span> Predicted estimate (not yet announced)</span>
-            <span class="legend-item"><span class="legend-dot passed"></span> Past deadline</span>
-            <span class="legend-item" style="margin-left:auto;">Dashed link = predicted source &middot; ✓ = venue officially confirmed</span>
+    <div class="deadlines-sticky-wrap">
+        <div class="deadlines-legend">
+            <div class="container">
+                <span class="legend-item"><span class="legend-dot confirmed"></span> Officially announced deadline</span>
+                <span class="legend-item"><span class="legend-dot predicted"></span> Predicted estimate (not yet announced)</span>
+                <span class="legend-item"><span class="legend-dot passed"></span> Past deadline</span>
+                <span class="legend-item" style="margin-left:auto;">Dashed link = predicted source &middot; ✓ = venue officially confirmed</span>
+            </div>
         </div>
-    </div>
 
-    <div class="deadlines-toolbar">
-        <div class="container">
-            <div class="toolbar-row">
-                <span class="toolbar-label">Filter</span>
-                <div class="filter-buttons" id="filter-buttons">
-                    <button class="filter-btn active" data-tag="all">All</button>
+        <div class="deadlines-toolbar">
+            <div class="container">
+                <div class="toolbar-row">
+                    <span class="toolbar-label">Filter</span>
+                    <div class="filter-buttons" id="filter-buttons">
+                        <button class="filter-btn active" data-tag="all">All</button>
+                    </div>
                 </div>
             </div>
         </div>
