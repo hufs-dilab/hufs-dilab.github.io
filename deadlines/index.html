@@ -1335,7 +1335,7 @@
         function renderUpcoming(up, confName) {
             const d = dateOf(up.date);
             const status = statusOf(d, up.predicted);
-            const cdLabel = status === 'passed' ? 'PASSED' : (status === 'predicted' ? '⏱ ~' + countdown(d) + ' left' : '⏱ ' + countdown(d) + ' left');
+            const cdLabel = status === 'passed' ? 'PASSED' : '⏱ ' + countdown(d) + ' left';
             const venueClass = up.venue === 'TBD' ? 'tbd' : (up.venue_confirmed ? '' : 'unconfirmed');
             const venueText = up.venue === 'TBD' ? 'venue TBD' : up.venue;
             const flag = up.venue && up.venue !== 'TBD' ? flagFor(up.venue) : '';
@@ -1372,7 +1372,7 @@
                 for (const sub of up.sub_events) {
                     const sd = dateOf(sub.date);
                     const sStatus = statusOf(sd, sub.predicted);
-                    const sCd = sStatus === 'passed' ? 'PASSED' : (sStatus === 'predicted' ? '⏱ ~' + countdown(sd) + ' left' : '⏱ ' + countdown(sd) + ' left');
+                    const sCd = sStatus === 'passed' ? 'PASSED' : '⏱ ' + countdown(sd) + ' left';
                     const sLink = sub.url
                         ? `<a href="${sub.url}" target="_blank" class="link-btn ${sStatus === 'predicted' ? 'dashed' : ''}" style="font-size:0.65rem; padding:1px 5px;">CFP<span class="link-btn-arrow">↗</span></a>`
                         : '';
