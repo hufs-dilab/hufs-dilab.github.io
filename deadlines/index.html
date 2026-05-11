@@ -125,6 +125,8 @@
             margin-top: 0.2rem;
         }
         .conf-tags { display: flex; gap: 0.25rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .conf-name-row { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+        .conf-tags-inline { display: inline-flex; gap: 0.25rem; flex-wrap: wrap; }
         .tag {
             padding: 1px 7px;
             font-size: 0.68rem;
@@ -144,22 +146,16 @@
         .tag-Challenge { color: #4527a0; background: #ede7f6; }
 
         /* ── Next deadline cell ── */
-        .deadline-block { display: flex; flex-direction: column; gap: 0.45rem; }
-        .deadline-edition {
-            display: inline-flex;
-            align-items: baseline;
-            gap: 0.4rem;
-            font-size: 0.72rem;
-            color: var(--color-text-faint, #94a3b8);
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-        }
+        .deadline-block { display: flex; flex-direction: column; gap: 0.35rem; }
         .deadline-edition-year {
             font-family: 'JetBrains Mono', monospace;
             color: var(--color-text-muted);
+            font-size: 0.72rem;
             font-weight: 500;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
         }
+        .deadline-meta-dot { color: #cbd5e1; }
         .deadline-status-badge {
             display: inline-block;
             padding: 1px 6px;
@@ -279,7 +275,13 @@
             font-size: 0.78rem;
             color: var(--color-text-muted);
             white-space: nowrap;
+            text-decoration: none;
+            transition: border-color 0.15s ease, background 0.15s ease;
         }
+        a.history-chip { cursor: pointer; }
+        a.history-chip:hover { border-color: var(--color-accent); background: var(--color-bg); }
+        a.history-chip:hover .history-chip-arrow { color: var(--color-accent-hover); }
+        .history-chip-arrow { color: var(--color-accent); font-size: 0.7rem; margin-left: 0.1rem; }
         .history-chip-year {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
@@ -1353,18 +1355,17 @@
 
             let html = `
                 <div class="deadline-block">
-                    <div class="deadline-edition">
+                    <div class="deadline-meta">
                         <span class="deadline-edition-year">${confName} ${up.year}</span>
                         ${badgeHtml}
+                        <span class="deadline-meta-dot">·</span>
+                        <span class="deadline-venue ${venueClass}">${flagHtml}${venueText}${venueMark}</span>
+                        ${linkHtml}
+                        ${sourceLinkHtml}
                     </div>
                     <div class="deadline-main">
                         <span class="deadline-date ${status === 'passed' ? 'passed' : ''}">${fmtDate(d)}</span>
                         <span class="deadline-countdown ${status}">${cdLabel}</span>
-                    </div>
-                    <div class="deadline-meta">
-                        <span class="deadline-venue ${venueClass}">${flagHtml}${venueText}${venueMark}</span>
-                        ${linkHtml}
-                        ${sourceLinkHtml}
                     </div>`;
 
             if (up.sub_events && up.sub_events.length) {
@@ -1396,30 +1397,32 @@
                 const d = dateOf(h.date);
                 const flag = flagFor(h.venue);
                 const flagHtml = flag ? `<span class="flag">${flag}</span>` : '';
-                const linkHtml = h.url
-                    ? `<a href="${h.url}" target="_blank" class="history-chip-link" title="Open ${h.year} site">↗</a>`
-                    : '';
+                const arrowHtml = h.url ? '<span class="history-chip-arrow">↗</span>' : '';
                 const labelHtml = h.label
                     ? `<span class="history-chip-label">${h.label}</span>`
                     : '';
-                return `<span class="history-chip">
+                const tag = h.url ? 'a' : 'span';
+                const hrefAttr = h.url ? ` href="${h.url}" target="_blank" title="Open ${h.year} site"` : '';
+                return `<${tag} class="history-chip"${hrefAttr}>
                     <span class="history-chip-year">${shortYear(h.year)}</span>
                     ${labelHtml}
                     <span class="history-chip-venue">${flagHtml}${h.venue}</span>
                     <span class="history-chip-date">${fmtShort(d)}</span>
-                    ${linkHtml}
-                </span>`;
+                    ${arrowHtml}
+                </${tag}>`;
             }).join('') + '</div>';
         }
 
         function renderRow(conf) {
-            const fullName = conf.full_name ? `<span class="conf-fullname">${conf.full_name}</span>` : '';
+            const fullName = conf.full_name ? `<div class="conf-fullname">${conf.full_name}</div>` : '';
             return `
                 <tr data-tags="${conf.tags.join(',')}">
                     <td class="col-conf">
-                        <div class="conf-name">${conf.name}</div>
+                        <div class="conf-name-row">
+                            <span class="conf-name">${conf.name}</span>
+                            <span class="conf-tags-inline">${renderTags(conf.tags)}</span>
+                        </div>
                         ${fullName}
-                        <div class="conf-tags">${renderTags(conf.tags)}</div>
                     </td>
                     <td class="col-next">${renderUpcoming(conf.upcoming, conf.name)}</td>
                     <td class="col-history">${renderHistory(conf.history)}</td>
