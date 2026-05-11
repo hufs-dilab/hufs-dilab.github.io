@@ -268,6 +268,27 @@ print('OK')
 "
 ```
 
+### URL 컨텐츠 검증 (도메인 파킹·squat 사이트 차단)
+
+**HTTP 200 만으로는 부족**. 다음 패턴 검출 시 url을 거부하고 fallback 사용:
+
+```bash
+# 의심 시그널 검출
+curl -s -L --max-time 10 <url> | grep -iE "window\.location\.replace|FingerprintJS|tr_uuid|generasipoker|judi|casino|porno" && echo "SUSPICIOUS: parking/squat site"
+
+# 또는 학회 키워드 부재 (응답에 학회명·conference 단어 없음 → 의심)
+curl -s -L --max-time 10 <url> | grep -iE "conference|workshop|submission|cfp|paper" || echo "SUSPICIOUS: no conference keywords"
+```
+
+**대표 의심 패턴** (이번 세션 발견):
+- `window.onload=function(){window.location.href='/lander'}` — 도메인 파킹 (예전 `coling2027.org`)
+- FingerprintJS + `tr_uuid` 쿼리 — 추적·리다이렉트 사이트 (예전 `coling2026.org`)
+- 무관한 비즈니스 (인도네시아 포커, 러시아 광고 등) — squatted domain (예전 `coling.org/2026`)
+
+거부 후 처리:
+1. 같은 학회의 다른 후보 URL (이전 회차, 부모 도메인, ACL Anthology venue 페이지 등)을 시도
+2. 모두 실패하면 `url_fallback` 으로 강력한 stable authority 사용 (학회 series의 ACL Anthology venue 페이지가 좋은 fallback)
+
 ### URL HTTP 200 전수 검증 (모든 url 필드)
 
 ```bash
@@ -478,6 +499,7 @@ UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. �
 | 실수 | 올바른 방법 |
 |---|---|
 | URL 연도 패턴 추정 (예: `iclr.cc/Conferences/2026` 있다고 `/2027` 가정) | 반드시 `curl` 200 확인 후 사용 |
+| HTTP 200만 보고 url 합격 처리 | 200 + **컨텐츠 검증** 필수. 도메인 파킹·squat 사이트는 200 반환하지만 실제 학회 사이트 아님. 의심 시그널: ① `window.location.replace` 자동 리다이렉트, ② FingerprintJS / tr_uuid 추적, ③ 무관 언어/주제 (인도네시아 포커, 러시아 광고 등), ④ 학회·논문 키워드 부재. 의심되면 학회명·연도 텍스트 grep으로 추가 검증 |
 | "내가 새로 바꾼 것만" 검증 | 검증 도입·변경 시 JSON의 모든 URL 전수 검증 |
 | 페이지에 차회 마감 미명시인데 `predicted: false` 로 기재 | 공식 CFP에 명시된 경우에만 `predicted: false` |
 | AoE 변환 시 `13:59` 로 잘못 변환 (구 README 오류) | 실제 변환값 **익일 `20:59` KST** |
