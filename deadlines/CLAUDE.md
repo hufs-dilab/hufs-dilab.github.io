@@ -449,6 +449,7 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 | `Student Abstract` | 학생 초록 트랙 별도 마감 | AAAI |
 | `SRW` | Student Research Workshop | ACL, EACL, NAACL |
 | `Abstract` | 논문 초록 사전 제출 마감 (별도 트랙) | WSDM, SIGIR 등 |
+| `Industry` | Industry Track 별도 마감 | EMNLP, NAACL 등 |
 | `Cycle 1` | 첫 번째 제출 사이클 | KDD |
 | `Cycle 2` | 두 번째 제출 사이클 | KDD |
 
