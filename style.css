@@ -535,13 +535,15 @@ footer .container {
 .author-highlight {
     text-decoration: underline;
     text-decoration-color: var(--color-accent);
-    text-underline-offset: 2px;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 3px;
     font-weight: 600;
 }
 
 .author-lab {
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 3px;
 }
 
 .pub-year {
