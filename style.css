@@ -667,6 +667,18 @@ footer .container {
     font-weight: 400;
 }
 
+.person-email a.link-underline {
+    margin-left: 0.75rem;
+    font-weight: 300;
+    color: var(--color-text-muted);
+    border-color: var(--color-text-muted);
+}
+
+.person-email a.link-underline:hover {
+    color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+}
+
 /* Research Interest Tags */
 .interest-tag {
     display: inline-block;
