@@ -452,6 +452,7 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 | `Industry` | Industry Track 별도 마감 | EMNLP, NAACL 등 |
 | `Cycle 1` | 첫 번째 제출 사이클 | KDD |
 | `Cycle 2` | 두 번째 제출 사이클 | KDD |
+| `Paper` | shared task에서 시스템 제출과 별개인 description paper 마감. main `upcoming.date` 는 시스템(참가) 제출 마감을 쓰고, 논문 마감을 이 sub_event로 둔다 | WMT MT Eval |
 
 새 라벨 도입이 필요하면 이 룰북 표에 추가하고 커밋.
 
