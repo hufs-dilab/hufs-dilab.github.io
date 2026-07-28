@@ -237,6 +237,16 @@
         }
         .sub-event.confirmed::before { background: #fff7ed; }
         .sub-event.predicted::before { background: #f5f3ff; }
+        .sub-event.is-challenge::before { background: #b39ddb; }
+        .sub-kind {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: #4527a0;
+            background: #ede7f6;
+            padding: 1px 5px;
+        }
         .sub-label {
             font-size: 0.66rem;
             text-transform: uppercase;
@@ -324,7 +334,7 @@
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 0.5rem;">
         <div class="container">
             <h1 style="margin-bottom: 0.25rem;">Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-05-27 &middot; 29 conferences tracked</p>
+            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-07-29 &middot; 33 tracked (28 conferences, 5 challenges)</p>
         </div>
     </section>
 
@@ -367,7 +377,7 @@
 
     <script type="application/json" id="deadlines-data">
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "conferences": [
     {
       "name": "RecSys",
@@ -1325,6 +1335,139 @@
           "url": "https://lrec2022.lrec-conf.org/en/"
         }
       ]
+    },
+    {
+      "name": "SemEval",
+      "full_name": "International Workshop on Semantic Evaluation",
+      "tags": [
+        "NLP",
+        "Challenge"
+      ],
+      "url_pattern": "https://semeval.github.io/SemEval{YYYY}/",
+      "url_fallback": "https://semeval.github.io/",
+      "upcoming": {
+        "year": "2027",
+        "date": "2027-02-01 20:59",
+        "venue": "TBD",
+        "venue_confirmed": false,
+        "url": "https://semeval.github.io/SemEval2027/",
+        "predicted": true,
+        "sub_events": []
+      },
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-02-03 20:59",
+          "venue": "San Diego, USA",
+          "url": "https://semeval.github.io/SemEval2026/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-02-01 20:59",
+          "venue": "Vienna, Austria",
+          "url": "https://semeval.github.io/SemEval2025/"
+        }
+      ]
+    },
+    {
+      "name": "IWSLT",
+      "full_name": "International Conference on Spoken Language Translation",
+      "tags": [
+        "NLP",
+        "Speech",
+        "Challenge"
+      ],
+      "url_pattern": "https://iwslt.org/{YYYY}/",
+      "url_fallback": "https://iwslt.org/",
+      "upcoming": {
+        "year": "2027",
+        "date": "2027-04-16 20:59",
+        "venue": "Kyoto, Japan",
+        "venue_confirmed": true,
+        "url": "https://iwslt.org/",
+        "predicted": true,
+        "sub_events": []
+      },
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-04-16 20:59",
+          "venue": "San Diego, USA",
+          "url": "https://iwslt.org/2026/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-04-20 20:59",
+          "venue": "Vienna, Austria",
+          "url": "https://iwslt.org/2025/"
+        }
+      ]
+    },
+    {
+      "name": "FIRE",
+      "full_name": "Forum for Information Retrieval Evaluation",
+      "tags": [
+        "IR",
+        "Challenge"
+      ],
+      "url_pattern": "https://fire.irsi.org.in/fire/{YYYY}/home",
+      "url_fallback": "https://fire.irsi.org.in/",
+      "upcoming": {
+        "year": "2027",
+        "date": "2027-07-01 20:59",
+        "venue": "TBD",
+        "venue_confirmed": false,
+        "url": "https://fire.irsi.org.in/",
+        "predicted": true,
+        "sub_events": []
+      },
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-07-01 20:59",
+          "venue": "Kolkata, India",
+          "url": "https://fire.irsi.org.in/fire/2026/home"
+        },
+        {
+          "year": "2025",
+          "date": "2025-07-01 20:59",
+          "venue": "Varanasi, India",
+          "url": "https://fire.irsi.org.in/fire/2025/call_for_tracks"
+        }
+      ]
+    },
+    {
+      "name": "Blizzard",
+      "full_name": "Blizzard Challenge for Speech Synthesis",
+      "tags": [
+        "Speech",
+        "Challenge"
+      ],
+      "url_pattern": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/overview",
+      "url_fallback": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/overview",
+      "upcoming": {
+        "year": "2027",
+        "date": "2027-04-13 20:59",
+        "venue": "Maceió, Brazil",
+        "venue_confirmed": true,
+        "url": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/pages/789512358/Blizzard+Challenge+2027",
+        "predicted": true,
+        "sub_events": []
+      },
+      "history": [
+        {
+          "year": "2025",
+          "date": "2025-04-19 20:59",
+          "venue": "Leeuwarden, Netherlands",
+          "url": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/pages/786632602/Blizzard+Challenge+2025"
+        },
+        {
+          "year": "2023",
+          "date": "2023-04-04 20:59",
+          "venue": "Grenoble, France",
+          "url": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/pages/786634792/Blizzard+Challenge+2023"
+        }
+      ]
     }
   ]
 }
@@ -1345,6 +1488,7 @@
             'UK': '🇬🇧', 'United Kingdom': '🇬🇧', 'Singapore': '🇸🇬',
             'Spain': '🇪🇸', 'Ireland': '🇮🇪', 'Mexico': '🇲🇽',
             'Sweden': '🇸🇪', 'Finland': '🇫🇮', 'Netherlands': '🇳🇱',
+            'India': '🇮🇳', 'Romania': '🇷🇴',
             'Macau': '🇲🇴', 'São Paulo': '🇧🇷'
         };
 
@@ -1434,11 +1578,14 @@
                     const sd = dateOf(sub.date);
                     const sStatus = statusOf(sd, sub.predicted);
                     const sCd = sStatus === 'passed' ? 'PASSED' : '⏱ ' + countdown(sd) + ' left';
+                    const isChallenge = sub.type === 'challenge';
                     const sLink = sub.url
                         ? `<a href="${sub.url}" target="_blank" class="link-btn ${sStatus === 'predicted' ? 'dashed' : ''}" style="font-size:0.65rem; padding:1px 5px;">CFP<span class="link-btn-arrow">↗</span></a>`
                         : '';
+                    const kindHtml = isChallenge ? '<span class="sub-kind">challenge</span>' : '';
                     html += `
-                        <div class="sub-event ${sStatus}">
+                        <div class="sub-event ${sStatus}${isChallenge ? ' is-challenge' : ''}">
+                            ${kindHtml}
                             <span class="sub-label">${sub.label}</span>
                             <span class="sub-date ${sStatus === 'passed' ? 'passed' : ''}">${fmtDate(sd)}</span>
                             <span class="sub-countdown ${sStatus}">${sCd}</span>
