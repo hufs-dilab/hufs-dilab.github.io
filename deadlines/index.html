@@ -85,36 +85,50 @@
 
         /* ── Open challenges ── */
         .open-challenges { padding: 2rem 0 0; }
+        .oc-details { border: 1px solid var(--color-border); }
         .oc-head {
             display: flex;
-            align-items: baseline;
-            gap: 0.6rem;
+            align-items: center;
+            gap: 0.55rem;
             flex-wrap: wrap;
-            margin-bottom: 0.7rem;
+            padding: 0.7rem 1rem;
+            background: var(--color-bg-alt);
             cursor: pointer;
             list-style: none;
             user-select: none;
+            transition: background 0.15s ease;
         }
         .oc-head::-webkit-details-marker { display: none; }
-        .oc-head::before {
-            content: '▾';
-            font-size: 0.65rem;
-            color: var(--color-text-muted);
-            align-self: center;
+        .oc-head:hover { background: var(--color-bg); }
+        .oc-details[open] .oc-head { border-bottom: 1px solid var(--color-border); }
+        .oc-marker {
+            width: 0;
+            height: 0;
+            border-left: 5px solid var(--color-text-muted);
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            transition: transform 0.15s ease;
         }
-        .oc-details:not([open]) .oc-head::before { content: '▸'; }
-        .oc-details:not([open]) .oc-head { margin-bottom: 0; }
-        .oc-title { font-size: 0.95rem; font-weight: 600; color: var(--color-text-main); margin: 0; }
-        .oc-note { font-size: 0.72rem; color: var(--color-text-muted); }
-        .oc-toggle {
+        .oc-details[open] .oc-marker { transform: rotate(90deg); }
+        .oc-head:hover .oc-marker { border-left-color: var(--color-accent); }
+        .oc-title {
             font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
             color: var(--color-text-muted);
-            border: 1px solid var(--color-border);
-            padding: 1px 6px;
-            margin-left: auto;
         }
-        .oc-head:hover .oc-toggle { border-color: var(--color-accent); color: var(--color-accent); }
-        .oc-list { border: 1px solid var(--color-border); }
+        .oc-head:hover .oc-title { color: var(--color-accent); }
+        .oc-count {
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            padding: 1px 7px;
+            color: #4527a0;
+            background: #ede7f6;
+        }
+        .oc-note { font-size: 0.72rem; color: var(--color-text-muted); }
+        .oc-list { border: none; }
         .oc-item {
             display: flex;
             align-items: center;
@@ -443,9 +457,10 @@
         <div class="container">
             <details class="oc-details" id="oc-details">
                 <summary class="oc-head">
-                    <span class="oc-title">Open now</span>
+                    <span class="oc-marker"></span>
+                    <span class="oc-title">Open challenges</span>
+                    <span class="oc-count" id="oc-count"></span>
                     <span class="oc-note" id="oc-note"></span>
-                    <span class="oc-toggle" id="oc-toggle">접기</span>
                 </summary>
                 <div class="oc-list" id="oc-list"></div>
             </details>
@@ -1855,11 +1870,10 @@
             if (!open.length) { section.hidden = true; return; }
             section.hidden = false;
 
-            const verified = OPEN_CHALLENGES_VERIFIED
-                ? ` &middot; 마감일 확인 ${OPEN_CHALLENGES_VERIFIED}`
-                : '';
-            document.getElementById('oc-note').innerHTML =
-                `현재 참가 제출이 열려 있는 challenge ${open.length}건${verified}`;
+            document.getElementById('oc-count').textContent = open.length;
+            document.getElementById('oc-note').innerHTML = OPEN_CHALLENGES_VERIFIED
+                ? `참가 접수 중 &middot; 마감일 확인 ${OPEN_CHALLENGES_VERIFIED}`
+                : '참가 접수 중';
 
             document.getElementById('oc-list').innerHTML = open.map(c => {
                 const status = c.predicted ? 'predicted' : 'confirmed';
@@ -1930,15 +1944,11 @@
 
         function setupOpenChallengesToggle() {
             const details = document.getElementById('oc-details');
-            const toggle = document.getElementById('oc-toggle');
             const KEY = 'deadlines-open-challenges-collapsed';
             let stored = null;
             try { stored = localStorage.getItem(KEY); } catch (e) { /* private mode */ }
             if (stored === '0') details.setAttribute('open', '');
-            const syncLabel = () => { toggle.textContent = details.open ? '접기' : '펼치기'; };
-            syncLabel();
             details.addEventListener('toggle', () => {
-                syncLabel();
                 try { localStorage.setItem(KEY, details.open ? '0' : '1'); } catch (e) { /* private mode */ }
             });
         }
