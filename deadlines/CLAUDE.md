@@ -497,7 +497,85 @@ challenge 는 학회 논문 CFP 와 달리 마감에 시간대를 안 적는 경
 | 트랙별로 마감이 흩어짐 | TREC(트랙별 "late May"~"mid-Sept"), NTCIR(Formal Run 이 3~5개월 범위), CLEF(lab 별 상이) 는 표에 찍을 **단일 대표 마감을 뽑을 수 없어 수록 불가** |
 | 중단·휴면된 시리즈를 살아있는 것으로 오인 | 2026-07 기준 확인된 중단·휴면: WWW Competitions Track(2026 신설했으나 선정작 0건), CoNLL Shared Task(2024 이후 중단), DSTC(공식 도메인 파킹 의심, 2024 공백), DIHARD(2021 이후), ComParE(2023 이후), MediaEval(2024 공백) |
 | challenge 트랙이 없는 학회를 계속 뒤짐 | 전수 확인 결과 challenge 문화 자체가 없는 학회: **AISTATS**(2024~2026 4회차 확인), **RSS**(2026 워크샵 32개 확인), **COLM** |
-| 지금 열려 있는 challenge 가 표에 안 잡힘 | challenge 는 학회 논문 마감보다 리듬이 늦다 (개막 3~6개월 전 확정). `upcoming` 이 차회를 가리키는 동안 현재 회차 challenge 는 열려 있어도 sub_event 로는 표현되지 않는다. 독립 row 는 자기 회차를 들고 있어 이 문제가 없다 |
+| 지금 열려 있는 challenge 가 표에 안 잡힘 | challenge 는 학회 논문 마감보다 리듬이 늦다 (개막 3~6개월 전 확정). `upcoming` 이 차회를 가리키는 동안 현재 회차 challenge 는 열려 있어도 sub_event 로는 표현되지 않는다. 섹션 7-3 의 `open_challenges` 로 처리한다 |
+
+---
+
+## 7-3. Open Challenges 섹션
+
+메인 표와 **별개**로, 회차와 무관하게 "지금 참가 제출이 열려 있는" challenge 를 보여주는 목록.
+
+### 존재 이유
+
+메인 표는 한 row 가 `upcoming`(차회) + `history` 구조라 다음 두 가지를 표현할 수 없다.
+
+1. **현재 회차 challenge** — NeurIPS 2026 Competition Track 은 참가 제출이 열려 있지만, NeurIPS row 의 `upcoming` 은 2027 이고 2026 은 이미 history 로 내려갔다. 걸 자리가 없다
+2. **일회성 대회** — RealPDE, AIMO Interpretability 처럼 1회로 끝나는 대회는 `history` 도 차회도 없어 row 모델에 맞지 않는다
+
+### 데이터 위치
+
+JSON 최상위에 `conferences` 와 나란히 둔다.
+
+```json
+{
+  "schema_version": 4,
+  "open_challenges_verified": "2026-07-29",
+  "open_challenges": [
+    {
+      "name": "RealPDE Competition",
+      "host": "NeurIPS 2026 Competition Track",
+      "kind": "official",
+      "topic": "Sim2real 유체역학 과학 기계학습",
+      "date": "2026-09-28 08:59",
+      "predicted": false,
+      "url": "https://realpdecompetition.github.io/"
+    }
+  ],
+  "conferences": [ ... ]
+}
+```
+
+| 필드 | 타입 | 필수 | 설명 |
+|---|---|---|---|
+| `open_challenges_verified` | string | 필수 | 마감일을 마지막으로 확인한 날짜 `YYYY-MM-DD`. UI 에 표시됨 |
+| `name` | string | 필수 | challenge 이름 |
+| `host` | string | 필수 | 주최 워크샵·학회와 회차. 예: `"NeurIPS 2026 Competition Track"`, `"MRL @ EMNLP 2026"` |
+| `kind` | string | 필수 | `"official"` (학회 공식 트랙) 또는 `"workshop"` |
+| `topic` | string | 필수 | 주제 한 줄. UI 에서 이름 아래 표시 |
+| `date` | string | 필수 | **참가자 시스템·결과 제출 마감**, KST `YYYY-MM-DD HH:MM` |
+| `predicted` | boolean | 필수 | 시간대 미기재로 AoE 가정한 경우 `true` |
+| `url` | string | 필수 | HTTP 200 + 컨텐츠 검증 필수 |
+
+### 메인 표와 다른 점
+
+| | 메인 표 | Open Challenges |
+|---|---|---|
+| 워크샵 소형 challenge | 수록 안 함 | **수록함** (지금 참가 가능한지가 기준이므로) |
+| 마감 지난 항목 | `history` 로 보존 | **배열에서 제거** (보존 안 함) |
+| 일회성 이벤트 | 수록 안 함 (history·차회 없음) | 수록함 |
+| 정렬 | 마감 빠른 순 | 마감 빠른 순 (동일) |
+
+### 수록하지 않는 것
+
+- **시스템 논문(system description paper) 마감** — 참가 제출이 아니다. WMT26 은 2026-08 기준 시스템 논문 마감만 열려 있어 수록 대상이 아니었다
+- **등록 마감, 데이터 공개일**
+- **organizer 대상 제안서(proposal) 마감** — 참가자와 무관
+
+### 자동 만료
+
+UI 는 `date` 가 지난 항목을 렌더에서 제외하고, 남는 항목이 없으면 섹션 전체를 숨긴다. 갱신이 밀려도 **틀린 정보가 남는 게 아니라 목록이 비는 쪽으로 망가진다**. 다만 배열에 만료 항목을 방치하면 안 되므로, 갱신 시 제거한다.
+
+### 갱신 절차
+
+deadlines 갱신 때마다 함께 수행한다.
+
+1. 기존 항목 중 마감 지난 것 제거
+2. 남은 항목의 마감일이 **연장(extended)되지 않았는지** 확인 — challenge 는 마감 연장이 흔하다 (실측 사례: VOTS2026 06-22 -> 06-28, VoicePrivacy 2026 연장)
+3. 섹션 11 의 모니터링 시점을 참고해 새로 열린 challenge 추가
+4. `open_challenges_verified` 를 오늘 날짜로 갱신
+5. 모든 `url` HTTP 200 + 컨텐츠 검증
+
+> 주의: SPA(단일 페이지 앱) 로 만들어진 challenge 사이트는 원문 HTML 에 학회 키워드가 없어 컨텐츠 검증 grep 이 0건으로 나온다 (실측 사례: `chinatravel-competition.github.io`). 이 경우 `<title>` 과 호스팅 도메인으로 판단하고, 파킹 시그널만 없으면 통과시킨다.
 
 ---
 
@@ -695,10 +773,12 @@ ICML 2027 venue: 대륙만 발표된 경우 ("South America" 트윗, 공식 사�
 
 - inline JSON 직접 수정 (Edit 도구)
 - `Last Update: YYYY-MM-DD` 텍스트 갱신
+- **`open_challenges` 갱신** (섹션 7-3 의 갱신 절차): 만료 항목 제거, 연장 여부 확인, 신규 추가, `open_challenges_verified` 갱신
 - 재검증:
   - JSON 유효성
   - URL HTTP 200 (변경된 것만이 아니라 전수)
   - 일관성 (필수 필드, 시간 역순, KST 포맷)
+  - `open_challenges` 필수 필드 및 `kind` 값 (`official` | `workshop`)
 
 #### Step 5 — 시각 검증
 
