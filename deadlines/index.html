@@ -441,7 +441,7 @@
 
     <section class="open-challenges" id="open-challenges" hidden>
         <div class="container">
-            <details class="oc-details" id="oc-details" open>
+            <details class="oc-details" id="oc-details">
                 <summary class="oc-head">
                     <span class="oc-title">Open now</span>
                     <span class="oc-note" id="oc-note"></span>
@@ -1934,7 +1934,7 @@
             const KEY = 'deadlines-open-challenges-collapsed';
             let stored = null;
             try { stored = localStorage.getItem(KEY); } catch (e) { /* private mode */ }
-            if (stored === '1') details.removeAttribute('open');
+            if (stored === '0') details.setAttribute('open', '');
             const syncLabel = () => { toggle.textContent = details.open ? '접기' : '펼치기'; };
             syncLabel();
             details.addEventListener('toggle', () => {
