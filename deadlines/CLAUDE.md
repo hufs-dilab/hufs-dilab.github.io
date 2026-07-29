@@ -88,6 +88,7 @@
 | `upcoming.predicted` | boolean | 필수 | 마감 예측치 여부. 공식 발표 시 `false` |
 | `upcoming.sub_events` | array | 선택 | 같은 회차의 부속 마감 (Student Abstract, SRW, Cycle 2 등) |
 | `upcoming.sub_events[].label` | string | 필수 | 부속 이벤트 라벨 (섹션 7 참고) |
+| `upcoming.sub_events[].type` | string | 선택 | `"track"` (기본, 생략 가능) 또는 `"challenge"`. challenge/competition 마감은 성격이 달라 UI에서 별도 표시 (섹션 7-2 참고) |
 | `upcoming.sub_events[].date` | string | 필수 | KST `YYYY-MM-DD HH:MM` |
 | `upcoming.sub_events[].predicted` | boolean | 필수 | 예측치 여부 |
 | `upcoming.sub_events[].url` | string | 필수 | HTTP 200 검증 필수 |
@@ -328,6 +329,8 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=10) as ex:
 - 모든 `url` 필드: HTTP 200 확인 필수
 - `date` 필드 포맷: `YYYY-MM-DD HH:MM` (정규식 `\d{4}-\d{2}-\d{2} \d{2}:\d{2}`)
 - `tags` 값은 허용 목록에 속해야 함: `NLP|ML|AI|CV|IR|Data|Web|Speech|Robotics|Student|Challenge`
+- `sub_events[].type` 이 있으면 값은 `track` 또는 `challenge` 중 하나 (생략 시 `track` 으로 간주)
+- `tags` 에 `Challenge` 가 있는 독립 row 는 섹션 7-2 의 분류 규칙에 부합해야 함 (자체 캠페인 또는 학회 순회 challenge)
 
 ### 검증 규칙 도입/변경 시 주의
 
@@ -458,6 +461,125 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 
 ---
 
+## 7-2. Challenges & Competitions
+
+학회가 여는 challenge / competition / shared task 의 수록 규칙.
+
+### 분류 규칙
+
+| 종류 | 처리 방식 | 해당 예시 |
+|---|---|---|
+| **학회 공식 트랙** | 해당 학회 `sub_events` 에 `type: "challenge"` 로 추가 | KDD Cup, ICASSP SP Grand Challenge, IJCAI Competitions & Challenges, NeurIPS Competition Track, RecSys Challenge, WSDM Cup, CIKM AnalytiCup, ICDM Contest, ICRA Competitions |
+| **자체 평가 캠페인** | 독립 conference row + `tags` 에 `Challenge` | WMT MT Eval, SemEval, IWSLT, FIRE, Blizzard Challenge |
+| **학회 순회 challenge** | 독립 conference row + `tags` 에 `Challenge`. `venue` 는 그 해 개최 학회 기준 | Perception Test (CVPR/ICCV/ECCV 순회), AI City Challenge (2026 CVPR->ECCV 이관) |
+| **워크샵 소형 challenge** | **수록하지 않음** | CVPR/ICCV/ECCV 워크샵 challenge 대다수 |
+
+"학회 공식 트랙" 판정 기준: 학회 공식 사이트가 자체 CFP 페이지(call for competitions / challenge proposals)를 운영하는 경우. 워크샵이 개별적으로 여는 것은 공식 트랙이 아니다.
+
+### date 기준
+
+challenge 의 `date` 는 **참가자 시스템·결과 제출 마감** 으로 통일한다. 등록 마감, 데이터 공개일, 시스템 논문 마감, organizer 대상 제안서(proposal) 마감을 `date` 에 넣지 말 것.
+
+organizer 대상 제안서 마감은 참가자와 무관하므로 수록 대상이 아니다. 다만 **차회 challenge 확정 시점을 예측하는 근거**로 쓰이므로 섹션 11 의 모니터링 표에 기록한다.
+
+### 시간대 미기재 처리
+
+challenge 는 학회 논문 CFP 와 달리 마감에 시간대를 안 적는 경우가 흔하다 (예: `"May 13, 2026"` 만 표기).
+
+- AoE 로 가정하고 섹션 5 의 변환식 적용 (익일 `20:59` KST)
+- **반드시 `predicted: true`** — 시각이 확인된 값이 아니므로
+- 나중에 공식 시간대가 확인되면 `predicted: false` 로 승격
+
+### challenge 수록 시 주의
+
+| 함정 | 대응 |
+|---|---|
+| 소속 학회가 바뀜 | Perception Test 는 CVPR/ICCV/ECCV 순회, AI City 는 2026 부터 ECCV 이관, BabyLM 은 CoNLL->EMNLP 이적. 학회 `sub_events` 에 매달지 말고 독립 row 로 |
+| 트랙별로 마감이 흩어짐 | TREC(트랙별 "late May"~"mid-Sept"), NTCIR(Formal Run 이 3~5개월 범위), CLEF(lab 별 상이) 는 표에 찍을 **단일 대표 마감을 뽑을 수 없어 수록 불가** |
+| 중단·휴면된 시리즈를 살아있는 것으로 오인 | 2026-07 기준 확인된 중단·휴면: WWW Competitions Track(2026 신설했으나 선정작 0건), CoNLL Shared Task(2024 이후 중단), DSTC(공식 도메인 파킹 의심, 2024 공백), DIHARD(2021 이후), ComParE(2023 이후), MediaEval(2024 공백) |
+| challenge 트랙이 없는 학회를 계속 뒤짐 | 전수 확인 결과 challenge 문화 자체가 없는 학회: **AISTATS**(2024~2026 4회차 확인), **RSS**(2026 워크샵 32개 확인), **COLM** |
+| 지금 열려 있는 challenge 가 표에 안 잡힘 | challenge 는 학회 논문 마감보다 리듬이 늦다 (개막 3~6개월 전 확정). `upcoming` 이 차회를 가리키는 동안 현재 회차 challenge 는 열려 있어도 sub_event 로는 표현되지 않는다. 섹션 7-3 의 `open_challenges` 로 처리한다 |
+
+---
+
+## 7-3. Open Challenges 섹션
+
+메인 표와 **별개**로, 회차와 무관하게 "지금 참가 제출이 열려 있는" challenge 를 보여주는 목록.
+
+### 존재 이유
+
+메인 표는 한 row 가 `upcoming`(차회) + `history` 구조라 다음 두 가지를 표현할 수 없다.
+
+1. **현재 회차 challenge** — NeurIPS 2026 Competition Track 은 참가 제출이 열려 있지만, NeurIPS row 의 `upcoming` 은 2027 이고 2026 은 이미 history 로 내려갔다. 걸 자리가 없다
+2. **일회성 대회** — RealPDE, AIMO Interpretability 처럼 1회로 끝나는 대회는 `history` 도 차회도 없어 row 모델에 맞지 않는다
+
+### 데이터 위치
+
+JSON 최상위에 `conferences` 와 나란히 둔다.
+
+```json
+{
+  "schema_version": 4,
+  "open_challenges_verified": "2026-07-29",
+  "open_challenges": [
+    {
+      "name": "RealPDE Competition",
+      "host": "NeurIPS 2026 Competition Track",
+      "kind": "official",
+      "topic": "Sim2real 유체역학 과학 기계학습",
+      "date": "2026-09-28 08:59",
+      "predicted": false,
+      "url": "https://realpdecompetition.github.io/"
+    }
+  ],
+  "conferences": [ ... ]
+}
+```
+
+| 필드 | 타입 | 필수 | 설명 |
+|---|---|---|---|
+| `open_challenges_verified` | string | 필수 | 마감일을 마지막으로 확인한 날짜 `YYYY-MM-DD`. UI 에 표시됨 |
+| `name` | string | 필수 | challenge 이름 |
+| `host` | string | 필수 | 주최 워크샵·학회와 회차. 예: `"NeurIPS 2026 Competition Track"`, `"MRL @ EMNLP 2026"` |
+| `kind` | string | 필수 | `"official"` (학회 공식 트랙) 또는 `"workshop"` |
+| `topic` | string | 필수 | 주제 한 줄. UI 에서 이름 아래 표시 |
+| `date` | string | 필수 | **참가자 시스템·결과 제출 마감**, KST `YYYY-MM-DD HH:MM` |
+| `predicted` | boolean | 필수 | 시간대 미기재로 AoE 가정한 경우 `true` |
+| `url` | string | 필수 | HTTP 200 + 컨텐츠 검증 필수 |
+
+### 메인 표와 다른 점
+
+| | 메인 표 | Open Challenges |
+|---|---|---|
+| 워크샵 소형 challenge | 수록 안 함 | **수록함** (지금 참가 가능한지가 기준이므로) |
+| 마감 지난 항목 | `history` 로 보존 | **배열에서 제거** (보존 안 함) |
+| 일회성 이벤트 | 수록 안 함 (history·차회 없음) | 수록함 |
+| 정렬 | 마감 빠른 순 | 마감 빠른 순 (동일) |
+
+### 수록하지 않는 것
+
+- **시스템 논문(system description paper) 마감** — 참가 제출이 아니다. WMT26 은 2026-08 기준 시스템 논문 마감만 열려 있어 수록 대상이 아니었다
+- **등록 마감, 데이터 공개일**
+- **organizer 대상 제안서(proposal) 마감** — 참가자와 무관
+
+### 자동 만료
+
+UI 는 `date` 가 지난 항목을 렌더에서 제외하고, 남는 항목이 없으면 섹션 전체를 숨긴다. 갱신이 밀려도 **틀린 정보가 남는 게 아니라 목록이 비는 쪽으로 망가진다**. 다만 배열에 만료 항목을 방치하면 안 되므로, 갱신 시 제거한다.
+
+### 갱신 절차
+
+deadlines 갱신 때마다 함께 수행한다.
+
+1. 기존 항목 중 마감 지난 것 제거
+2. 남은 항목의 마감일이 **연장(extended)되지 않았는지** 확인 — challenge 는 마감 연장이 흔하다 (실측 사례: VOTS2026 06-22 -> 06-28, VoicePrivacy 2026 연장)
+3. 섹션 11 의 모니터링 시점을 참고해 새로 열린 challenge 추가
+4. `open_challenges_verified` 를 오늘 날짜로 갱신
+5. 모든 `url` HTTP 200 + 컨텐츠 검증
+
+> 주의: SPA(단일 페이지 앱) 로 만들어진 challenge 사이트는 원문 HTML 에 학회 키워드가 없어 컨텐츠 검증 grep 이 0건으로 나온다 (실측 사례: `chinatravel-competition.github.io`). 이 경우 `<title>` 과 호스팅 도메인으로 판단하고, 파킹 시그널만 없으면 통과시킨다.
+
+---
+
 ## 8. Country Flag Mapping
 
 UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. 새 venue 추가 시 해당 국가 매핑 확인/추가.
@@ -491,6 +613,8 @@ UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. �
 | 🇸🇪 | Sweden |
 | 🇫🇮 | Finland |
 | 🇳🇱 | Netherlands |
+| 🇮🇳 | India |
+| 🇷🇴 | Romania |
 
 대륙·미정값 (`"South America"`, `"TBD"`, `"Asia/Oceania (TBD)"`) 은 이모지 없음. `FLAGS` 에 없으면 UI에서 자동으로 이모지 생략.
 
@@ -650,10 +774,12 @@ ICML 2027 venue: 대륙만 발표된 경우 ("South America" 트윗, 공식 사�
 
 - inline JSON 직접 수정 (Edit 도구)
 - `Last Update: YYYY-MM-DD` 텍스트 갱신
+- **`open_challenges` 갱신** (섹션 7-3 의 갱신 절차): 만료 항목 제거, 연장 여부 확인, 신규 추가, `open_challenges_verified` 갱신
 - 재검증:
   - JSON 유효성
   - URL HTTP 200 (변경된 것만이 아니라 전수)
   - 일관성 (필수 필드, 시간 역순, KST 포맷)
+  - `open_challenges` 필수 필드 및 `kind` 값 (`official` | `workshop`)
 
 #### Step 5 — 시각 검증
 
@@ -665,6 +791,22 @@ ICML 2027 venue: 대륙만 발표된 경우 ("South America" 트윗, 공식 사�
 - 사용자 별도 거부 없으면 자동 commit + push
 - Commit 메시지: `[hufs-dilab.github.io] Auto-update deadlines (YYYY-MM-DD)`
 - 변경 학회 수 + 주요 변경 (predicted→confirmed, venue 발표 등) 본문에 요약
+
+#### Step 2-1 — Challenge 확정 시점 모니터링
+
+challenge 는 "제안 공모 -> 선정 -> 대회" 2단계라 학회 논문 마감보다 늦게 확정된다. 아래 시점 이후 갱신 시 해당 학회의 challenge 라인업을 함께 확인한다 (섹션 7-2 분류 규칙 적용).
+
+| 시점 | 확정되는 것 | 확인처 |
+|---|---|---|
+| 매년 8월 초 | ICASSP 차년도 SP Grand Challenge 선정 | `{YYYY}.ieeeicassp.org` |
+| 매년 8월 중순 | IEEE SPS SP Cup 차년도 주제 | signalprocessingsociety.org |
+| 매년 9월 말 | SIGIR Futures Challenges & Competitions 선정 | sigir.org/futures |
+| 매년 10월 초 | ACL/EACL/NAACL/COLING 차년도 워크샵 선정 (shared task 딸려옴) | 각 학회 Joint Call for Workshops |
+| 매년 10월 말 | ICRA 차년도 competition 선정 | `{YYYY}.ieee-icra.org` |
+| 매년 11월 초 | IWSLT 차년도 shared task 선정 | iwslt.org/current-calls |
+| 매년 5~6월 | NeurIPS Competition Track / CIKM AnalytiCup 선정 | neurips.cc, cikm 개최년 사이트 |
+
+2026-07 조사 기준 실측값: ICASSP 2027 선정 2026-08-07, SP Cup 2027 발표 2026-08-18, SIGIR Futures 2026-09-30, ACL 계열 워크샵 통보 2026-10-02, ICRA 2027 통보 2026-10-31, IWSLT 2027 선정 2026-11-01.
 
 ### 사용자 개입 포인트
 

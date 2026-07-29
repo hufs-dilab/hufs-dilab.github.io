@@ -83,6 +83,101 @@
             font-weight: 500;
         }
 
+        /* ── Open challenges ── */
+        .open-challenges { padding: 2rem 0 0; }
+        .oc-details { border: 1px solid var(--color-border); }
+        .oc-head {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            flex-wrap: wrap;
+            padding: 0.7rem 1rem;
+            background: var(--color-bg-alt);
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
+            transition: background 0.15s ease;
+        }
+        .oc-head::-webkit-details-marker { display: none; }
+        .oc-head:hover { background: var(--color-bg); }
+        .oc-details[open] .oc-head { border-bottom: 1px solid var(--color-border); }
+        .oc-marker {
+            width: 0;
+            height: 0;
+            border-left: 5px solid var(--color-text-muted);
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            transition: transform 0.15s ease;
+        }
+        .oc-details[open] .oc-marker { transform: rotate(90deg); }
+        .oc-head:hover .oc-marker { border-left-color: var(--color-accent); }
+        .oc-title {
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--color-text-muted);
+        }
+        .oc-head:hover .oc-title { color: var(--color-accent); }
+        .oc-count {
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            padding: 1px 7px;
+            color: #4527a0;
+            background: #ede7f6;
+        }
+        .oc-note { font-size: 0.72rem; color: var(--color-text-muted); }
+        .oc-list { border: none; }
+        .oc-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .oc-item:last-child { border-bottom: none; }
+        .oc-when { flex: 0 0 7.5rem; }
+        .oc-countdown {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 2px 6px;
+            white-space: nowrap;
+            color: #c2410c;
+            background: #fff7ed;
+        }
+        .oc-countdown.predicted { color: #7c3aed; background: #f5f3ff; font-style: italic; font-weight: 400; }
+        .oc-countdown.soon { color: #ffffff; background: #c2410c; }
+        .oc-body { flex: 1; min-width: 14rem; display: flex; flex-direction: column; gap: 0.15rem; }
+        .oc-line { display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
+        .oc-name { font-size: 0.88rem; font-weight: 500; color: var(--color-text-main); }
+        .oc-kind {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            padding: 1px 5px;
+        }
+        .oc-kind.official { color: #4527a0; background: #ede7f6; }
+        .oc-kind.workshop { color: var(--color-text-muted); background: var(--color-bg-alt); }
+        .oc-topic { font-size: 0.78rem; color: var(--color-text-muted); }
+        .oc-host {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            background: var(--color-bg-alt);
+            padding: 1px 5px;
+            white-space: nowrap;
+        }
+        .oc-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--color-text-main);
+            white-space: nowrap;
+        }
+
         /* ── Table ── */
         .deadlines-section { padding: 2rem 0 4rem; }
         .deadlines-table { width: 100%; border-collapse: collapse; }
@@ -237,6 +332,16 @@
         }
         .sub-event.confirmed::before { background: #fff7ed; }
         .sub-event.predicted::before { background: #f5f3ff; }
+        .sub-event.is-challenge::before { background: #b39ddb; }
+        .sub-kind {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: #4527a0;
+            background: #ede7f6;
+            padding: 1px 5px;
+        }
         .sub-label {
             font-size: 0.66rem;
             text-transform: uppercase;
@@ -301,6 +406,9 @@
             .deadlines-table thead th:nth-child(3) { display: none; }
             .col-next { width: auto; }
         }
+        @media (max-width: 600px) {
+            .oc-when { flex: 0 0 auto; }
+        }
     </style>
 </head>
 
@@ -324,7 +432,7 @@
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 0.5rem;">
         <div class="container">
             <h1 style="margin-bottom: 0.25rem;">Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-07-25 &middot; 30 conferences tracked</p>
+            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-07-29 &middot; 34 tracked (29 conferences, 5 challenges)</p>
         </div>
     </section>
 
@@ -350,6 +458,20 @@
         </div>
     </div>
 
+    <section class="open-challenges" id="open-challenges" hidden>
+        <div class="container">
+            <details class="oc-details" id="oc-details">
+                <summary class="oc-head">
+                    <span class="oc-marker"></span>
+                    <span class="oc-title">Open challenges</span>
+                    <span class="oc-count" id="oc-count"></span>
+                    <span class="oc-note" id="oc-note"></span>
+                </summary>
+                <div class="oc-list" id="oc-list"></div>
+            </details>
+        </div>
+    </section>
+
     <section class="deadlines-section">
         <div class="container">
             <table class="deadlines-table">
@@ -367,7 +489,109 @@
 
     <script type="application/json" id="deadlines-data">
 {
-  "schema_version": 3,
+  "schema_version": 4,
+  "open_challenges_verified": "2026-07-29",
+  "open_challenges": [
+    {
+      "name": "SHROOM-Visions",
+      "host": "UncertainLP @ EMNLP 2026",
+      "kind": "workshop",
+      "topic": "다국어 시각언어모델 환각 탐지",
+      "date": "2026-08-01 20:59",
+      "predicted": false,
+      "url": "https://helsinki-nlp.github.io/shroom/2026"
+    },
+    {
+      "name": "MRL 2026 Shared Task",
+      "host": "MRL @ EMNLP 2026",
+      "kind": "workshop",
+      "topic": "다국어·다문화 QA 벤치마크 구축 (텍스트+음성)",
+      "date": "2026-08-02 20:59",
+      "predicted": false,
+      "url": "https://mrlbenchmarks.github.io/"
+    },
+    {
+      "name": "Travel Planning Challenge",
+      "host": "IJCAI-ECAI 2026",
+      "kind": "official",
+      "topic": "언어 에이전트 여행 일정 계획 (Stage 1)",
+      "date": "2026-08-02 20:59",
+      "predicted": true,
+      "url": "https://chinatravel-competition.github.io/IJCAI2026"
+    },
+    {
+      "name": "FinEval",
+      "host": "FinNLP @ EMNLP 2026",
+      "kind": "workshop",
+      "topic": "금융 NLP 벤치마크 (최종 예측 제출)",
+      "date": "2026-08-05 20:59",
+      "predicted": false,
+      "url": "https://the-finai.github.io/call-for-challenges.html"
+    },
+    {
+      "name": "EAD Challenge: DialNav",
+      "host": "EAD @ ECCV 2026",
+      "kind": "workshop",
+      "topic": "대화형 내비게이션 (모호한 경로 지시 해소)",
+      "date": "2026-08-13 20:59",
+      "predicted": true,
+      "url": "https://ead-workshop.github.io/"
+    },
+    {
+      "name": "EAD Challenge: CoIN",
+      "host": "EAD @ ECCV 2026",
+      "kind": "workshop",
+      "topic": "협력형 인스턴스 내비게이션 (목표 명확화)",
+      "date": "2026-08-16 20:59",
+      "predicted": true,
+      "url": "https://ead-workshop.github.io/"
+    },
+    {
+      "name": "OpenSUN3D Challenge",
+      "host": "OpenSUN3D @ ECCV 2026",
+      "kind": "workshop",
+      "topic": "오픈월드 3D 장면 기능·어포던스 이해",
+      "date": "2026-08-26 20:59",
+      "predicted": true,
+      "url": "https://opensun3d.github.io/"
+    },
+    {
+      "name": "Perception Test Challenge",
+      "host": "Perception Test @ ECCV 2026",
+      "kind": "workshop",
+      "topic": "멀티모달 영상·언어 이해 (VQA, 공간 추론)",
+      "date": "2026-08-28 20:59",
+      "predicted": true,
+      "url": "https://perception-test-challenge.github.io/"
+    },
+    {
+      "name": "RealPDE Competition",
+      "host": "NeurIPS 2026 Competition Track",
+      "kind": "official",
+      "topic": "Sim2real 유체역학 과학 기계학습",
+      "date": "2026-09-28 08:59",
+      "predicted": false,
+      "url": "https://realpdecompetition.github.io/"
+    },
+    {
+      "name": "FAIR Universe Weak Lensing (Phase 2)",
+      "host": "NeurIPS 2026 Competition Track",
+      "kind": "official",
+      "topic": "약한 중력렌즈 우주론 분포이탈 탐지",
+      "date": "2026-10-12 08:59",
+      "predicted": false,
+      "url": "https://www.codabench.org/competitions/10902"
+    },
+    {
+      "name": "AIMO Interpretability Challenge",
+      "host": "NeurIPS 2026 Competition Track",
+      "kind": "official",
+      "topic": "수학 추론 LLM의 견고한 추론 vs 허위 패턴 판별",
+      "date": "2026-10-26 20:59",
+      "predicted": true,
+      "url": "https://aimo-interp.github.io/"
+    }
+  ],
   "conferences": [
     {
       "name": "RecSys",
@@ -1402,13 +1626,149 @@
           "url": "https://www.kiise.or.kr/conference/kcc/2026/"
         }
       ]
+    },
+    {
+      "name": "SemEval",
+      "full_name": "International Workshop on Semantic Evaluation",
+      "tags": [
+        "NLP",
+        "Challenge"
+      ],
+      "url_pattern": "https://semeval.github.io/SemEval{YYYY}/",
+      "url_fallback": "https://semeval.github.io/",
+      "upcoming": {
+        "year": "2027",
+        "date": "2027-02-01 20:59",
+        "venue": "TBD",
+        "venue_confirmed": false,
+        "url": "https://semeval.github.io/SemEval2027/",
+        "predicted": true,
+        "sub_events": []
+      },
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-02-03 20:59",
+          "venue": "San Diego, USA",
+          "url": "https://semeval.github.io/SemEval2026/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-02-01 20:59",
+          "venue": "Vienna, Austria",
+          "url": "https://semeval.github.io/SemEval2025/"
+        }
+      ]
+    },
+    {
+      "name": "IWSLT",
+      "full_name": "International Conference on Spoken Language Translation",
+      "tags": [
+        "NLP",
+        "Speech",
+        "Challenge"
+      ],
+      "url_pattern": "https://iwslt.org/{YYYY}/",
+      "url_fallback": "https://iwslt.org/",
+      "upcoming": {
+        "year": "2027",
+        "date": "2027-04-16 20:59",
+        "venue": "Kyoto, Japan",
+        "venue_confirmed": true,
+        "url": "https://iwslt.org/",
+        "predicted": true,
+        "sub_events": []
+      },
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-04-16 20:59",
+          "venue": "San Diego, USA",
+          "url": "https://iwslt.org/2026/"
+        },
+        {
+          "year": "2025",
+          "date": "2025-04-20 20:59",
+          "venue": "Vienna, Austria",
+          "url": "https://iwslt.org/2025/"
+        }
+      ]
+    },
+    {
+      "name": "FIRE",
+      "full_name": "Forum for Information Retrieval Evaluation",
+      "tags": [
+        "IR",
+        "Challenge"
+      ],
+      "url_pattern": "https://fire.irsi.org.in/fire/{YYYY}/home",
+      "url_fallback": "https://fire.irsi.org.in/",
+      "upcoming": {
+        "year": "2027",
+        "date": "2027-07-01 20:59",
+        "venue": "TBD",
+        "venue_confirmed": false,
+        "url": "https://fire.irsi.org.in/",
+        "predicted": true,
+        "sub_events": []
+      },
+      "history": [
+        {
+          "year": "2026",
+          "date": "2026-07-01 20:59",
+          "venue": "Kolkata, India",
+          "url": "https://fire.irsi.org.in/fire/2026/home"
+        },
+        {
+          "year": "2025",
+          "date": "2025-07-01 20:59",
+          "venue": "Varanasi, India",
+          "url": "https://fire.irsi.org.in/fire/2025/call_for_tracks"
+        }
+      ]
+    },
+    {
+      "name": "Blizzard",
+      "full_name": "Blizzard Challenge for Speech Synthesis",
+      "tags": [
+        "Speech",
+        "Challenge"
+      ],
+      "url_pattern": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/overview",
+      "url_fallback": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/overview",
+      "upcoming": {
+        "year": "2027",
+        "date": "2027-04-13 20:59",
+        "venue": "Maceió, Brazil",
+        "venue_confirmed": true,
+        "url": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/pages/789512358/Blizzard+Challenge+2027",
+        "predicted": true,
+        "sub_events": []
+      },
+      "history": [
+        {
+          "year": "2025",
+          "date": "2025-04-19 20:59",
+          "venue": "Leeuwarden, Netherlands",
+          "url": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/pages/786632602/Blizzard+Challenge+2025"
+        },
+        {
+          "year": "2023",
+          "date": "2023-04-04 20:59",
+          "venue": "Grenoble, France",
+          "url": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/pages/786634792/Blizzard+Challenge+2023"
+        }
+      ]
     }
   ]
 }
 </script>
 
     <script>
-        const CONFERENCES = JSON.parse(document.getElementById('deadlines-data').textContent).conferences;
+        const DEADLINES_DATA = JSON.parse(document.getElementById('deadlines-data').textContent);
+        const CONFERENCES = DEADLINES_DATA.conferences;
+        const OPEN_CHALLENGES = DEADLINES_DATA.open_challenges || [];
+        const OPEN_CHALLENGES_VERIFIED = DEADLINES_DATA.open_challenges_verified || '';
         let today = new Date();
 
         const FLAGS = {
@@ -1422,7 +1782,8 @@
             'UK': '🇬🇧', 'United Kingdom': '🇬🇧', 'Singapore': '🇸🇬',
             'Spain': '🇪🇸', 'Ireland': '🇮🇪', 'Mexico': '🇲🇽',
             'Sweden': '🇸🇪', 'Finland': '🇫🇮', 'Netherlands': '🇳🇱',
-            'Romania': '🇷🇴', 'Macau': '🇲🇴', 'São Paulo': '🇧🇷'
+            'India': '🇮🇳', 'Romania': '🇷🇴',
+            'Macau': '🇲🇴', 'São Paulo': '🇧🇷'
         };
 
         function flagFor(venue) {
@@ -1511,11 +1872,14 @@
                     const sd = dateOf(sub.date);
                     const sStatus = statusOf(sd, sub.predicted);
                     const sCd = sStatus === 'passed' ? 'PASSED' : '⏱ ' + countdown(sd) + ' left';
+                    const isChallenge = sub.type === 'challenge';
                     const sLink = sub.url
                         ? `<a href="${sub.url}" target="_blank" class="link-btn ${sStatus === 'predicted' ? 'dashed' : ''}" style="font-size:0.65rem; padding:1px 5px;">CFP<span class="link-btn-arrow">↗</span></a>`
                         : '';
+                    const kindHtml = isChallenge ? '<span class="sub-kind">challenge</span>' : '';
                     html += `
-                        <div class="sub-event ${sStatus}">
+                        <div class="sub-event ${sStatus}${isChallenge ? ' is-challenge' : ''}">
+                            ${kindHtml}
                             <span class="sub-label">${sub.label}</span>
                             <span class="sub-date ${sStatus === 'passed' ? 'passed' : ''}">${fmtDate(sd)}</span>
                             <span class="sub-countdown ${sStatus}">${sCd}</span>
@@ -1578,8 +1942,51 @@
             return [...arr].sort((a, b) => dateOf(a.upcoming.date) - dateOf(b.upcoming.date));
         }
 
+        function renderOpenChallenges() {
+            const section = document.getElementById('open-challenges');
+            const open = OPEN_CHALLENGES
+                .map(c => ({ ...c, d: dateOf(c.date) }))
+                .filter(c => !isPast(c.d))
+                .sort((a, b) => a.d - b.d);
+
+            if (!open.length) { section.hidden = true; return; }
+            section.hidden = false;
+
+            document.getElementById('oc-count').textContent = open.length;
+            document.getElementById('oc-note').innerHTML = OPEN_CHALLENGES_VERIFIED
+                ? `참가 접수 중 &middot; 마감일 확인 ${OPEN_CHALLENGES_VERIFIED}`
+                : '참가 접수 중';
+
+            document.getElementById('oc-list').innerHTML = open.map(c => {
+                const status = c.predicted ? 'predicted' : 'confirmed';
+                const soon = !c.predicted && (c.d - today) < 7 * 86400000;
+                const cdClass = `oc-countdown ${status}${soon ? ' soon' : ''}`;
+                const kindLabel = c.kind === 'official' ? 'official track' : 'workshop';
+                const linkHtml = c.url
+                    ? `<a href="${c.url}" target="_blank" class="link-btn${c.predicted ? ' dashed' : ''}">Site<span class="link-btn-arrow">↗</span></a>`
+                    : '';
+                return `
+                    <div class="oc-item">
+                        <span class="oc-when"><span class="${cdClass}">⏱ ${countdown(c.d)} left</span></span>
+                        <div class="oc-body">
+                            <div class="oc-line">
+                                <span class="oc-name">${c.name}</span>
+                                <span class="oc-kind ${c.kind}">${kindLabel}</span>
+                            </div>
+                            <div class="oc-line">
+                                <span class="oc-topic">${c.topic}</span>
+                                <span class="oc-host">${c.host}</span>
+                            </div>
+                        </div>
+                        <span class="oc-date">${fmtDate(c.d)}</span>
+                        ${linkHtml}
+                    </div>`;
+            }).join('');
+        }
+
         function render() {
             today = new Date();
+            renderOpenChallenges();
             const filtered = applyFilter(CONFERENCES);
             const sorted = sortConferences(filtered);
             document.getElementById('conf-tbody').innerHTML = sorted.map(renderRow).join('');
