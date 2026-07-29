@@ -1910,7 +1910,7 @@
                     const sCd = sStatus === 'passed' ? 'PASSED' : '⏱ ' + countdown(sd) + ' left';
                     const isChallenge = sub.type === 'challenge';
                     const sLink = sub.url
-                        ? `<a href="${sub.url}" target="_blank" class="link-btn ${sStatus === 'predicted' ? 'dashed' : ''}" style="font-size:0.65rem; padding:1px 5px;">CFP<span class="link-btn-arrow">↗</span></a>`
+                        ? `<a href="${sub.url}" target="_blank" class="link-btn" style="font-size:0.65rem; padding:1px 5px;">CFP<span class="link-btn-arrow">↗</span></a>`
                         : '';
                     const kindHtml = isChallenge ? '<span class="sub-kind">challenge</span>' : '';
                     html += `
