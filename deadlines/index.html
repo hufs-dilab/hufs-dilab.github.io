@@ -138,7 +138,9 @@
             border-bottom: 1px solid var(--color-border-light);
         }
         .oc-item:last-child { border-bottom: none; }
+        .oc-when { flex: 0 0 7.5rem; }
         .oc-countdown {
+            display: inline-block;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.72rem;
             font-weight: 500;
@@ -403,6 +405,9 @@
             .col-history { display: none; }
             .deadlines-table thead th:nth-child(3) { display: none; }
             .col-next { width: auto; }
+        }
+        @media (max-width: 600px) {
+            .oc-when { flex: 0 0 auto; }
         }
     </style>
 </head>
@@ -1885,7 +1890,7 @@
                     : '';
                 return `
                     <div class="oc-item">
-                        <span class="${cdClass}">⏱ ${countdown(c.d)} left</span>
+                        <span class="oc-when"><span class="${cdClass}">⏱ ${countdown(c.d)} left</span></span>
                         <div class="oc-body">
                             <div class="oc-line">
                                 <span class="oc-name">${c.name}</span>
@@ -1942,19 +1947,7 @@
             });
         }
 
-        function setupOpenChallengesToggle() {
-            const details = document.getElementById('oc-details');
-            const KEY = 'deadlines-open-challenges-collapsed';
-            let stored = null;
-            try { stored = localStorage.getItem(KEY); } catch (e) { /* private mode */ }
-            if (stored === '0') details.setAttribute('open', '');
-            details.addEventListener('toggle', () => {
-                try { localStorage.setItem(KEY, details.open ? '0' : '1'); } catch (e) { /* private mode */ }
-            });
-        }
-
         buildFilters();
-        setupOpenChallengesToggle();
         render();
         setInterval(render, 60000);
     </script>
