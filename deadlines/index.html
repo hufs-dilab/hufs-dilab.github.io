@@ -91,9 +91,29 @@
             gap: 0.6rem;
             flex-wrap: wrap;
             margin-bottom: 0.7rem;
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
         }
+        .oc-head::-webkit-details-marker { display: none; }
+        .oc-head::before {
+            content: '▾';
+            font-size: 0.65rem;
+            color: var(--color-text-muted);
+            align-self: center;
+        }
+        .oc-details:not([open]) .oc-head::before { content: '▸'; }
+        .oc-details:not([open]) .oc-head { margin-bottom: 0; }
         .oc-title { font-size: 0.95rem; font-weight: 600; color: var(--color-text-main); margin: 0; }
         .oc-note { font-size: 0.72rem; color: var(--color-text-muted); }
+        .oc-toggle {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            border: 1px solid var(--color-border);
+            padding: 1px 6px;
+            margin-left: auto;
+        }
+        .oc-head:hover .oc-toggle { border-color: var(--color-accent); color: var(--color-accent); }
         .oc-list { border: 1px solid var(--color-border); }
         .oc-item {
             display: flex;
@@ -421,11 +441,14 @@
 
     <section class="open-challenges" id="open-challenges" hidden>
         <div class="container">
-            <div class="oc-head">
-                <h2 class="oc-title">Open now</h2>
-                <span class="oc-note" id="oc-note"></span>
-            </div>
-            <div class="oc-list" id="oc-list"></div>
+            <details class="oc-details" id="oc-details" open>
+                <summary class="oc-head">
+                    <span class="oc-title">Open now</span>
+                    <span class="oc-note" id="oc-note"></span>
+                    <span class="oc-toggle" id="oc-toggle">접기</span>
+                </summary>
+                <div class="oc-list" id="oc-list"></div>
+            </details>
         </div>
     </section>
 
@@ -1905,7 +1928,23 @@
             });
         }
 
+        function setupOpenChallengesToggle() {
+            const details = document.getElementById('oc-details');
+            const toggle = document.getElementById('oc-toggle');
+            const KEY = 'deadlines-open-challenges-collapsed';
+            let stored = null;
+            try { stored = localStorage.getItem(KEY); } catch (e) { /* private mode */ }
+            if (stored === '1') details.removeAttribute('open');
+            const syncLabel = () => { toggle.textContent = details.open ? '접기' : '펼치기'; };
+            syncLabel();
+            details.addEventListener('toggle', () => {
+                syncLabel();
+                try { localStorage.setItem(KEY, details.open ? '0' : '1'); } catch (e) { /* private mode */ }
+            });
+        }
+
         buildFilters();
+        setupOpenChallengesToggle();
         render();
         setInterval(render, 60000);
     </script>
