@@ -211,6 +211,21 @@
 
 ---
 
+### 3-4-1. 본 마감만 지나고 다른 트랙이 남은 경우
+
+같은 회차에서 본 논문 마감은 지났지만 별도 트랙 마감이 아직 남은 경우 (예: AAAI 본 마감 경과 + Student Abstract 미도래). 3-4 절대로 차회를 예측해 올리면 **아직 열려 있는 마감이 화면에서 사라지므로** 그렇게 하지 않는다.
+
+KDD multi-cycle(3-6 절)과 같은 방식으로 처리한다.
+
+1. 남아 있는 트랙 마감을 `upcoming.date` 로 승격, 해당 `sub_events` 항목은 제거
+2. `upcoming.url` 을 그 트랙의 CFP 페이지로 교체
+3. 지나간 본 마감을 `history` 에 `label: "Main Track"` 으로 push (같은 year 가 upcoming 과 history 에 동시에 있어도 됨 — KDD 와 동일)
+4. 이미 지난 다른 sub_event(초록 사전 마감 등)는 제거
+
+**주의**: 승격 후 `upcoming.date` 가 본 논문 마감이 아니게 되므로, history 의 `Main Track` 항목이 그 사실을 알려주는 유일한 단서다. 반드시 함께 넣을 것.
+
+---
+
 ### 3-5. Sub-event 추가/제거
 
 **추가:**
@@ -407,6 +422,8 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 | ICCV | `https://iccv.thecvf.com/Conferences/{YYYY}` | `https://iccv.thecvf.com/` | year in path, 홀수 해만 개최 |
 | ECCV | `https://eccv.ecva.net/Conferences/{YYYY}` | `https://eccv.ecva.net/` | year in path, 짝수 해만 개최 |
 
+> **CVPR/ICCV venue 확인처**: 회차별 사이트는 진행 중인 회차만 다뤄 차차기 정보가 없다. **모학회 CVF 페이지 `https://www.thecvf.com/`** 상단에 CVPR/ICCV/WACV 차차기 회차의 날짜·개최지가 한 줄씩 실려 있으므로 여기를 확인할 것. ECCV는 CVF가 아니라 ECVA 소속이라 이 페이지에 없다.
+
 ### IR / Web / Data
 
 | Conference | Pattern | Fallback | 비고 |
@@ -455,6 +472,7 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 | `Industry` | Industry Track 별도 마감 | EMNLP, NAACL 등 |
 | `Cycle 1` | 첫 번째 제출 사이클 | KDD |
 | `Cycle 2` | 두 번째 제출 사이클 | KDD |
+| `Main Track` | history 전용. 본 논문 마감이 지나 다른 트랙 마감이 main 으로 승격됐을 때, 지나간 본 마감을 표시 | AAAI |
 | `Paper` | shared task에서 시스템 제출과 별개인 description paper 마감. main `upcoming.date` 는 시스템(참가) 제출 마감을 쓰고, 논문 마감을 이 sub_event로 둔다 | WMT MT Eval |
 
 새 라벨 도입이 필요하면 이 룰북 표에 추가하고 커밋.
@@ -560,7 +578,11 @@ JSON 최상위에 `conferences` 와 나란히 둔다.
 
 - **시스템 논문(system description paper) 마감** — 참가 제출이 아니다. WMT26 은 2026-08 기준 시스템 논문 마감만 열려 있어 수록 대상이 아니었다
 - **등록 마감, 데이터 공개일**
-- **organizer 대상 제안서(proposal) 마감** — 참가자와 무관
+- **organizer 대상 제안서(proposal) 마감** — 참가자와 무관. ICRA competition 공모(2026-07~08)처럼 참가자용 마감처럼 보이는 것도 제외
+
+### 임박 항목 정리 (판단 사항)
+
+마감까지 **1주일이 안 남은 항목**은 참가 준비가 사실상 불가능하므로 목록에서 내리는 것을 검토한다. 자동 규칙이 아니라 갱신 시 판단할 사항이다. (2026-07-29 갱신 때 SHROOM-Visions·MRL Shared Task·Travel Planning Challenge 3건을 이 기준으로 제외했다.)
 
 ### 자동 만료
 
@@ -633,7 +655,8 @@ UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. �
 | 마감 지난 학회 entry 삭제 | `history` 로 보존 (삭제 금지) |
 | 사용자 의도 추정으로 혼자 결정 진행 | 선택지 제시 후 확인받고 진행 |
 | `venue_confirmed: true` 이면 `predicted: false` 라고 가정 | 두 필드는 독립. venue 확정 + 마감 미발표 = `venue_confirmed: true, predicted: true` 동시 가능 |
-| venue 문자열이 specific city라고 자동으로 `venue_confirmed: true` 처리 | **출처가 공식 사이트일 때만 `true`**. 제3자 트래커/짐작은 `false` (이번 세션 CVPR 2027 Seattle 케이스 — 출처 불명인데 confirmed로 라벨링됨) |
+| venue 문자열이 specific city라고 자동으로 `venue_confirmed: true` 처리 | **출처가 공식 사이트일 때만 `true`**. 제3자 트래커/짐작은 `false` |
+| 회차별 사이트에 없다고 "출처 없음"으로 단정 | **모학회 사이트를 반드시 확인할 것.** CVPR/ICCV venue는 회차별 사이트(`cvpr.thecvf.com` 등)가 아니라 **CVF 모학회 페이지 `https://www.thecvf.com/`** 에 차차기 회차까지 실려 있다 (2026-07 확인: "CVPR 2027: June 20th – 24th, Seattle, Washington", "ICCV 2027: October 2nd – 8th, Hong Kong"). 과거 이 룰북에 "CVPR 2027 Seattle은 출처 불명"이라 잘못 적혀 있었는데, 회차별 사이트만 보고 내린 오판이었다 |
 | history 같은 year에 label 없이 두 항목 추가 | multi-cycle은 반드시 `label` 필드로 구분 |
 | `sub_events` 필드 자체를 누락 | `sub_events` 없으면 빈 배열 `[]` 로 명시 |
 | Parent (upcoming) 가 predicted인데 sub_event도 predicted로 추가 (이중 예측) | parent 미발표면 sub_event도 미발표 상태. 단순 추측 sub_event 추가 금지. **예외**: structural invariant (KDD multi-cycle처럼 매년 동일하게 존재하는 구조)는 유지. SRW/Student Abstract 같은 derivative event는 parent 확정 후에만 추가 |
