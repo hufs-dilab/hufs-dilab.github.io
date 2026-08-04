@@ -472,7 +472,7 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 | `Industry` | Industry Track 별도 마감 | EMNLP, NAACL 등 |
 | `Cycle 1` | 첫 번째 제출 사이클 | KDD |
 | `Cycle 2` | 두 번째 제출 사이클 | KDD |
-| `Main Track` | history 전용. 본 논문 마감이 지나 다른 트랙 마감이 main 으로 승격됐을 때, 지나간 본 마감을 표시 | AAAI |
+| `Main Track` | history 전용. 그 줄의 **주 마감**이 지나 다른 트랙 마감이 main 으로 승격됐을 때, 지나간 주 마감을 표시. 주 마감이 무엇인지는 학회 성격을 따른다 — 일반 학회는 본 논문 마감, shared task 는 시스템(참가) 제출 마감 | AAAI, WMT MT Eval |
 | `Paper` | shared task에서 시스템 제출과 별개인 description paper 마감. main `upcoming.date` 는 시스템(참가) 제출 마감을 쓰고, 논문 마감을 이 sub_event로 둔다 | WMT MT Eval |
 
 새 라벨 도입이 필요하면 이 룰북 표에 추가하고 커밋.
@@ -580,9 +580,11 @@ JSON 최상위에 `conferences` 와 나란히 둔다.
 - **등록 마감, 데이터 공개일**
 - **organizer 대상 제안서(proposal) 마감** — 참가자와 무관. ICRA competition 공모(2026-07~08)처럼 참가자용 마감처럼 보이는 것도 제외
 
-### 임박 항목 정리 (판단 사항)
+### 임박 항목은 내리지 않는다
 
-마감까지 **1주일이 안 남은 항목**은 참가 준비가 사실상 불가능하므로 목록에서 내리는 것을 검토한다. 자동 규칙이 아니라 갱신 시 판단할 사항이다. (2026-07-29 갱신 때 SHROOM-Visions·MRL Shared Task·Travel Planning Challenge 3건을 이 기준으로 제외했다.)
+**이미 목록에 있는 항목은 마감이 1주일 미만으로 임박해도 그대로 둔다.** 자동 만료(아래)로 빠질 때까지 유지한다.
+
+1주일 기준은 **신규 등록에만** 적용한다. 새로 발견한 challenge의 마감이 2~3일밖에 안 남았으면 지금 와서 넣을 실익이 없으므로 추가하지 않는다. 2026-07-29 갱신에서 SHROOM-Visions·MRL Shared Task·Travel Planning Challenge 3건을 뺀 것은 섹션을 처음 만들면서 신규 등록을 거른 사례이지, 등재된 항목을 내린 사례가 아니다.
 
 ### 자동 만료
 
@@ -809,11 +811,13 @@ ICML 2027 venue: 대륙만 발표된 경우 ("South America" 트윗, 공식 사�
 - headless Chrome 스크린샷 (desktop 1280px + mobile 600px)
 - 렌더링 이상 시 사용자 보고
 
-#### Step 6 — Commit + push
+#### Step 6 — 변경 보고 (commit 은 요청받았을 때만)
 
-- 사용자 별도 거부 없으면 자동 commit + push
-- Commit 메시지: `[hufs-dilab.github.io] Auto-update deadlines (YYYY-MM-DD)`
+- Step 1~5 결과를 학회별 변경 표로 보고하고 **거기서 멈춘다**
+- **commit·push 는 사용자가 명시적으로 요청할 때만 한다** (전역 규칙 우선). 갱신 트리거는 commit 요청이 아니다
+- 요청받았을 때 Commit 메시지: `[hufs-dilab.github.io] Auto-update deadlines (YYYY-MM-DD)`
 - 변경 학회 수 + 주요 변경 (predicted→confirmed, venue 발표 등) 본문에 요약
+- `git add` 는 변경한 파일만 명시적으로. `git add .` / `-A` 금지
 
 #### Step 2-1 — Challenge 확정 시점 모니터링
 
