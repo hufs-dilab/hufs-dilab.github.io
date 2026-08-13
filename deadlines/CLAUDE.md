@@ -10,7 +10,7 @@
 - **소스 오브 트루스**: `deadlines/index.html` 내 `<script type="application/json" id="deadlines-data">…</script>` 블록
 - **별도 JSON 파일 없음** — 과거 `deadlines.json` 은 삭제됨. single-file 운영 원칙
 - **UI**: vanilla JS가 인라인 JSON을 파싱한 후 매트릭스 표를 렌더링. 외부 라이브러리 없음
-- **Last Update**: `index.html` 상단 `<p>Last Update: YYYY-MM-DD …</p>` 를 매 갱신마다 업데이트
+- **Last Update**: `index.html` 상단 `<p>Last Update: YYYY-MM-DD …</p>` 를 매 갱신마다 업데이트. 그 옆 "N tracked (…)" 숫자는 `renderTrackedCount()` 가 JSON 에서 계산하므로 손대지 않는다
 - **검증 소스 (우선순위 순)**:
   1. 공식 학회 사이트 (Call for Papers 페이지)
   2. [aideadlin.es](https://aideadlin.es/)
@@ -80,10 +80,11 @@
 | `url_fallback` | string | 권장 | 부모 도메인. 차회 페이지 미개설 시 사용 |
 | `upcoming` | object | 필수 | 가장 가까운 다음 회차 |
 | `upcoming.year` | string | 필수 | 학회 연도 (예: `"2027"`) |
+| `upcoming.label` | string | 선택 | **`upcoming.date` 가 본 논문 마감이 아닐 때 필수**. 그 마감이 어느 트랙인지 (예: `"Student Abstract"`, `"Industry"`, `"Cycle 2"`). 라벨 값은 섹션 7 표를 따른다. UI 에서 학회명·연도 옆 칩으로 표시. 없으면 사용자는 그 날짜를 본 논문 마감으로 읽는다 |
 | `upcoming.date` | string | 필수 | 마감일. KST `YYYY-MM-DD HH:MM` |
 | `upcoming.venue` | string | 필수 | 도시·국가. 미정 시 `"TBD"` |
 | `upcoming.venue_confirmed` | boolean | 필수 | **공식 학회 사이트 또는 공식 모학회 announcement에 명시된 venue만 `true`**. 제3자 트래커(aideadlin.es / mlciv / trybibby 등)나 짐작 출처는 `false`. venue 문자열이 specific city여도 출처가 비공식이면 `false` |
-| `upcoming.venue_source_url` | string | 선택 | venue가 비공식 출처에서 왔을 때 그 출처 URL. UI에서 `src ↗` dashed 버튼으로 별도 표시. **수용 가능한 출처**: 학회 공식 X(트위터) 계정 발표, 학회 공식 발표자료(closing slides 등), 학회 공식 홈페이지의 블로그/news 페이지. **수용 불가**: 단순 deadline 모음 트래커 (aideadlin.es / mlciv / trybibby / ccfddl / paperpilot 등) — 이런 경우 `venue_source_url` 자체를 채우지 말 것. 적절한 출처 못 찾으면 venue 자체를 `"TBD"` 로 처리하거나 venue 유지하되 src 비움 |
+| `upcoming.venue_source_url` | string | 선택 | venue 근거가 `upcoming.url` 페이지 본문이 아닌 다른 곳에 있을 때 그 출처 URL. UI에서 `src ↗` dashed 버튼으로 별도 표시. **CFP·차회 사이트가 아직 없어 근거가 공지·폐회 인사말 한 줄뿐이면 `venue_confirmed: true` 를 유지하더라도 이 필드를 채워 근거를 드러낼 것** (실례: AISTATS 2027 Montréal — 근거는 `virtual.aistats.org` 의 "See you in Montréal, Canada next year" 한 줄). **수용 가능한 출처**: 학회 공식 X(트위터) 계정 발표, 학회 공식 발표자료(closing slides 등), 학회 공식 홈페이지의 블로그/news 페이지. **수용 불가**: 단순 deadline 모음 트래커 (aideadlin.es / mlciv / trybibby / ccfddl / paperpilot 등) — 이런 경우 `venue_source_url` 자체를 채우지 말 것. 적절한 출처 못 찾으면 venue 자체를 `"TBD"` 로 처리하거나 venue 유지하되 src 비움 |
 | `upcoming.url` | string | 필수 | 공식 사이트. HTTP 200 검증 필수 |
 | `upcoming.predicted` | boolean | 필수 | 마감 예측치 여부. 공식 발표 시 `false` |
 | `upcoming.sub_events` | array | 선택 | 같은 회차의 부속 마감 (Student Abstract, SRW, Cycle 2 등) |
@@ -218,11 +219,12 @@
 KDD multi-cycle(3-6 절)과 같은 방식으로 처리한다.
 
 1. 남아 있는 트랙 마감을 `upcoming.date` 로 승격, 해당 `sub_events` 항목은 제거
-2. `upcoming.url` 을 그 트랙의 CFP 페이지로 교체
-3. 지나간 본 마감을 `history` 에 `label: "Main Track"` 으로 push (같은 year 가 upcoming 과 history 에 동시에 있어도 됨 — KDD 와 동일)
-4. 이미 지난 다른 sub_event(초록 사전 마감 등)는 제거
+2. **`upcoming.label` 에 그 트랙 이름을 넣는다** (예: `"Student Abstract"`, `"Industry"`)
+3. `upcoming.url` 을 그 트랙의 CFP 페이지로 교체
+4. 지나간 본 마감을 `history` 에 `label: "Main Track"` 으로 push (같은 year 가 upcoming 과 history 에 동시에 있어도 됨 — KDD 와 동일)
+5. 이미 지난 다른 sub_event(초록 사전 마감 등)는 제거
 
-**주의**: 승격 후 `upcoming.date` 가 본 논문 마감이 아니게 되므로, history 의 `Main Track` 항목이 그 사실을 알려주는 유일한 단서다. 반드시 함께 넣을 것.
+**주의**: 승격 후 `upcoming.date` 가 본 논문 마감이 아니게 된다. `upcoming.label` 을 빼먹으면 UI 는 그냥 "AAAI 2027" 로만 보여줘서 사용자가 본 논문 마감으로 오독한다. history 의 `Main Track` 은 과거 기록일 뿐 upcoming 이 무슨 트랙인지는 알려주지 못한다. 둘 다 넣을 것.
 
 ---
 
@@ -241,7 +243,7 @@ KDD multi-cycle(3-6 절)과 같은 방식으로 처리한다.
 
 ### 3-6. Multi-cycle 학회 (KDD)
 
-- **upcoming**: 가장 가까운 cycle을 main에, 그 다음 cycle을 `sub_events`로
+- **upcoming**: 가장 가까운 cycle을 main에, 그 다음 cycle을 `sub_events`로. main 이 Cycle 2 면 `upcoming.label: "Cycle 2"` 를 넣는다
 - 오늘 5월이면 KDD Cycle 1(8월 마감)이 upcoming main, Cycle 2(다음해 2월 마감)는 sub_event
 - Cycle 1 마감 지나면 Cycle 2 → main 승격, Cycle 1은 history에 `label: "Cycle 1"` 추가
 - history는 같은 year에 여러 cycle 가능 (label로 구분)
@@ -462,7 +464,7 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 
 ## 7. Sub-event Labels
 
-`sub_events[].label` 에 사용하는 표준 라벨. 일관성을 위해 아래 목록을 엄수.
+`sub_events[].label`, `history[].label`, `upcoming.label` 에 공통으로 쓰는 표준 라벨. 일관성을 위해 아래 목록을 엄수.
 
 | Label | 설명 | 사용 학회 예시 |
 |---|---|---|

@@ -73,8 +73,7 @@ section {
 /* Navbar */
 .navbar {
     height: var(--nav-height);
-    background: rgb(255, 255, 255, 0.5);
-    backdrop-filter: blur(0px); /* 블러 일단은 0으로 처리 */
+    background: var(--color-bg); /* 불투명 — 스크롤 컨텐츠가 비쳐 보이지 않게 */
     border-bottom: 1px solid var(--color-border);
     position: fixed; /* Follows on scroll */
     top: 0;

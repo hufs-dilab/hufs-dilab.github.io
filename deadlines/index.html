@@ -46,6 +46,7 @@
             position: sticky;
             top: var(--nav-height, 3.5rem);
             z-index: 50;
+            background: var(--color-bg-alt);
         }
 
         /* ── Toolbar ── */
@@ -250,6 +251,16 @@
             letter-spacing: 0.02em;
             text-transform: uppercase;
         }
+        .deadline-track-label {
+            font-size: 0.66rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            padding: 1px 5px;
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+        }
         .deadline-meta-dot { color: #cbd5e1; }
         .deadline-status-badge {
             display: inline-block;
@@ -432,7 +443,8 @@
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 0.5rem;">
         <div class="container">
             <h1 style="margin-bottom: 0.25rem;">Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-08-04 &middot; 35 tracked (29 conferences, 6 challenges)</p>
+            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-08-13 &middot; <span id="tracked-count"></span></p>
+            <p style="color: var(--color-text-muted); font-size: 0.78rem; margin-top: 0.35rem;">Updated irregularly by an AI agent. Found an error or a missing deadline? <a href="https://github.com/hufs-dilab/hufs-dilab.github.io/" target="_blank" style="color: var(--color-accent);">Contribute on our GitHub &#8599;</a></p>
         </div>
     </section>
 
@@ -490,23 +502,14 @@
     <script type="application/json" id="deadlines-data">
 {
   "schema_version": 4,
-  "open_challenges_verified": "2026-08-03",
+  "open_challenges_verified": "2026-08-13",
   "open_challenges": [
-    {
-      "name": "FinEval",
-      "host": "FinNLP @ EMNLP 2026",
-      "kind": "workshop",
-      "topic": "금융 NLP 벤치마크 (최종 예측 제출)",
-      "date": "2026-08-05 20:59",
-      "predicted": false,
-      "url": "https://the-finai.github.io/call-for-challenges.html"
-    },
     {
       "name": "EAD Challenge: DialNav",
       "host": "EAD @ ECCV 2026",
       "kind": "workshop",
-      "topic": "대화형 내비게이션 (모호한 경로 지시 해소)",
-      "date": "2026-08-13 20:59",
+      "topic": "Dialogue-based navigation under ambiguous instructions",
+      "date": "2026-08-16 20:59",
       "predicted": true,
       "url": "https://ead-workshop.github.io/"
     },
@@ -514,7 +517,7 @@
       "name": "EAD Challenge: CoIN",
       "host": "EAD @ ECCV 2026",
       "kind": "workshop",
-      "topic": "협력형 인스턴스 내비게이션 (목표 명확화)",
+      "topic": "Collaborative instance navigation with goal clarification",
       "date": "2026-08-16 20:59",
       "predicted": true,
       "url": "https://ead-workshop.github.io/"
@@ -523,7 +526,7 @@
       "name": "MoCha Parkinsonian Gait Challenge",
       "host": "MoCha @ ECCV 2026",
       "kind": "workshop",
-      "topic": "파킨슨병 보행 영상 정량 평가",
+      "topic": "Quantitative assessment of parkinsonian gait from video",
       "date": "2026-08-16 20:59",
       "predicted": false,
       "url": "https://mocha.care-pd.ca/"
@@ -532,7 +535,7 @@
       "name": "OpenSUN3D Challenge",
       "host": "OpenSUN3D @ ECCV 2026",
       "kind": "workshop",
-      "topic": "오픈월드 3D 장면 기능·어포던스 이해",
+      "topic": "Open-world 3D scene functionality and affordance understanding",
       "date": "2026-08-26 20:59",
       "predicted": true,
       "url": "https://opensun3d.github.io/"
@@ -541,16 +544,16 @@
       "name": "Perception Test Challenge",
       "host": "Perception Test @ ECCV 2026",
       "kind": "workshop",
-      "topic": "멀티모달 영상·언어 이해 (VQA, 공간 추론)",
+      "topic": "Multimodal video-language understanding (VQA, spatial reasoning)",
       "date": "2026-08-28 20:59",
       "predicted": true,
       "url": "https://perception-test-challenge.github.io/"
     },
     {
       "name": "Speech Accessibility Project Challenge 2",
-      "host": "Speech Accessibility Project (개최 학회 TBA)",
+      "host": "Speech Accessibility Project (host venue TBA)",
       "kind": "workshop",
-      "topic": "구음장애 음성인식 (정확도·지연 스트리밍 트랙)",
+      "topic": "Dysarthric speech recognition (accuracy and low-latency streaming tracks)",
       "date": "2026-09-01 20:59",
       "predicted": true,
       "url": "https://xiuwenz2.github.io/SAPC2-website/"
@@ -559,7 +562,7 @@
       "name": "Rhythm Game Chart Generation",
       "host": "MIREX 2026 @ ISMIR",
       "kind": "official",
-      "topic": "리듬게임 채보 자동 생성 (osu!taiko 비트맵)",
+      "topic": "Automatic rhythm game chart generation (osu!taiko beatmaps)",
       "date": "2026-09-12 20:59",
       "predicted": true,
       "url": "https://music-ir.org/mirex/wiki/2026:Rhythm_Game_Chart_Generation"
@@ -568,7 +571,7 @@
       "name": "RealPDE Competition",
       "host": "NeurIPS 2026 Competition Track",
       "kind": "official",
-      "topic": "Sim2real 유체역학 과학 기계학습",
+      "topic": "Sim2real scientific machine learning for fluid dynamics",
       "date": "2026-09-28 08:59",
       "predicted": false,
       "url": "https://realpdecompetition.github.io/"
@@ -577,7 +580,7 @@
       "name": "RoCo-Spring",
       "host": "NeurIPS 2026 Competition Track",
       "kind": "official",
-      "topic": "분포이탈 환경의 dense correspondence (광류·스테레오·씬플로우)",
+      "topic": "Out-of-distribution dense correspondence (optical flow, stereo, scene flow)",
       "date": "2026-10-01 20:59",
       "predicted": true,
       "url": "https://roco-spring.github.io/"
@@ -586,7 +589,7 @@
       "name": "FAIR Universe Weak Lensing (Phase 2)",
       "host": "NeurIPS 2026 Competition Track",
       "kind": "official",
-      "topic": "약한 중력렌즈 우주론 분포이탈 탐지",
+      "topic": "Out-of-distribution detection in weak gravitational lensing cosmology",
       "date": "2026-10-12 08:59",
       "predicted": false,
       "url": "https://www.codabench.org/competitions/10902"
@@ -595,7 +598,7 @@
       "name": "Learn2Design 2026",
       "host": "NeurIPS 2026 Competition Track",
       "kind": "official",
-      "topic": "중력파 검출기 설계 최적화",
+      "topic": "Design optimization of gravitational wave detectors",
       "date": "2026-10-16 20:59",
       "predicted": true,
       "url": "https://learn2design2026.com/"
@@ -604,8 +607,8 @@
       "name": "AIMO Interpretability Challenge",
       "host": "NeurIPS 2026 Competition Track",
       "kind": "official",
-      "topic": "수학 추론 LLM의 견고한 추론 vs 허위 패턴 판별",
-      "date": "2026-10-26 20:59",
+      "topic": "Telling robust reasoning from spurious patterns in math-reasoning LLMs",
+      "date": "2026-11-02 20:59",
       "predicted": true,
       "url": "https://aimo-interp.github.io/"
     },
@@ -613,7 +616,7 @@
       "name": "Fusion Equilibrium Challenge (Phase 2)",
       "host": "NeurIPS 2026 Competition Track",
       "kind": "official",
-      "topic": "자기 진단 없이 토카막 플라즈마 형상 복원",
+      "topic": "Reconstructing tokamak plasma shape without magnetic diagnostics",
       "date": "2026-10-27 20:59",
       "predicted": true,
       "url": "https://fusion-equilibrium-challenge.sophelio.io/"
@@ -622,10 +625,37 @@
       "name": "QuantiPhy Challenge",
       "host": "NeurIPS 2026 Competition Track",
       "kind": "official",
-      "topic": "영상에서 크기·속도·가속도를 추정하는 VLM 정량 물리 추론",
+      "topic": "Quantitative physical reasoning: VLMs estimating size, speed and acceleration from video",
       "date": "2026-11-06 20:59",
       "predicted": false,
       "url": "https://quantiphy.stanford.edu/competition"
+    },
+    {
+      "name": "SimulacraBench",
+      "host": "NeurIPS 2026 Competition Track",
+      "kind": "official",
+      "topic": "Simulating development survey respondents with generative models",
+      "date": "2026-11-15 20:59",
+      "predicted": true,
+      "url": "https://situatedevals.org/simulacrabench"
+    },
+    {
+      "name": "The Steerability Challenge",
+      "host": "NeurIPS 2026 Competition Track",
+      "kind": "official",
+      "topic": "Steering pipelines for controllable model behavior",
+      "date": "2026-11-16 20:59",
+      "predicted": false,
+      "url": "https://steerability.github.io/competition/"
+    },
+    {
+      "name": "Virtual Embryo Challenge",
+      "host": "NeurIPS 2026 Competition Track",
+      "kind": "official",
+      "topic": "Generative modeling of whole-embryo development",
+      "date": "2026-12-03 20:59",
+      "predicted": true,
+      "url": "https://virtualembryo.ai/challenge"
     }
   ],
   "conferences": [
@@ -640,9 +670,9 @@
       "upcoming": {
         "year": "2027",
         "date": "2027-04-22 20:59",
-        "venue": "Hawaii, USA",
-        "venue_confirmed": false,
-        "url": "https://recsys.acm.org/",
+        "venue": "Honolulu, USA",
+        "venue_confirmed": true,
+        "url": "https://recsys.acm.org/recsys27/",
         "predicted": true,
         "sub_events": []
       },
@@ -843,17 +873,24 @@
         "Challenge"
       ],
       "url_pattern": "https://www2.statmt.org/wmt{YY}/",
-      "url_fallback": null,
+      "url_fallback": "https://www2.statmt.org/",
       "upcoming": {
-        "year": "2026",
-        "date": "2026-08-08 20:59",
-        "venue": "Budapest, Hungary",
-        "venue_confirmed": true,
-        "url": "https://www2.statmt.org/wmt26/mteval-task.html",
-        "predicted": false,
+        "year": "2027",
+        "date": "2027-08-03 20:59",
+        "venue": "TBD",
+        "venue_confirmed": false,
+        "url": "https://www2.statmt.org/",
+        "predicted": true,
         "sub_events": []
       },
       "history": [
+        {
+          "year": "2026",
+          "label": "Paper",
+          "date": "2026-08-08 20:59",
+          "venue": "Budapest, Hungary",
+          "url": "https://www2.statmt.org/wmt26/mteval-task.html"
+        },
         {
           "year": "2026",
           "label": "Main Track",
@@ -885,11 +922,12 @@
       "url_fallback": "https://aaai.org/conference/aaai/",
       "upcoming": {
         "year": "2027",
+        "label": "Student Abstract",
         "date": "2026-09-29 20:59",
         "venue": "Montréal, Canada",
         "venue_confirmed": true,
         "url": "https://aaai.org/conference/aaai/aaai-27/student-abstract-and-poster-program-call-for-proposals/",
-        "predicted": true,
+        "predicted": false,
         "sub_events": []
       },
       "history": [
@@ -924,21 +962,22 @@
       "url_fallback": null,
       "upcoming": {
         "year": "2027",
-        "date": "2026-08-04 20:59",
+        "label": "Industry",
+        "date": "2026-09-12 20:59",
         "venue": "Athens, Greece",
         "venue_confirmed": true,
-        "url": "https://2027.eacl.org/",
+        "url": "https://2027.eacl.org/calls/industry/",
         "predicted": false,
-        "sub_events": [
-          {
-            "label": "Industry",
-            "date": "2026-09-12 20:59",
-            "predicted": false,
-            "url": "https://2027.eacl.org/calls/industry/"
-          }
-        ]
+        "sub_events": []
       },
       "history": [
+        {
+          "year": "2027",
+          "label": "Main Track",
+          "date": "2026-08-04 20:59",
+          "venue": "Athens, Greece",
+          "url": "https://2027.eacl.org/"
+        },
         {
           "year": "2026",
           "date": "2025-10-07 20:59",
@@ -1032,7 +1071,7 @@
         "date": "2026-09-16 16:59",
         "venue": "Seoul, South Korea",
         "venue_confirmed": true,
-        "url": "https://2027.ieee-icra.org/",
+        "url": "https://2027.ieee-icra.org/contribute/call-for-icra-2027-papers-now-accepting-submissions/",
         "predicted": false,
         "sub_events": []
       },
@@ -1135,6 +1174,7 @@
         "date": "2026-10-03 20:59",
         "venue": "Montréal, Canada",
         "venue_confirmed": true,
+        "venue_source_url": "https://virtual.aistats.org/",
         "url": "https://virtual.aistats.org/",
         "predicted": true,
         "sub_events": []
@@ -1427,6 +1467,7 @@
       "url_fallback": "https://kdd.org/",
       "upcoming": {
         "year": "2027",
+        "label": "Cycle 2",
         "date": "2027-02-10 20:59",
         "venue": "San Jose, USA",
         "venue_confirmed": true,
@@ -1780,7 +1821,7 @@
         "venue": "Maceió, Brazil",
         "venue_confirmed": true,
         "url": "https://www.wiki.ed.ac.uk/spaces/BlizzardChallenge/pages/789512358/Blizzard+Challenge+2027",
-        "predicted": true,
+        "predicted": false,
         "sub_events": []
       },
       "history": [
@@ -1917,7 +1958,10 @@
                 ? `<a href="${up.url}" target="_blank" class="${linkClass}">Site<span class="link-btn-arrow">↗</span></a>`
                 : '';
             const sourceLinkHtml = up.venue_source_url
-                ? `<a href="${up.venue_source_url}" target="_blank" class="link-btn dashed" title="비공식 venue 출처 (3rd-party tracker)">src<span class="link-btn-arrow">↗</span></a>`
+                ? `<a href="${up.venue_source_url}" target="_blank" class="link-btn dashed" title="Venue source">src<span class="link-btn-arrow">↗</span></a>`
+                : '';
+            const trackLabelHtml = up.label
+                ? `<span class="deadline-track-label" title="This deadline is for the ${up.label} track">${up.label}</span>`
                 : '';
 
             const badgeHtml = (status === 'confirmed') ? '' :
@@ -1927,6 +1971,7 @@
                 <div class="deadline-block">
                     <div class="deadline-meta">
                         <span class="deadline-edition-year">${confName} ${up.year}</span>
+                        ${trackLabelHtml}
                         ${badgeHtml}
                         <span class="deadline-meta-dot">·</span>
                         <span class="deadline-venue ${venueClass}">${flagHtml}${venueText}${venueMark}</span>
@@ -2025,8 +2070,8 @@
 
             document.getElementById('oc-count').textContent = open.length;
             document.getElementById('oc-note').innerHTML = OPEN_CHALLENGES_VERIFIED
-                ? `참가 접수 중 &middot; 마감일 확인 ${OPEN_CHALLENGES_VERIFIED}`
-                : '참가 접수 중';
+                ? `submissions open &middot; deadlines verified ${OPEN_CHALLENGES_VERIFIED}`
+                : 'submissions open';
 
             document.getElementById('oc-list').innerHTML = open.map(c => {
                 const status = c.predicted ? 'predicted' : 'confirmed';
@@ -2055,8 +2100,19 @@
             }).join('');
         }
 
+        function renderTrackedCount() {
+            const el = document.getElementById('tracked-count');
+            if (!el) return;
+            const total = CONFERENCES.length;
+            const challenges = CONFERENCES.filter(c => c.tags.includes('Challenge')).length;
+            const conferences = total - challenges;
+            const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+            el.textContent = `${total} tracked (${plural(conferences, 'conference')}, ${plural(challenges, 'challenge')})`;
+        }
+
         function render() {
             today = new Date();
+            renderTrackedCount();
             renderOpenChallenges();
             const filtered = applyFilter(CONFERENCES);
             const sorted = sortConferences(filtered);
