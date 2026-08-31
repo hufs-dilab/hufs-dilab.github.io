@@ -35,8 +35,20 @@ HUFS DILAB 공식 사이트 (`hufs-dilab.github.io`) 정적 페이지 레포.
 
 ## 자동 갱신 트리거
 
-사용자가 다음 문구 중 하나를 말하면 `deadlines/CLAUDE.md` Section 11의 자동 갱신 절차 (6 sub-agent 병렬 검증 → 결과 통합 → JSON 갱신 → commit·push) 실행:
+사용자가 다음 문구 중 하나를 말하면 `deadlines/CLAUDE.md` Section 11의 자동 갱신 절차 (6 sub-agent 병렬 검증 -> 결과 통합 -> JSON 갱신 -> 시각 검증 -> 변경 보고 후 정지) 실행. **commit·push는 명시 요청 시에만** — 옛 룰북의 "자동 commit+push"는 전역 git 규칙과 충돌해 2026-08-03에 삭제했다:
 
 - `deadlines 갱신해줘`
 - `deadlines 업데이트해줘`
 - `/update-deadlines`
+
+## 원격·권한 (혼자 작업할 때 걸리는 것)
+
+- 공용 org 리포라 다른 사람 커밋이 자주 올라온다 -> 갱신 작업 **전에 `git fetch` / `git pull --rebase`**. (2026-07-29 작업 중 main이 앞서 나가 KCC 추가·WMT sub-event와 충돌)
+- `main`에 `dont-push-main-directly` 룰셋(active). **PR 머지가 `REVIEW_REQUIRED`로 막히고 본인 PR 셀프 승인이 안 되므로**, 혼자 작업할 땐 `gh pr merge <N> --squash --admin`으로 우회한다 (2026-07-29 확인). 우회했으면 사용자에게 그 사실을 알린다.
+- repo는 `hufs-dilab` **org** 소유이고 org Base permission이 `Read`다. **org 멤버면 org의 모든 repo를 자동으로 읽는다**(비공개 `structural-overthinking` 포함). 그래서 `repos/.../collaborators` API는 org 멤버까지 섞어 뱉으니 직접 붙은 사람만 보려면 `?affiliation=direct`.
+- **사람이 나갈 때 확인 순서**: repo collaborator -> org 멤버(`https://github.com/orgs/hufs-dilab/people`) -> org 대기중 초대 -> 비공개 repo direct collaborator. 마지막을 빼먹으면 org에서 빼도 접근이 남는다. 팀을 지워도 org 멤버십은 안 없어진다.
+- hist0613은 org admin이지만 admin은 권한이지 watch가 아니라서, collaborator로 추가돼야 repo 알림이 온다.
+
+## Recent News 게재 기준 (2026-08-14)
+
+뉴스는 **확정된 사건**만 올린다 — accept·수상처럼 남는 게 있어야 한다. 리더보드 순위만으로는 올리지 않는다(공식 결과와 어긋나면 정정해야 하고, 참가 팀 수에 따라 숫자가 과장되어 보인다).
