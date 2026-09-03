@@ -402,7 +402,7 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 | EMNLP | `https://{YYYY}.emnlp.org/` | — | year subdomain |
 | NAACL | `https://{YYYY}.naacl.org/` | `https://naacl.org/` | year subdomain |
 | COLING | `https://coling{YYYY}.org/` | — | year in domain name |
-| COLM | `https://colmweb.org/` | — | static (no year) |
+| COLM | `https://colm.cc/Conferences/{YYYY}` | `https://colm.cc/` | year in path. 2026-09 colmweb.org → colm.cc 이전(구 도메인은 리다이렉트만) |
 | WMT | `https://www2.statmt.org/wmt{YY}/` | — | 2-digit year in path |
 
 ### ML
@@ -454,10 +454,10 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 |---|---|
 | `{YYYY}.<domain>` (year subdomain) | ACL, EACL, EMNLP, NAACL, IJCAI, ICRA, ICASSP |
 | `<domain>{YYYY}.org` (year in domain name) | COLING, SIGIR, InterSpeech, WWW |
-| `<domain>/Conferences/{YYYY}` (year in path) | ICLR, NeurIPS, ICML, CVPR, ICCV, ECCV |
+| `<domain>/Conferences/{YYYY}` (year in path) | ICLR, NeurIPS, ICML, CVPR, ICCV, ECCV, COLM |
 | `<domain>/<prefix>{YY or YYYY}/` (subpath) | WSDM, AISTATS, AAAI, RecSys, KDD, WMT |
 | host 매년 다름 (검색 필수) | CIKM, ICDM |
-| static (year 없음) | CoRL, RSS, COLM |
+| static (year 없음) | CoRL, RSS |
 | 2-digit year | AAAI(`aaai-27`), RecSys(`recsys26`), WMT(`wmt26`) |
 
 ---
@@ -663,6 +663,7 @@ UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. �
 | 회차별 사이트에 없다고 "출처 없음"으로 단정 | **모학회 사이트를 반드시 확인할 것.** CVPR/ICCV venue는 회차별 사이트(`cvpr.thecvf.com` 등)가 아니라 **CVF 모학회 페이지 `https://www.thecvf.com/`** 에 차차기 회차까지 실려 있다 (2026-07 확인: "CVPR 2027: June 20th – 24th, Seattle, Washington", "ICCV 2027: October 2nd – 8th, Hong Kong"). 과거 이 룰북에 "CVPR 2027 Seattle은 출처 불명"이라 잘못 적혀 있었는데, 회차별 사이트만 보고 내린 오판이었다 |
 | history 같은 year에 label 없이 두 항목 추가 | multi-cycle은 반드시 `label` 필드로 구분 |
 | `sub_events` 필드 자체를 누락 | `sub_events` 없으면 빈 배열 `[]` 로 명시 |
+| curl 에 짧은 UA(`-A "Mozilla/5.0"`)를 붙여 sweep → aaai.org / ieee-icra.org / ieeeicassp.org 가 403 (2026-09-03 실측) | 사이트 문제가 아니라 WAF 의 UA 차단. 섹션 4 스크립트대로 `-A` 없이 기본 curl 로 검증하거나, 완전한 브라우저 UA 문자열을 쓴다. sub-agent 지시에도 `-A` 옵션을 넣지 말 것 |
 | Parent (upcoming) 가 predicted인데 sub_event도 predicted로 추가 (이중 예측) | parent 미발표면 sub_event도 미발표 상태. 단순 추측 sub_event 추가 금지. **예외**: structural invariant (KDD multi-cycle처럼 매년 동일하게 존재하는 구조)는 유지. SRW/Student Abstract 같은 derivative event는 parent 확정 후에만 추가 |
 
 ---
