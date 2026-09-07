@@ -334,6 +334,10 @@ h3 {
 .hero-copy {
     flex: 1 1 50%;
     min-width: 0;
+    /* never run under the photo: cap width at the photo's start (42vw) minus the container's left edge */
+    max-width: calc(42vw - max(var(--space-3), (100vw - var(--container-width)) / 2 + var(--space-3)) - var(--space-2));
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -343,7 +347,7 @@ h3 {
 .hero-copy h1 {
     font-family: 'HUFS', 'Noto Sans KR', system-ui, sans-serif;
     font-weight: 300;
-    font-size: 3rem;
+    font-size: clamp(2.1rem, 3.3vw, 3rem);
     color: #ffffff;
     line-height: 1.15;
     margin: 0 0 var(--space-2) 0;
@@ -417,6 +421,7 @@ h3 {
 
     .hero-copy {
         flex: none;
+        max-width: none;
         padding: var(--space-3) 0;
     }
 
