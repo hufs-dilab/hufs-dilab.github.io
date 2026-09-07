@@ -6,12 +6,11 @@
     <meta name="description" content="Join Data Intelligence Lab">
     <link rel="icon" type="image/png" href="/UI/farvicon_colored.png">
     <title>Join Us | DILAB</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/HUFS-M-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <div class="brand-bar"></div>
     <nav class="navbar">
         <div class="container">
             <a href="/" class="brand">
@@ -29,33 +28,37 @@
         </div>
     </nav>
 
-    <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 0;">
-        <div class="container">
-            <h1 style="margin-bottom: var(--spacing-sm);">Join Us</h1>
+    <section class="page-header">
+        <div class="container page-header-row">
+            <h1>Join Us</h1>
         </div>
     </section>
 
-    <section id="join" style="padding-top: var(--spacing-md);">
+    <section id="join">
         <div class="container">
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--color-text-muted);">We are currently accepting applications for both graduate students and undergraduate interns.</p>
+            <p style="font-size: 1.05rem; margin-bottom: var(--space-3); color: var(--color-text-muted);">We are accepting graduate students and undergraduate interns.</p>
 
-            <ul style="list-style: disc; margin-left: 1.5rem; margin-bottom: 2.5rem; padding-left: 1rem;">
-                <li style="margin-bottom: 1.5rem;">
-                    <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem; color: var(--color-accent); display: inline;">Graduate Students (M.S./Ph.D.)</h3>
-                    <p style="margin-top: 0.5rem;">We seek graduate students with a strong foundation in AI/CS and the drive to tackle challenging research problems with real impact.</p>
+            <ul class="join-list">
+                <li>
+                    <h3>Graduate Students (M.S./Ph.D.)</h3>
+                    <p>We seek graduate students with a strong foundation in AI/CS and the drive to tackle challenging research problems with real impact.</p>
+                    <p>Admission is through the HUFS Graduate School.</p>
                 </li>
                 <li>
-                    <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem; color: var(--color-accent); display: inline;">Undergraduate Interns</h3>
-                    <p style="margin-top: 0.5rem;">We welcome undergraduate students who want to gain hands-on experience in both research and development.</p>
+                    <h3>Undergraduate Interns</h3>
+                    <p>Open to HUFS undergraduates who want hands-on experience in research and development.</p>
                 </li>
             </ul>
 
             <h2>Contact</h2>
             <p style="margin-bottom: 0.75rem;">
-                Please send your CV and transcript to <a href="mailto:seungtaek.choi@hufs.ac.kr" style="color: var(--color-accent-hover); font-weight: 600;">seungtaek.choi@hufs.ac.kr</a>.
+                Send your CV, transcript, and a short note on one of our recent <a href="/publications/" class="link-underline">papers</a> (what you found interesting, and what you would try next) to <a href="mailto:seungtaek.choi@hufs.ac.kr" style="color: var(--color-accent-hover); font-weight: 700;">seungtaek.choi@hufs.ac.kr</a>.
             </p>
-            <p>
-                Email subject: <code style="background: #f1f5f9; padding: 0.2rem 0.5rem;">[DILAB Graduate] Your Name</code> or <code style="background: #f1f5f9; padding: 0.2rem 0.5rem;">[DILAB Intern] Your Name</code>
+            <p style="margin-bottom: 0.75rem;">
+                Email subject: <code>[DILAB Graduate] Your Name</code> or <code>[DILAB Intern] Your Name</code>
+            </p>
+            <p style="color: var(--color-text-muted); font-size: 0.92rem;">
+                We reply only to emails that follow the format above. No remote positions.
             </p>
         </div>
     </section>

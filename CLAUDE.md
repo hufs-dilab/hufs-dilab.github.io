@@ -27,6 +27,18 @@ HUFS DILAB 공식 사이트 (`hufs-dilab.github.io`) 정적 페이지 레포.
 - 항목은 지우지 않고 최신 것을 위에 쌓는다.
 - 금액·과제번호는 적지 않는다 (학계 관례).
 
+## 디자인 시스템 (2026-09 개편)
+
+- 색은 HUFS UI 규정(`UI/UI규정.PNG`) 그대로: primary `#1D4999`, secondary `#EE6C4D`, neutral `#EDEDED`.
+  `style.css` `:root` 토큰이 유일한 정의처이며, 옛 변수명(`--color-accent`, `--nav-height` 등)은
+  `deadlines/` 인라인 CSS 호환을 위해 유지한다.
+- 서체는 한국외대체(`HUFS` family, B/M/L = 700/500/300). `fonts/HUFS-{B,M,L}-{latin,kr}.woff2` 는
+  원본 `fonts/HUFSfont*.{otf,ttf}` 에서 `pyftsubset` 으로 만든 subset 이다. 원본은 지우지 말 것.
+  글리프가 빠지면(예: 새 특수문자) subset 을 다시 생성한다.
+- 페이지 chrome: 상단 4px brand bar + 64px nav (`--nav-height: 68px`), 페이지 제목은 nav 바로 아래
+  한 줄. 배경은 흰색이 기본이고 메인만 `body.page-home` 으로 회색 바탕을 쓴다.
+- 메인 hero 는 파랑 단색 band + 오른쪽 캠퍼스 슬라이더(gradient 로 연결). 본문은 Highlight / News 1:1 2열.
+
 ## 일반 규칙
 
 - 모든 페이지 수정 시 페이지 상단의 `Last Update: YYYY-MM-DD` 표기가 있다면 갱신

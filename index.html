@@ -6,12 +6,11 @@
     <title>DILAB | Data Intelligence Lab</title>
     <meta name="description" content="Data Intelligence Lab at Hankuk University of Foreign Studies (HUFS)">
     <link rel="icon" type="image/png" href="/UI/farvicon_colored.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/HUFS-M-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/style.css">
 </head>
-<body>
+<body class="page-home">
+    <div class="brand-bar"></div>
     <nav class="navbar">
         <div class="container">
             <a href="/" class="brand">
@@ -30,104 +29,107 @@
     </nav>
 
     <header class="hero">
-        <div class="hero-slider">
-            <div class="slide active" style="background-image: url('main-image/1.JPG')"></div>
-            <div class="slide" style="background-image: url('main-image/2.JPG')"></div>
-            <div class="slide" style="background-image: url('main-image/3.JPG')"></div>
-            <div class="slide" style="background-image: url('main-image/4.JPG')"></div>
+      <div class="container">
+        <div class="hero-copy">
+            <h1>Data Intelligence Lab</h1>
+            <p>Hankuk University of Foreign Studies<br>Division of Language &amp; AI, College of AI Convergence</p>
         </div>
-        <div class="hero-overlay">
-            <div class="hero-text-box">
-                <h1>Data Intelligence Lab</h1>
-                <p>HUFS</p>
+        <div class="hero-media">
+            <div class="hero-slider">
+                <div class="slide active" style="background-image: url('main-image/1.JPG')"></div>
+                <div class="slide" style="background-image: url('main-image/2.JPG')"></div>
+                <div class="slide" style="background-image: url('main-image/3.JPG')"></div>
+                <div class="slide" style="background-image: url('main-image/4.JPG')"></div>
             </div>
         </div>
+      </div>
     </header>
 
-    <section id="research">
+    <section class="ledger">
         <div class="container">
-            <h2 style="margin-top: 2rem;">Research Areas</h2>
-            <div class="grid">
-                <div class="card">
+            <h2>Research Areas</h2>
+            <div class="ledger-grid">
+                <div class="ledger-item">
                     <h3>Assessment Framework and Methodology</h3>
                     <p>System-based outcome evaluation and causality-based behavior assessment for model robustness and explainability</p>
                 </div>
-                <div class="card">
+                <div class="ledger-item">
                     <h3>Advanced Generative Systems</h3>
                     <p>Knowledge-enhanced generation techniques and foundation model development</p>
                 </div>
-                <div class="card">
+                <div class="ledger-item">
                     <h3>Multimodal Large Language Models</h3>
                     <p>Multimodal large language models and their applications</p>
                 </div>
             </div>
-    </section>
-
-    <section id="highlight">
-        <div class="container">
-            <h2>Research Highlight</h2>
-            <div class="grid">
-                <a href="https://arxiv.org/pdf/2602.14798" class="highlight-item">
-                    <img src="research-highlight/overthinking.JPG" alt="Overthinking Loops in Agents" class="highlight-img">
-                    <p class="highlight-desc">Overthinking Loops in Agents: A Structural Risk via MCP Tools</p>
-                    <p class="highlight-conf"><strong>arXiv 2026</strong></p>
-                </a>
-                <a href="https://arxiv.org/pdf/2602.03098" class="highlight-item">
-                    <img src="research-highlight/textme.JPG" alt="TextME" class="highlight-img">
-                    <p class="highlight-desc">TextME: Bridging Unseen Modalities Through Text Descriptions</p>
-                    <p class="highlight-conf"><strong>ICML 2026</strong></p>
-                </a>
-                <a href="https://arxiv.org/pdf/2502.16457" class="highlight-item">
-                    <img src="research-highlight/1.JPG" alt="Towards Fully-Automated Materials Discovery" class="highlight-img">
-                    <p class="highlight-desc">Towards Fully-Automated Materials Discovery via Large-Scale Synthesis Dataset and Expert-Level LLM-as-a-Judge</p>
-                    <p class="highlight-conf"><strong>CIKM 2025</strong></p>
-                </a>
-            </div>
         </div>
     </section>
 
-    <section id="news">
-        <div class="container">
-            <h2>Recent News</h2>
-            <div class="news-list" style="margin-top: 2rem;">
-                <div class="pub-item">
-                    <span class="pub-meta">Sep 2026</span>
-                    <a href="https://www2.statmt.org/wmt26/" class="pub-title">One paper got accepted in WMT 2026, co-located with EMNLP 2026.</a>
-                    <p>HUFS-DILAB at WMT 2026 Automated Translation Quality Evaluation Task 1: Language-Pair Prompt Routing for Error Span Annotation</p>
+    <section class="body-columns">
+        <div class="container body-grid">
+            <div class="col-highlight">
+                <h2>Research Highlight</h2>
+                <div class="highlight-stack">
+                    <a href="https://arxiv.org/pdf/2602.14798" class="highlight-item">
+                        <img src="research-highlight/overthinking.JPG" alt="Overthinking Loops in Agents" class="highlight-img">
+                        <p class="highlight-desc">Overthinking Loops in Agents: A Structural Risk via MCP Tools</p>
+                        <p class="highlight-conf">arXiv 2026</p>
+                    </a>
+                    <a href="https://arxiv.org/pdf/2602.03098" class="highlight-item">
+                        <img src="research-highlight/textme.JPG" alt="TextME" class="highlight-img">
+                        <p class="highlight-desc">TextME: Bridging Unseen Modalities Through Text Descriptions</p>
+                        <p class="highlight-conf">ICML 2026</p>
+                    </a>
+                    <a href="https://arxiv.org/pdf/2502.16457" class="highlight-item">
+                        <img src="research-highlight/1.JPG" alt="Towards Fully-Automated Materials Discovery" class="highlight-img">
+                        <p class="highlight-desc">Towards Fully-Automated Materials Discovery via Large-Scale Synthesis Dataset and Expert-Level LLM-as-a-Judge</p>
+                        <p class="highlight-conf">CIKM 2025</p>
+                    </a>
                 </div>
-                <div class="pub-item">
-                    <span class="pub-meta">Aug 2026</span>
-                    <a href="https://eng.nrf.re.kr/" class="pub-title">Selected for the NRF Core Research Program (기본연구B), 2026–2029.</a>
-                    <p>Multi-faceted and Efficient Diagnosis of Large Language Model Capabilities (거대언어모델 능력의 다면적·효율적 진단 방법 연구)</p>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-meta">May 2026</span>
-                    <a href="https://icml.cc/Conferences/2026" class="pub-title">One paper got accepted in ICML 2026.</a>
-                    <p>TextME: Bridging Unseen Modalities Through Text Descriptions</p>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-meta">Feb 2026</span>
-                    <a href="https://arxiv.org/abs/2602.14798" class="pub-title">New preprint released on arXiv.</a>
-                    <p>Overthinking Loops in Agents: A Structural Risk via MCP Tools</p>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-meta">Jan 2026</span>
-                    <a href="javascript:void(0)" class="pub-title" id="news-modal-trigger">DILAB Homepage Created</a>
-                    <p>Welcome to the new Data Intelligence Lab homepage.</p>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-meta">Aug 2025</span>
-                    <a href="https://cikm2025.org/" class="pub-title">Two papers got accepted in CIKM 2025.</a>
-                    <p>Towards Fully-Automated Materials Discovery via Large-Scale Synthesis Dataset and Expert-Level LLM-as-a-Judge</p>
-                    <p>Rethinking the Training Paradigm of Discrete Token-Based Multimodal LLMs: An Analysis of Text-Centric Bias</p></div>
-                <div class="pub-item">
-                    <span class="pub-meta">Jun 2025</span>
-                    <a href="https://2025.emnlp.org/" class="pub-title">One paper got accepted in TACL and will be presented at EMNLP 2025.</a>
-                    <p>Overcoming Source Object Grounding for Semantic Image Editing</p>
-                </div>
-                <div class="pub-item">
-                    <span class="pub-meta">Apr 2024</span>
-                    <a href="https://huggingface.co/yanolja/YanoljaNEXT-EEVE-10.8B" class="pub-title">EEVE-Korean has been awarded as the "LLM of the Year" (Pretrained) based on the Open Ko-LLM Leaderboard.</a>
+            </div>
+
+            <div class="col-news">
+                <h2>Recent News</h2>
+                <div class="news-list">
+                    <div class="pub-item">
+                        <span class="pub-meta">Sep 2026</span>
+                        <a href="https://www2.statmt.org/wmt26/" class="pub-title">One paper got accepted in WMT 2026, co-located with EMNLP 2026.</a>
+                        <p>HUFS-DILAB at WMT 2026 Automated Translation Quality Evaluation Task 1: Language-Pair Prompt Routing for Error Span Annotation</p>
+                    </div>
+                    <div class="pub-item">
+                        <span class="pub-meta">Aug 2026</span>
+                        <a href="https://eng.nrf.re.kr/" class="pub-title">Selected for the NRF Core Research Program (기본연구B), 2026–2029.</a>
+                        <p>Multi-faceted and Efficient Diagnosis of Large Language Model Capabilities (거대언어모델 능력의 다면적·효율적 진단 방법 연구)</p>
+                    </div>
+                    <div class="pub-item">
+                        <span class="pub-meta">May 2026</span>
+                        <a href="https://icml.cc/Conferences/2026" class="pub-title">One paper got accepted in ICML 2026.</a>
+                        <p>TextME: Bridging Unseen Modalities Through Text Descriptions</p>
+                    </div>
+                    <div class="pub-item">
+                        <span class="pub-meta">Feb 2026</span>
+                        <a href="https://arxiv.org/abs/2602.14798" class="pub-title">New preprint released on arXiv.</a>
+                        <p>Overthinking Loops in Agents: A Structural Risk via MCP Tools</p>
+                    </div>
+                    <div class="pub-item">
+                        <span class="pub-meta">Jan 2026</span>
+                        <a href="javascript:void(0)" class="pub-title" id="news-modal-trigger">DILAB Homepage Created</a>
+                        <p>Welcome to the new Data Intelligence Lab homepage.</p>
+                    </div>
+                    <div class="pub-item">
+                        <span class="pub-meta">Aug 2025</span>
+                        <a href="https://cikm2025.org/" class="pub-title">Two papers got accepted in CIKM 2025.</a>
+                        <p>Towards Fully-Automated Materials Discovery via Large-Scale Synthesis Dataset and Expert-Level LLM-as-a-Judge</p>
+                        <p>Rethinking the Training Paradigm of Discrete Token-Based Multimodal LLMs: An Analysis of Text-Centric Bias</p></div>
+                    <div class="pub-item">
+                        <span class="pub-meta">Jun 2025</span>
+                        <a href="https://2025.emnlp.org/" class="pub-title">One paper got accepted in TACL and will be presented at EMNLP 2025.</a>
+                        <p>Overcoming Source Object Grounding for Semantic Image Editing</p>
+                    </div>
+                    <div class="pub-item">
+                        <span class="pub-meta">Apr 2024</span>
+                        <a href="https://huggingface.co/yanolja/YanoljaNEXT-EEVE-10.8B" class="pub-title">EEVE-Korean has been awarded as the "LLM of the Year" (Pretrained) based on the Open Ko-LLM Leaderboard.</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -157,8 +159,6 @@
                 <p>Contributors: Jisoo Jang, Seoyeon Hwang, Seoyeon Choi</p>
             </div>
         </div>
-    </div>
-
     </div>
 
     <script src="/script.js"></script>

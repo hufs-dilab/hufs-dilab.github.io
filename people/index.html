@@ -6,12 +6,11 @@
     <meta name="description" content="People at Data Intelligence Lab">
     <title>People | DILAB</title>
     <link rel="icon" type="image/png" href="/UI/farvicon_colored.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/HUFS-M-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <div class="brand-bar"></div>
     <nav class="navbar">
         <div class="container">
             <a href="/" class="brand">
@@ -29,34 +28,35 @@
         </div>
     </nav>
 
-    <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 2rem;">
-        <div class="container">
-            <h1 style="margin-bottom: var(--spacing-sm);">People</h1>
+    <section class="page-header">
+        <div class="container page-header-row">
+            <h1>People</h1>
         </div>
     </section>
 
-    <section id="pi" style="padding-top: var(--spacing-md);">
+    <section id="pi">
         <div class="container">
             <h2>Professor</h2>
-            <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap; margin-top: 2rem;">
-                <div class="person-img" style="width: 200px; height: 200px;">
-                    <img src="professor.jpeg" alt="Seungtaek Choi" style="width: 100%; height: 100%; border-radius: 0; object-fit: cover;">
-                </div>
-                <div style="flex: 1; min-width: 300px;">
+            <div class="surface-panel professor-row">
+                <img src="professor.jpeg" alt="Seungtaek Choi" class="professor-photo">
+                <div class="professor-info">
                     <h3>Seungtaek Choi</h3>
-                    <p style="color: var(--color-accent); font-weight: 400; margin-bottom: 1rem;">Assistant Professor</p>
-                    <p style="margin-bottom: 1rem; color: var(--color-text-muted);">
-                        <strong>Research Interests:</strong>
+                    <p class="professor-role">Assistant Professor</p>
+                    <div class="field-block">
+                        <span class="field-label">Research Interests</span>
                         <span class="interest-tag">Assessment Frameworks</span>
                         <span class="interest-tag">Foundation Models</span>
                         <span class="interest-tag">Multimodal LLMs</span>
                         <span class="interest-tag">Data-driven Understanding</span>
-                    </p>
-                    <p style="margin-bottom: 1rem; color: var(--color-text-muted);">
-                        <strong>Email:</strong> seungtaek.choi@hufs.ac.kr
-                    </p>
-                    <div style="display: flex; gap: 1rem;">
+                    </div>
+                    <div class="field-block">
+                        <span class="field-label">Email</span>
+                        seungtaek.choi@hufs.ac.kr
+                    </div>
+                    <div class="person-links">
                         <a href="https://hist0613.github.io" target="_blank" class="link-underline">Homepage</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -64,15 +64,15 @@
     <section id="members">
         <div class="container">
             <h2>Graduate Students</h2>
-            <p style="color: var(--color-text-muted); margin-top: 1rem;">To be updated.</p>
+            <p class="grad-note">To be updated.</p>
         </div>
     </section>
 
     <section id="undergrad">
         <div class="container">
             <h2>Undergraduate Interns</h2>
-            <div class="grid people-grid" style="margin-top: 2rem;">
-                <div class="card person-card">
+            <div class="people-grid">
+                <div class="person-card">
                     <img src="jisoo.jpg" class="person-img" alt="Jisoo Jang">
                     <div class="person-info">
                         <div class="person-name">Jisoo Jang</div>
@@ -85,7 +85,7 @@
                         <p class="person-email">Email: <a href="mailto:jsjang0104@hufs.ac.kr">jsjang0104@hufs.ac.kr</a><a href="https://jsjang0104.github.io/" target="_blank" class="link-underline">Homepage</a></p>
                     </div>
                 </div>
-                <div class="card person-card">
+                <div class="person-card">
                     <img src="seoyeon.jpg" class="person-img" alt="Seoyeon Choi">
                     <div class="person-info">
                         <div class="person-name">Seoyeon Choi</div>
@@ -96,7 +96,7 @@
                         <p class="person-email">Email: <a href="mailto:torilove@hufs.ac.kr">torilove@hufs.ac.kr</a></p>
                     </div>
                 </div>
-                <div class="card person-card">
+                <div class="person-card">
                     <img src="hyunbeen.jpg" class="person-img" alt="Hyunbeen Choi">
                     <div class="person-info">
                         <div class="person-name">Hyunbeen Choi</div>
