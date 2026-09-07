@@ -326,6 +326,7 @@ h3 {
 /* hero content aligns to the same container as the body grid:
    text = left column, photo = right column */
 .hero .container {
+    position: relative; /* photo and text are placed relative to the container, not the viewport */
     display: flex;
     height: 100%;
     gap: var(--space-4);
@@ -334,8 +335,9 @@ h3 {
 .hero-copy {
     flex: 1 1 50%;
     min-width: 0;
-    /* never run under the photo: cap width at the photo's start (42vw) minus the container's left edge */
-    max-width: calc(42vw - max(var(--space-3), (100vw - var(--container-width)) / 2 + var(--space-3)) - var(--space-2));
+    /* photo starts 115px left of the container's midpoint; the text box may overlap the
+       photo's first ~30px (opaque part of the gradient) so a fallback font never forces a wrap */
+    max-width: calc(50% - 100px);
     position: relative;
     z-index: 1;
     display: flex;
@@ -360,14 +362,14 @@ h3 {
     line-height: 1.6;
 }
 
-/* photo starts where the right body column starts (viewport center + half gap)
-   and bleeds to the right edge of the screen */
+/* photo starts a little left of the container's midpoint and bleeds to the
+   right edge of the screen (the hero's overflow:hidden clips the bleed) */
 .hero-media {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 42%;
-    right: 0;
+    left: calc(50% - 115px);
+    right: calc((100% - 100vw) / 2);
     overflow: hidden;
 }
 
