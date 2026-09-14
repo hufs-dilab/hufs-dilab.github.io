@@ -322,6 +322,9 @@ for c in data['conferences']:
         if sub.get('url'): urls.append(sub['url'])
     for h in c.get('history', []):
         if h.get('url'): urls.append(h['url'])
+for j in data.get('journals', []):
+    urls += [j['url'], j.get('presentation_url')] + [p['url'] for p in j.get('presentation_deadlines', [])]
+urls = sorted(set(u for u in urls if u))
 def check(u):
     try:
         r = subprocess.run(
@@ -606,6 +609,59 @@ deadlines 갱신 때마다 함께 수행한다.
 
 ---
 
+## 7-4. Journals 섹션
+
+메인(Conference) 표 바로 아래에 같은 3열 구조로 붙는 Journal 표 (2026-09-14 신설). 열은 Journal / Next deadline / Conference presentation. 접이식(Open Challenges 방식)으로 처음 만들었다가 알아보기 어렵다는 지적으로 표로 바꿨다.
+
+### 존재 이유
+
+저널은 제출 마감이 없다 (TMLR·JMLR·TASLP 상시, TACL 매달 1일). 메인 표의 `upcoming.date` 기준(논문 제출 마감)에 맞지 않고, TACL 을 행으로 넣으면 매달 날짜를 고쳐야 한다. 대신 **학회 발표 연계 마감** — 저널 논문을 학회에서 발표하려면 넘겨야 하는 날짜 — 를 보여준다.
+
+### 데이터 위치
+
+JSON 최상위에 `journals_verified` + `journals`.
+
+```json
+{
+  "name": "TMLR",
+  "full_name": "Transactions on Machine Learning Research",
+  "tags": ["ML"],
+  "url": "https://jmlr.org/tmlr/",
+  "submission": { "type": "rolling" },
+  "presents_at": "NeurIPS · ICLR · ICML (J2C track)",
+  "presentation_rule": "J2C, Featured, or Outstanding certification; first come, first served (150 per conference)",
+  "presentation_url": "https://neurips.cc/public/JournalToConference",
+  "presentation_deadlines": [
+    { "conference": "NeurIPS 2026", "date": "2026-09-27 20:59", "predicted": true, "url": "https://neurips.cc/public/JournalToConference" }
+  ]
+}
+```
+
+| 필드 | 설명 |
+|---|---|
+| `submission.type` | `"rolling"` 또는 `"monthly"`. monthly 는 `day`·`time`·`utc_offset`·`note` 를 함께 적고, 다음 마감은 JS 가 계산한다 (JSON 에 날짜를 적지 않음) |
+| `presents_at` | 발표 가능한 학회 |
+| `presentation_rule` | 발표 자격 한 줄 (인증 필요 여부, 채택 시점 조건 등) |
+| `presentation_url` | 발표 정책 공식 문서 |
+| `presentation_deadlines[]` | `conference`·`date`(KST)·`predicted`·`url`. 학회가 공지한 **저널 발표 신청·제출 마감**만. 공지 전이면 빈 배열. UI 는 "Present at {conference}" 로 표시한다 (대문자 칩 라벨은 알아보기 어렵다는 지적으로 뺐다) |
+| `presentation_pending` | 선택. 차회 발표 마감이 아직 TBD 일 때 그 회차 (예: `"ICDE 2027"`). UI 에 "Present at ICDE 2027 · date TBD" 로 표시. 날짜가 공지되면 지우고 `presentation_deadlines` 로 옮긴다 |
+
+### 규칙
+
+- 시간대 미기재 마감은 섹션 7-2 와 같이 AoE 가정(익일 `20:59` KST) + `predicted: true`. J2C·ICASSP 모두 2026-09 기준 시간대 미기재
+- 발표 컷오프를 저널이 그때그때 공지하는 경우(TACL)는 공지 전까지 `presentation_rule` 문구로만 두고 날짜를 만들지 않는다
+- 지난 `presentation_deadlines` 는 UI 가 자동으로 숨기지만, 갱신 때 배열에서 제거한다
+- **수록 기준**: 학회 발표 경로가 공식 문서로 확인되는 저널만. Computational Linguistics 는 ACL 계열 발표가 가능하다고 MIT Press 편집장 글에만 나오고 `cljournal.org` 에서 정책 문서를 못 찾아 보류 (2026-09-14)
+
+### 갱신 절차 (deadlines 갱신 때 함께)
+
+1. 지난 `presentation_deadlines` 제거
+2. 새 마감 확인 — J2C 페이지 `neurips.cc/public/JournalToConference` (NeurIPS·ICLR·ICML 차회 신청 마감), ICASSP 차회 CFP 의 "Published Journal Papers and Letters Due", TACL 메인 페이지의 발표 컷오프 공지, ICDE 차회 `important-dates.html` 의 TKDE Poster 행 (2026-09-15 기준 ICDE 2027 은 TBD. `icde2027.github.io/cf-tkde-poster.html` 은 2026 문구가 그대로 남은 템플릿이라 근거로 쓰지 말 것. ICDE 2026 은 2025-12-09 23:59 PT 마감이었음)
+3. `journals_verified` 를 오늘 날짜로 갱신
+4. 모든 `url`·`presentation_url`·`presentation_deadlines[].url` HTTP 200 확인
+
+---
+
 ## 8. Country Flag Mapping
 
 UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. 새 venue 추가 시 해당 국가 매핑 확인/추가.
@@ -803,6 +859,7 @@ ICML 2027 venue: 대륙만 발표된 경우 ("South America" 트윗, 공식 사�
 - inline JSON 직접 수정 (Edit 도구)
 - `Last Update: YYYY-MM-DD` 텍스트 갱신
 - **`open_challenges` 갱신** (섹션 7-3 의 갱신 절차): 만료 항목 제거, 연장 여부 확인, 신규 추가, `open_challenges_verified` 갱신
+- **`journals` 갱신** (섹션 7-4 의 갱신 절차): 지난 발표 마감 제거, 새 발표 마감 추가, `journals_verified` 갱신
 - 재검증:
   - JSON 유효성
   - URL HTTP 200 (변경된 것만이 아니라 전수)

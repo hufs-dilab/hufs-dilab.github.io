@@ -180,6 +180,17 @@
             white-space: nowrap;
         }
 
+        /* ── Journals table ── */
+        .journals-table { margin-top: 3rem; }
+        .jr-submission { display: inline-block; margin-top: 0.5rem; }
+        .jr-rule { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.5; }
+        .jr-rule + .jr-rule { margin-top: 0.25rem; }
+        .jr-rule strong { color: var(--color-text-main); font-weight: 500; }
+        .jr-links { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.6rem; }
+        .jr-note { font-size: 0.78rem; color: var(--color-text-muted); }
+        .jr-what { font-size: 0.88rem; color: var(--color-text-muted); }
+        .jr-what strong { color: var(--color-text-main); font-weight: 600; }
+
         /* ── Table ── */
         .deadlines-section { padding: 2rem 0 4rem; }
         .deadlines-table { width: 100%; border-collapse: collapse; }
@@ -417,6 +428,11 @@
             .col-history { display: none; }
             .deadlines-table thead th:nth-child(3) { display: none; }
             .col-next { width: auto; }
+            /* Journals: the presentation cell holds the only policy/journal links, so stack it under the row instead of hiding it */
+            .journals-table, .journals-table thead, .journals-table tbody { display: block; }
+            .journals-table tr { display: grid; grid-template-columns: minmax(0, 32%) minmax(0, 1fr); }
+            .journals-table th, .journals-table td { display: block; width: auto; }
+            .journals-table td.col-history { display: block; grid-column: 1 / -1; padding-top: 0; }
         }
         @media (max-width: 600px) {
             .oc-when { flex: 0 0 auto; }
@@ -445,7 +461,7 @@
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 0.5rem;">
         <div class="container">
             <h1 style="margin-bottom: 0.25rem;">Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-09-03 &middot; <span id="tracked-count"></span></p>
+            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-09-15 &middot; <span id="tracked-count"></span></p>
             <p style="color: var(--color-text-muted); font-size: 0.78rem; margin-top: 0.35rem;">Updated irregularly by an AI agent. Found an error or a missing deadline? <a href="https://github.com/hufs-dilab/hufs-dilab.github.io/" target="_blank" style="color: var(--color-accent);">Contribute on our GitHub &#8599;</a></p>
         </div>
     </section>
@@ -498,12 +514,89 @@
                 </thead>
                 <tbody id="conf-tbody"></tbody>
             </table>
+            <table class="deadlines-table journals-table" id="journals-table" hidden>
+                <thead>
+                    <tr>
+                        <th class="col-conf">Journal</th>
+                        <th class="col-next">Next deadline</th>
+                        <th class="col-history">Conference presentation</th>
+                    </tr>
+                </thead>
+                <tbody id="journal-tbody"></tbody>
+            </table>
         </div>
     </section>
 
     <script type="application/json" id="deadlines-data">
 {
-  "schema_version": 4,
+  "schema_version": 5,
+  "journals_verified": "2026-09-15",
+  "journals": [
+    {
+      "name": "TACL",
+      "full_name": "Transactions of the Association for Computational Linguistics",
+      "tags": ["NLP"],
+      "url": "https://transacl.org/index.php/tacl",
+      "submission": { "type": "monthly", "day": 1, "time": "23:59", "utc_offset": -10, "note": "1st of each month, 23:59 Honolulu time" },
+      "presents_at": "ACL · NAACL · EMNLP · EACL · AACL",
+      "presentation_rule": "full (type A) acceptance by each conference's cut-off",
+      "presentation_url": "https://transacl.org/index.php/tacl/about/submissions",
+      "presentation_deadlines": []
+    },
+    {
+      "name": "TMLR",
+      "full_name": "Transactions on Machine Learning Research",
+      "tags": ["ML"],
+      "url": "https://jmlr.org/tmlr/",
+      "submission": { "type": "rolling" },
+      "presents_at": "NeurIPS · ICLR · ICML (J2C track)",
+      "presentation_rule": "J2C, Featured, or Outstanding certification; first come, first served (150 per conference)",
+      "presentation_url": "https://neurips.cc/public/JournalToConference",
+      "presentation_deadlines": [
+        { "conference": "NeurIPS 2026", "date": "2026-09-27 20:59", "predicted": true, "url": "https://neurips.cc/public/JournalToConference" },
+        { "conference": "ICLR 2027", "date": "2026-12-19 20:59", "predicted": true, "url": "https://neurips.cc/public/JournalToConference" }
+      ]
+    },
+    {
+      "name": "JMLR",
+      "full_name": "Journal of Machine Learning Research",
+      "tags": ["ML"],
+      "url": "https://jmlr.org/",
+      "submission": { "type": "rolling" },
+      "presents_at": "NeurIPS · ICLR · ICML (J2C track)",
+      "presentation_rule": "published on or after Jan 1, 2025; first come, first served (150 per conference)",
+      "presentation_url": "https://neurips.cc/public/JournalToConference",
+      "presentation_deadlines": [
+        { "conference": "NeurIPS 2026", "date": "2026-09-27 20:59", "predicted": true, "url": "https://neurips.cc/public/JournalToConference" },
+        { "conference": "ICLR 2027", "date": "2026-12-19 20:59", "predicted": true, "url": "https://neurips.cc/public/JournalToConference" }
+      ]
+    },
+    {
+      "name": "TASLP",
+      "full_name": "IEEE/ACM Transactions on Audio, Speech, and Language Processing",
+      "tags": ["Speech", "NLP"],
+      "url": "https://signalprocessingsociety.org/publications-resources/ieeeacm-transactions-audio-speech-and-language-processing",
+      "submission": { "type": "rolling" },
+      "presents_at": "ICASSP",
+      "presentation_rule": "published or accepted within 12 months before the ICASSP acceptance notification",
+      "presentation_url": "https://2027.ieeeicassp.org/publishing-and-paper-presentation-options/",
+      "presentation_deadlines": [
+        { "conference": "ICASSP 2027", "date": "2027-01-07 20:59", "predicted": true, "url": "https://2027.ieeeicassp.org/call-for-papers/" }
+      ]
+    },
+    {
+      "name": "TKDE",
+      "full_name": "IEEE Transactions on Knowledge and Data Engineering",
+      "tags": ["Data"],
+      "url": "https://www.computer.org/csdl/journal/tk",
+      "submission": { "type": "rolling" },
+      "presents_at": "ICDE (TKDE Poster track)",
+      "presentation_rule": "regular article accepted within ICDE's yearly window (ICDE 2026: Dec 1, 2024 – Nov 30, 2025); 2-page extended abstract and poster; not an extension of a conference paper",
+      "presentation_url": "https://icde2026.github.io/cf-tkde-poster.html",
+      "presentation_pending": "ICDE 2027",
+      "presentation_deadlines": []
+    }
+  ],
   "open_challenges_verified": "2026-09-03",
   "open_challenges": [
     {
@@ -1944,6 +2037,7 @@
         const CONFERENCES = DEADLINES_DATA.conferences;
         const OPEN_CHALLENGES = DEADLINES_DATA.open_challenges || [];
         const OPEN_CHALLENGES_VERIFIED = DEADLINES_DATA.open_challenges_verified || '';
+        const JOURNALS = DEADLINES_DATA.journals || [];
         let today = new Date();
 
         const FLAGS = {
@@ -2163,20 +2257,123 @@
             }).join('');
         }
 
+        // Next monthly submission cut-off (e.g. TACL: 1st of each month, 23:59 UTC-10).
+        function nextMonthlyDeadline(sub) {
+            const [hh, mm] = sub.time.split(':').map(Number);
+            const y = today.getUTCFullYear(), m = today.getUTCMonth();
+            for (let k = 0; k < 3; k++) {
+                const d = new Date(Date.UTC(y, m + k, sub.day, hh - sub.utc_offset, mm));
+                if (!isPast(d)) return d;
+            }
+            return null;
+        }
+
+        // Dated deadlines of a journal: next monthly submission cut-off + open presentation requests.
+        function journalDeadlines(j) {
+            const items = (j.presentation_deadlines || [])
+                .map(p => ({ what: `Present at <strong>${p.conference}</strong>`, d: dateOf(p.date), predicted: p.predicted, url: p.url }))
+                .filter(p => !isPast(p.d));
+            if (j.submission.type === 'monthly') {
+                const d = nextMonthlyDeadline(j.submission);
+                if (d) items.push({ what: '<strong>Submission</strong> deadline', d, predicted: false, url: j.submission.url || j.url, note: j.submission.note });
+            }
+            return items.sort((a, b) => a.d - b.d);
+        }
+
+        function renderJournalNext(items, j) {
+            if (!items.length) {
+                return j.presentation_pending
+                    ? `<span class="jr-what">Present at <strong>${j.presentation_pending}</strong></span> <span class="deadline-meta-dot">·</span> <span class="history-empty">date TBD</span>`
+                    : '<span class="history-empty">no dated deadline yet</span>';
+            }
+            const [first, ...rest] = items;
+            const status = first.predicted ? 'predicted' : 'confirmed';
+            const badgeHtml = first.predicted ? '<span class="deadline-status-badge predicted">predicted</span>' : '';
+            const linkHtml = first.url
+                ? `<a href="${first.url}" target="_blank" class="link-btn">Site<span class="link-btn-arrow">↗</span></a>`
+                : '';
+            let html = `
+                <div class="deadline-block">
+                    <div class="deadline-meta">
+                        <span class="jr-what">${first.what}</span>
+                        ${badgeHtml}
+                        ${linkHtml}
+                    </div>
+                    <div class="deadline-main">
+                        <span class="deadline-date">${fmtDate(first.d)}</span>
+                        <span class="deadline-countdown ${status}">⏱ ${countdown(first.d)} left</span>
+                    </div>
+                    ${first.note ? `<div class="jr-note">${first.note}</div>` : ''}`;
+            for (const r of rest) {
+                const sStatus = r.predicted ? 'predicted' : 'confirmed';
+                const sLink = r.url && r.url !== first.url
+                    ? `<a href="${r.url}" target="_blank" class="link-btn" style="font-size:0.65rem; padding:1px 5px;">Site<span class="link-btn-arrow">↗</span></a>`
+                    : '';
+                html += `
+                    <div class="sub-event ${sStatus}">
+                        <span class="jr-what">${r.what}</span>
+                        <span class="deadline-meta-dot">·</span>
+                        <span class="sub-date">${fmtDate(r.d)}</span>
+                        <span class="sub-countdown ${sStatus}">⏱ ${countdown(r.d)} left</span>
+                        ${sLink}
+                    </div>`;
+            }
+            return html + '</div>';
+        }
+
+        function renderJournalRow(j) {
+            const subText = j.submission.type === 'monthly' ? 'Monthly submission' : 'Rolling submission';
+            const policyHtml = j.presentation_url
+                ? `<a href="${j.presentation_url}" target="_blank" class="link-btn">Policy<span class="link-btn-arrow">↗</span></a>`
+                : '';
+            return `
+                <tr data-tags="${j.tags.join(',')}">
+                    <td class="col-conf">
+                        <div class="conf-name-row">
+                            <span class="conf-name">${j.name}</span>
+                            <span class="conf-tags-inline">${renderTags(j.tags)}</span>
+                        </div>
+                        <div class="conf-fullname">${j.full_name}</div>
+                        <span class="deadline-track-label jr-submission">${subText}</span>
+                    </td>
+                    <td class="col-next">${renderJournalNext(j.items, j)}</td>
+                    <td class="col-history">
+                        <div class="jr-rule"><strong>Presents at</strong> ${j.presents_at}</div>
+                        <div class="jr-rule">${j.presentation_rule}</div>
+                        <div class="jr-links">
+                            ${policyHtml}
+                            <a href="${j.url}" target="_blank" class="link-btn">Journal<span class="link-btn-arrow">↗</span></a>
+                        </div>
+                    </td>
+                </tr>`;
+        }
+
+        function renderJournals() {
+            const table = document.getElementById('journals-table');
+            const time = j => j.items.length ? j.items[0].d.getTime() : Infinity;
+            const rows = applyFilter(JOURNALS)
+                .map(j => ({ ...j, items: journalDeadlines(j) }))
+                .sort((a, b) => time(a) - time(b) || 0);
+            table.hidden = !rows.length;
+            document.getElementById('journal-tbody').innerHTML = rows.map(renderJournalRow).join('');
+        }
+
         function renderTrackedCount() {
             const el = document.getElementById('tracked-count');
             if (!el) return;
-            const total = CONFERENCES.length;
             const challenges = CONFERENCES.filter(c => c.tags.includes('Challenge')).length;
-            const conferences = total - challenges;
+            const conferences = CONFERENCES.length - challenges;
+            const journals = JOURNALS.length;
+            const total = CONFERENCES.length + journals;
             const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
-            el.textContent = `${total} tracked (${plural(conferences, 'conference')}, ${plural(challenges, 'challenge')})`;
+            el.textContent = `${total} tracked (${plural(conferences, 'conference')}, ${plural(challenges, 'challenge')}, ${plural(journals, 'journal')})`;
         }
 
         function render() {
             today = new Date();
             renderTrackedCount();
             renderOpenChallenges();
+            renderJournals();
             const filtered = applyFilter(CONFERENCES);
             const sorted = sortConferences(filtered);
             document.getElementById('conf-tbody').innerHTML = sorted.map(renderRow).join('');
