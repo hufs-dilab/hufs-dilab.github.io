@@ -383,6 +383,8 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 | **CST (UTC+8)** | 동일 날짜 23:59 = KST 동일 날짜 23:59 | 중국 학회 일부 |
 
 > 시간대가 불명확하면 AoE로 가정하지 말고 공식 CFP 페이지에서 직접 확인.
+>
+> 확인해도 공식 사이트 어디에도 시간대가 없으면, 학회 row 는 AoE 로 변환하되 날짜 자체는 공지된 값이므로 `predicted: false` 로 둔다 (선례: ICASSP 2027, AAAI 2027 Student Abstract, InterSpeech 2027, SIGIR 2027). challenge·journal 은 섹션 7-2 대로 `predicted: true`.
 
 ---
 
@@ -478,6 +480,7 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 | `Cycle 1` | 첫 번째 제출 사이클 | KDD |
 | `Cycle 2` | 두 번째 제출 사이클 | KDD |
 | `Main Track` | history 전용. 그 줄의 **주 마감**이 지나 다른 트랙 마감이 main 으로 승격됐을 때, 지나간 주 마감을 표시. 주 마감이 무엇인지는 학회 성격을 따른다 — 일반 학회는 본 논문 마감, shared task 는 시스템(참가) 제출 마감 | AAAI, WMT MT Eval |
+| `Paper Update` | 본 마감 뒤 이미 제출한 논문을 고칠 수 있는 마지막 날 (새 제출 불가). 본 마감이 `upcoming.date`, 이것은 sub_event | InterSpeech |
 | `Paper` | shared task에서 시스템 제출과 별개인 description paper 마감. main `upcoming.date` 는 시스템(참가) 제출 마감을 쓰고, 논문 마감을 이 sub_event로 둔다 | WMT MT Eval |
 
 새 라벨 도입이 필요하면 이 룰북 표에 추가하고 커밋.
@@ -697,6 +700,8 @@ UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. �
 | 🇳🇱 | Netherlands |
 | 🇮🇳 | India |
 | 🇷🇴 | Romania |
+
+두 도시 공동 개최는 `" / "` 로 이어 적는다 (예: IJCAI 2027 `"Kyoto, Japan / Hengqin, China"`). `flagFor()` 가 도시별로 나눠 국기를 둘 다 붙인다.
 
 대륙·미정값 (`"South America"`, `"TBD"`, `"Asia/Oceania (TBD)"`) 은 이모지 없음. `FLAGS` 에 없으면 UI에서 자동으로 이모지 생략.
 
