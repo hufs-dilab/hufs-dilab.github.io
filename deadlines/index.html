@@ -461,7 +461,7 @@
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 0.5rem;">
         <div class="container">
             <h1 style="margin-bottom: 0.25rem;">Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-09-15 &middot; <span id="tracked-count"></span></p>
+            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-09-16 &middot; <span id="tracked-count"></span></p>
             <p style="color: var(--color-text-muted); font-size: 0.78rem; margin-top: 0.35rem;">Updated irregularly by an AI agent. Found an error or a missing deadline? <a href="https://github.com/hufs-dilab/hufs-dilab.github.io/" target="_blank" style="color: var(--color-accent);">Contribute on our GitHub &#8599;</a></p>
         </div>
     </section>
@@ -530,7 +530,7 @@
     <script type="application/json" id="deadlines-data">
 {
   "schema_version": 5,
-  "journals_verified": "2026-09-15",
+  "journals_verified": "2026-09-16",
   "journals": [
     {
       "name": "TACL",
@@ -597,17 +597,8 @@
       "presentation_deadlines": []
     }
   ],
-  "open_challenges_verified": "2026-09-03",
+  "open_challenges_verified": "2026-09-16",
   "open_challenges": [
-    {
-      "name": "Rhythm Game Chart Generation",
-      "host": "MIREX 2026 @ ISMIR",
-      "kind": "official",
-      "topic": "Automatic rhythm game chart generation (osu!taiko beatmaps)",
-      "date": "2026-09-12 20:59",
-      "predicted": true,
-      "url": "https://music-ir.org/mirex/wiki/2026:Rhythm_Game_Chart_Generation"
-    },
     {
       "name": "RealPDE Competition",
       "host": "NeurIPS 2026 Competition Track",
@@ -700,7 +691,7 @@
     },
     {
       "name": "Cadenza Challenge 2027 (CLIP2)",
-      "host": "ICASSP 2027 SP Grand Challenge (GC-9)",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-10)",
       "kind": "official",
       "topic": "Lyric intelligibility prediction for hearing-aid listening",
       "date": "2026-10-31 20:59",
@@ -727,11 +718,11 @@
     },
     {
       "name": "RTC-SDD 2027",
-      "host": "ICASSP 2027 SP Grand Challenge (GC-11)",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-12)",
       "kind": "official",
       "topic": "Speech deepfake detection in real-time communication",
       "date": "2026-11-17 20:59",
-      "predicted": true,
+      "predicted": false,
       "url": "https://junxue.tech/rtc-sdd-challenge"
     },
     {
@@ -762,6 +753,15 @@
       "url": "https://audio-editing-challenge.github.io/"
     },
     {
+      "name": "LRAC 2.0",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-16)",
+      "kind": "official",
+      "topic": "Neural audio codecs under compute, latency and bitrate limits",
+      "date": "2026-12-02 16:59",
+      "predicted": false,
+      "url": "https://crowdsourcing.cisco.com/lrac-challenge/2026/timeline"
+    },
+    {
       "name": "Virtual Embryo Challenge",
       "host": "NeurIPS 2026 Competition Track",
       "kind": "official",
@@ -771,8 +771,44 @@
       "url": "https://virtualembryo.ai/challenge"
     },
     {
+      "name": "XACLE Challenge 2027",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-8)",
+      "kind": "official",
+      "topic": "Audio-text alignment prediction that generalizes to unseen audio generators",
+      "date": "2026-12-04 20:59",
+      "predicted": true,
+      "url": "https://xacle.org/2027/"
+    },
+    {
+      "name": "ADD 2026",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-3)",
+      "kind": "official",
+      "topic": "Audio deepfake detection: human impersonation and explainable decisions",
+      "date": "2026-12-08 20:59",
+      "predicted": true,
+      "url": "http://addchallenge.cn/add2026"
+    },
+    {
+      "name": "RoboHEARD 2027",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-6)",
+      "kind": "official",
+      "topic": "Multi-speaker audio-visual speech recognition on mobile robots",
+      "date": "2026-12-08 20:59",
+      "predicted": true,
+      "url": "https://roboheard.github.io/"
+    },
+    {
+      "name": "EEG-sAAD 2027",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-11)",
+      "kind": "official",
+      "topic": "EEG-based selective auditory attention decoding in multi-talker conversation",
+      "date": "2026-12-09 08:55",
+      "predicted": false,
+      "url": "https://www.codabench.org/competitions/17856/"
+    },
+    {
       "name": "HEARTBEAT Challenge",
-      "host": "ICASSP 2027 SP Grand Challenge (GC-14)",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-15)",
       "kind": "official",
       "topic": "Human-centered embodied agent evaluation",
       "date": "2026-12-12 08:59",
@@ -785,17 +821,26 @@
       "kind": "official",
       "topic": "Embodied audio reasoning in multi-party conversation",
       "date": "2026-12-16 20:59",
-      "predicted": true,
+      "predicted": false,
       "url": "https://earchallenge.github.io/ear1"
     },
     {
       "name": "IPVG Challenge 2027",
-      "host": "ICASSP 2027 SP Grand Challenge (GC-13)",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-14)",
       "kind": "official",
       "topic": "Identity-preserving video generation",
       "date": "2026-12-17 20:59",
       "predicted": true,
       "url": "https://hidream-ai.github.io/ipvg-challenge-2027.github.io"
+    },
+    {
+      "name": "Lunar Pathloss Radio Map Prediction Challenge",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-1)",
+      "kind": "official",
+      "topic": "Radio pathloss map prediction on the lunar surface",
+      "date": "2026-12-21 20:59",
+      "predicted": true,
+      "url": "https://lunarradiomapchallenge.github.io/"
     }
   ],
   "conferences": [
@@ -1102,22 +1147,22 @@
       "url_fallback": null,
       "upcoming": {
         "year": "2027",
-        "label": "Industry",
-        "date": "2026-09-12 20:59",
+        "label": "SRW",
+        "date": "2026-12-16 20:59",
         "venue": "Athens, Greece",
         "venue_confirmed": true,
-        "url": "https://2027.eacl.org/calls/industry/",
+        "url": "https://2027.eacl.org/calls/srw/",
         "predicted": false,
-        "sub_events": [
-          {
-            "label": "SRW",
-            "date": "2026-12-16 20:59",
-            "predicted": false,
-            "url": "https://2027.eacl.org/calls/srw/"
-          }
-        ]
+        "sub_events": []
       },
       "history": [
+        {
+          "year": "2027",
+          "label": "Industry",
+          "date": "2026-09-12 20:59",
+          "venue": "Athens, Greece",
+          "url": "https://2027.eacl.org/calls/industry/"
+        },
         {
           "year": "2027",
           "label": "Main Track",
@@ -1429,11 +1474,11 @@
       "url_fallback": "https://cvpr.thecvf.com/",
       "upcoming": {
         "year": "2027",
-        "date": "2026-11-14 20:59",
+        "date": "2026-11-17 20:59",
         "venue": "Seattle, USA",
         "venue_confirmed": true,
-        "url": "https://cvpr.thecvf.com/",
-        "predicted": true,
+        "url": "https://cvpr.thecvf.com/Conferences/2027/CallForPapers",
+        "predicted": false,
         "sub_events": []
       },
       "history": [
@@ -1461,13 +1506,19 @@
       "url_fallback": "https://sigir.org/",
       "upcoming": {
         "year": "2027",
-        "date": "2026-12-16 20:59",
+        "date": "2027-01-22 20:59",
         "venue": "San Jose, USA",
         "venue_confirmed": true,
         "url": "https://sigir2027.org/",
-        "predicted": true,
-        "sub_events": [],
-        "venue_source_url": "https://sigir2026.org/en-AU"
+        "predicted": false,
+        "sub_events": [
+          {
+            "label": "Abstract",
+            "date": "2027-01-15 20:59",
+            "predicted": false,
+            "url": "https://sigir2027.org/"
+          }
+        ]
       },
       "history": [
         {
@@ -1527,8 +1578,8 @@
       "upcoming": {
         "year": "2027",
         "date": "2027-01-20 20:59",
-        "venue": "TBD",
-        "venue_confirmed": false,
+        "venue": "Kyoto, Japan / Hengqin, China",
+        "venue_confirmed": true,
         "url": "https://ijcai.org/",
         "predicted": true,
         "sub_events": []
@@ -1679,12 +1730,19 @@
       "url_fallback": null,
       "upcoming": {
         "year": "2027",
-        "date": "2027-02-26 20:59",
+        "date": "2027-02-10 20:59",
         "venue": "São Paulo, Brazil",
         "venue_confirmed": true,
-        "url": "https://interspeech2027.org/",
-        "predicted": true,
-        "sub_events": []
+        "url": "https://interspeech2027.org/for_authors/key_dates/",
+        "predicted": false,
+        "sub_events": [
+          {
+            "label": "Paper Update",
+            "date": "2027-02-17 20:59",
+            "predicted": false,
+            "url": "https://interspeech2027.org/for_authors/key_dates/"
+          }
+        ]
       },
       "history": [
         {
@@ -2057,6 +2115,7 @@
 
         function flagFor(venue) {
             if (!venue) return '';
+            if (venue.includes(' / ')) return venue.split(' / ').map(flagFor).join('');
             if (venue === 'TBD' || venue === 'South America' || venue === 'Asia/Oceania') return '';
             if (venue.includes('(TBD)')) return '';
             for (const country of Object.keys(FLAGS)) {
