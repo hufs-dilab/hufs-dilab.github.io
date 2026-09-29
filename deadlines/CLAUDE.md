@@ -524,6 +524,7 @@ challenge 는 학회 논문 CFP 와 달리 마감에 시간대를 안 적는 경
 | 소속 학회가 바뀜 | Perception Test 는 CVPR/ICCV/ECCV 순회, AI City 는 2026 부터 ECCV 이관, BabyLM 은 CoNLL->EMNLP 이적. 학회 `sub_events` 에 매달지 말고 독립 row 로 |
 | 트랙별로 마감이 흩어짐 | TREC(트랙별 "late May"~"mid-Sept"), NTCIR(Formal Run 이 3~5개월 범위), CLEF(lab 별 상이) 는 표에 찍을 **단일 대표 마감을 뽑을 수 없어 수록 불가** |
 | 중단·휴면된 시리즈를 살아있는 것으로 오인 | 2026-07 기준 확인된 중단·휴면: WWW Competitions Track(2026 신설했으나 선정작 0건), CoNLL Shared Task(2024 이후 중단), DSTC(공식 도메인 파킹 의심, 2024 공백), DIHARD(2021 이후), ComParE(2023 이후), MediaEval(2024 공백) |
+| 빠진 row 를 다시 추가 | MIREX 는 사용자 결정으로 2026-09-29 표에서 뺐다. 다시 넣지 말 것 |
 | challenge 트랙이 없는 학회를 계속 뒤짐 | 전수 확인 결과 challenge 문화 자체가 없는 학회: **AISTATS**(2024~2026 4회차 확인), **RSS**(2026 워크샵 32개 확인), **COLM** |
 | 지금 열려 있는 challenge 가 표에 안 잡힘 | challenge 는 학회 논문 마감보다 리듬이 늦다 (개막 3~6개월 전 확정). `upcoming` 이 차회를 가리키는 동안 현재 회차 challenge 는 열려 있어도 sub_event 로는 표현되지 않는다. 섹션 7-3 의 `open_challenges` 로 처리한다 |
 
