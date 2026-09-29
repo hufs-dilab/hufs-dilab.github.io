@@ -481,6 +481,7 @@ AoE가 아닌 학회 자체 시간대를 사용하는 경우 — 공식 CFP에�
 | `Cycle 2` | 두 번째 제출 사이클 | KDD |
 | `Main Track` | history 전용. 그 줄의 **주 마감**이 지나 다른 트랙 마감이 main 으로 승격됐을 때, 지나간 주 마감을 표시. 주 마감이 무엇인지는 학회 성격을 따른다 — 일반 학회는 본 논문 마감, shared task 는 시스템(참가) 제출 마감 | AAAI, WMT MT Eval |
 | `Paper Update` | 본 마감 뒤 이미 제출한 논문을 고칠 수 있는 마지막 날 (새 제출 불가). 본 마감이 `upcoming.date`, 이것은 sub_event | InterSpeech |
+| `Final Paper` | 2단계 제출 학회에서 1단계(심사받는 extended abstract) 통과자만 내는 최종 논문 마감. 누구나 내야 하는 1단계 마감이 `upcoming.date`, 이것은 sub_event | RSS (2027~) |
 | `Paper` | shared task에서 시스템 제출과 별개인 description paper 마감. main `upcoming.date` 는 시스템(참가) 제출 마감을 쓰고, 논문 마감을 이 sub_event로 둔다 | WMT MT Eval |
 
 새 라벨 도입이 필요하면 이 룰북 표에 추가하고 커밋.
