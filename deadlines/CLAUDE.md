@@ -83,7 +83,7 @@
 | `upcoming.label` | string | 선택 | **`upcoming.date` 가 본 논문 마감이 아닐 때 필수**. 그 마감이 어느 트랙인지 (예: `"Student Abstract"`, `"Industry"`, `"Cycle 2"`). 라벨 값은 섹션 7 표를 따른다. UI 에서 학회명·연도 옆 칩으로 표시. 없으면 사용자는 그 날짜를 본 논문 마감으로 읽는다 |
 | `upcoming.date` | string | 필수 | 마감일. KST `YYYY-MM-DD HH:MM` |
 | `upcoming.venue` | string | 필수 | 도시·국가. 미정 시 `"TBD"` |
-| `upcoming.venue_confirmed` | boolean | 필수 | **공식 학회 사이트 또는 공식 모학회 announcement에 명시된 venue만 `true`**. 제3자 트래커(aideadlin.es / mlciv / trybibby 등)나 짐작 출처는 `false`. venue 문자열이 specific city여도 출처가 비공식이면 `false` |
+| `upcoming.venue_confirmed` | boolean | 필수 | **공식 학회 사이트 또는 공식 모학회 announcement에 명시된 venue만 `true`**. 제3자 트래커(aideadlin.es / mlciv / trybibby 등)나 짐작 출처는 `false`. venue 문자열이 specific city여도 출처가 비공식이면 `false`. **대륙만 공지된 venue 는 공식 페이지에 있어도 `false`** (NeurIPS 2027 "Europe", ICML 2027 "South America" — `FutureMeetings` 페이지. 사용자 결정 2026-10-15) |
 | `upcoming.venue_source_url` | string | 선택 | venue 근거가 `upcoming.url` 페이지 본문이 아닌 다른 곳에 있을 때 그 출처 URL. UI에서 `src ↗` dashed 버튼으로 별도 표시. **CFP·차회 사이트가 아직 없어 근거가 공지·폐회 인사말 한 줄뿐이면 `venue_confirmed: true` 를 유지하더라도 이 필드를 채워 근거를 드러낼 것** (실례: AISTATS 2027 Montréal — 근거는 `virtual.aistats.org` 의 "See you in Montréal, Canada next year" 한 줄). **수용 가능한 출처**: 학회 공식 X(트위터) 계정 발표, 학회 공식 발표자료(closing slides 등), 학회 공식 홈페이지의 블로그/news 페이지. **수용 불가**: 단순 deadline 모음 트래커 (aideadlin.es / mlciv / trybibby / ccfddl / paperpilot 등) — 이런 경우 `venue_source_url` 자체를 채우지 말 것. 적절한 출처 못 찾으면 venue 자체를 `"TBD"` 로 처리하거나 venue 유지하되 src 비움 |
 | `upcoming.url` | string | 필수 | 공식 사이트. HTTP 200 검증 필수 |
 | `upcoming.predicted` | boolean | 필수 | 마감 예측치 여부. 공식 발표 시 `false` |
@@ -589,6 +589,8 @@ JSON 최상위에 `conferences` 와 나란히 둔다.
 - **시스템 논문(system description paper) 마감** — 참가 제출이 아니다. WMT26 은 2026-08 기준 시스템 논문 마감만 열려 있어 수록 대상이 아니었다
 - **등록 마감, 데이터 공개일**
 - **organizer 대상 제안서(proposal) 마감** — 참가자와 무관. ICRA competition 공모(2026-07~08)처럼 참가자용 마감처럼 보이는 것도 제외
+- **신규 등록이 닫힌 challenge** — 등록한 팀의 최종 제출이 남아 있어도 뺀다 (Agenthon 2026, 사용자 결정 2026-10-15)
+- **학생 팀 전용 대회** — IEEE SPS SP Cup (사용자 결정 2026-10-15)
 
 ### 임박 항목은 내리지 않는다
 
@@ -727,6 +729,7 @@ UI의 `FLAGS` 객체 (`index.html` 내 JS)에 국가명 → 이모지 매핑. �
 | history 같은 year에 label 없이 두 항목 추가 | multi-cycle은 반드시 `label` 필드로 구분 |
 | `sub_events` 필드 자체를 누락 | `sub_events` 없으면 빈 배열 `[]` 로 명시 |
 | curl 에 짧은 UA(`-A "Mozilla/5.0"`)를 붙여 sweep → aaai.org / ieee-icra.org / ieeeicassp.org 가 403 (2026-09-03 실측) | 사이트 문제가 아니라 WAF 의 UA 차단. 섹션 4 스크립트대로 `-A` 없이 기본 curl 로 검증하거나, 완전한 브라우저 UA 문자열을 쓴다. sub-agent 지시에도 `-A` 옵션을 넣지 말 것 |
+| 모학회 이벤트 목록에만 있는 마감을 `predicted: false` 로 기재 | 학회 자체 CFP 가 나오기 전까지 날짜만 반영하고 `predicted: true` 유지. 실례: ICRA 2028 "Aug 16, 2027" 은 IEEE-RAS 이벤트 페이지에만 있음 (사용자 결정 2026-10-15) |
 | Parent (upcoming) 가 predicted인데 sub_event도 predicted로 추가 (이중 예측) | parent 미발표면 sub_event도 미발표 상태. 단순 추측 sub_event 추가 금지. **예외**: structural invariant (KDD multi-cycle처럼 매년 동일하게 존재하는 구조)는 유지. SRW/Student Abstract 같은 derivative event는 parent 확정 후에만 추가 |
 
 ---
@@ -893,14 +896,13 @@ challenge 는 "제안 공모 -> 선정 -> 대회" 2단계라 학회 논문 마�
 | 시점 | 확정되는 것 | 확인처 |
 |---|---|---|
 | 매년 8월 초 | ICASSP 차년도 SP Grand Challenge 선정 | `{YYYY}.ieeeicassp.org` |
-| 매년 8월 중순 | IEEE SPS SP Cup 차년도 주제 | signalprocessingsociety.org |
 | 매년 9월 말 | SIGIR Futures Challenges & Competitions 선정 | sigir.org/futures |
 | 매년 10월 초 | ACL/EACL/NAACL/COLING 차년도 워크샵 선정 (shared task 딸려옴) | 각 학회 Joint Call for Workshops |
 | 매년 10월 말 | ICRA 차년도 competition 선정 | `{YYYY}.ieee-icra.org` |
 | 매년 11월 초 | IWSLT 차년도 shared task 선정 | iwslt.org/current-calls |
 | 매년 5~6월 | NeurIPS Competition Track / CIKM AnalytiCup 선정 | neurips.cc, cikm 개최년 사이트 |
 
-2026-07 조사 기준 실측값: ICASSP 2027 선정 2026-08-07, SP Cup 2027 발표 2026-08-18, SIGIR Futures 2026-09-30, ACL 계열 워크샵 통보 2026-10-02, ICRA 2027 통보 2026-10-31, IWSLT 2027 선정 2026-11-01.
+2026-07 조사 기준 실측값: ICASSP 2027 선정 2026-08-07, SIGIR Futures 2026-09-30, ACL 계열 워크샵 통보 2026-10-02, ICRA 2027 통보 2026-10-31, IWSLT 2027 선정 2026-11-01.
 
 ### 사용자 개입 포인트
 
