@@ -461,7 +461,7 @@
     <section class="page-header" style="padding-top: var(--spacing-xl); padding-bottom: 0.5rem;">
         <div class="container">
             <h1 style="margin-bottom: 0.25rem;">Deadlines</h1>
-            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-11-01 &middot; <span id="tracked-count"></span></p>
+            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Last Update: 2026-11-20 &middot; <span id="tracked-count"></span></p>
             <p style="color: var(--color-text-muted); font-size: 0.78rem; margin-top: 0.35rem;">Updated irregularly by an AI agent. Found an error or a missing deadline? <a href="https://github.com/hufs-dilab/hufs-dilab.github.io/" target="_blank" style="color: var(--color-accent);">Contribute on our GitHub &#8599;</a></p>
         </div>
     </section>
@@ -530,7 +530,7 @@
     <script type="application/json" id="deadlines-data">
 {
   "schema_version": 5,
-  "journals_verified": "2026-11-01",
+  "journals_verified": "2026-11-20",
   "journals": [
     {
       "name": "TACL",
@@ -589,41 +589,15 @@
       "url": "https://www.computer.org/csdl/journal/tk",
       "submission": { "type": "rolling" },
       "presents_at": "ICDE (TKDE Poster track)",
-      "presentation_rule": "regular article accepted within ICDE's yearly window (ICDE 2026: Dec 1, 2024 – Nov 30, 2025); 2-page extended abstract and poster; not an extension of a conference paper",
-      "presentation_url": "https://icde2026.github.io/cf-tkde-poster.html",
-      "presentation_pending": "ICDE 2027",
-      "presentation_deadlines": []
+      "presentation_rule": "regular article accepted within ICDE's yearly window (ICDE 2027: Dec 1, 2025 – Nov 30, 2026); 2-page extended abstract and poster; not an extension of a conference paper",
+      "presentation_url": "https://icde2027.github.io/cf-tkde-poster.html",
+      "presentation_deadlines": [
+        { "conference": "ICDE 2027", "date": "2026-12-10 10:00", "predicted": false, "url": "https://icde2027.github.io/important-dates.html" }
+      ]
     }
   ],
-  "open_challenges_verified": "2026-11-01",
+  "open_challenges_verified": "2026-11-20",
   "open_challenges": [
-    {
-      "name": "AIMO Interpretability Challenge",
-      "host": "NeurIPS 2026 Competition Track",
-      "kind": "official",
-      "topic": "Telling robust reasoning from spurious patterns in math-reasoning LLMs",
-      "date": "2026-11-02 20:59",
-      "predicted": true,
-      "url": "https://aimo-interp.github.io/"
-    },
-    {
-      "name": "Predictive AI Evaluation Competition",
-      "host": "NeurIPS 2026 Competition Track",
-      "kind": "official",
-      "topic": "Predicting whether an AI system answered an item correctly (Brier score)",
-      "date": "2026-11-07 20:59",
-      "predicted": false,
-      "url": "https://aimslab.stanford.edu/competition"
-    },
-    {
-      "name": "RTC-SDD 2027",
-      "host": "ICASSP 2027 SP Grand Challenge (GC-12)",
-      "kind": "official",
-      "topic": "Speech deepfake detection in real-time communication",
-      "date": "2026-11-17 20:59",
-      "predicted": false,
-      "url": "https://junxue.tech/rtc-sdd-challenge"
-    },
     {
       "name": "SimulacraBench",
       "host": "NeurIPS 2026 Competition Track",
@@ -634,22 +608,13 @@
       "url": "https://simulacrabench.org/"
     },
     {
-      "name": "The Steerability Challenge",
+      "name": "Virtual Embryo Challenge",
       "host": "NeurIPS 2026 Competition Track",
       "kind": "official",
-      "topic": "Steering pipelines for controllable model behavior",
-      "date": "2026-11-22 20:59",
+      "topic": "Generative modeling of whole-embryo development",
+      "date": "2026-11-26 20:59",
       "predicted": false,
-      "url": "https://steerability.github.io/competition/"
-    },
-    {
-      "name": "LRAC 2.0",
-      "host": "ICASSP 2027 SP Grand Challenge (GC-16)",
-      "kind": "official",
-      "topic": "Neural audio codecs under compute, latency and bitrate limits",
-      "date": "2026-12-02 16:59",
-      "predicted": false,
-      "url": "https://crowdsourcing.cisco.com/lrac-challenge/2026/timeline"
+      "url": "https://virtualembryo.ai/challenge"
     },
     {
       "name": "DOSE-I Challenge",
@@ -659,15 +624,6 @@
       "date": "2026-12-02 20:59",
       "predicted": true,
       "url": "https://safe-ai-research.github.io/DOSE-I-Challenge/"
-    },
-    {
-      "name": "Virtual Embryo Challenge",
-      "host": "NeurIPS 2026 Competition Track",
-      "kind": "official",
-      "topic": "Generative modeling of whole-embryo development",
-      "date": "2026-12-03 20:59",
-      "predicted": true,
-      "url": "https://virtualembryo.ai/challenge"
     },
     {
       "name": "XACLE Challenge 2027",
@@ -697,13 +653,22 @@
       "url": "https://www.codabench.org/competitions/17856/"
     },
     {
-      "name": "RMS-AQA",
-      "host": "ICASSP 2027 SP Grand Challenge (GC-18)",
-      "kind": "official",
-      "topic": "Real-world multi-hop spatial audio question answering in smart homes",
-      "date": "2026-12-11 20:59",
-      "predicted": true,
-      "url": "https://rmsaqachallenge.github.io/"
+      "name": "Field Matters 2027 Shared Task",
+      "host": "Field Matters @ EACL 2027",
+      "kind": "workshop",
+      "topic": "Automatic interlinear glossing of field linguistics data",
+      "date": "2026-12-09 20:59",
+      "predicted": false,
+      "url": "https://field-matters.github.io/sharedtask2027"
+    },
+    {
+      "name": "PART Shared Task",
+      "host": "ArgMining @ EACL 2027",
+      "kind": "workshop",
+      "topic": "Parameterized argumentative reasoning over witness-testimony puzzles",
+      "date": "2026-12-12 20:59",
+      "predicted": false,
+      "url": "https://argpart.github.io/"
     },
     {
       "name": "EAR-1",
@@ -724,15 +689,6 @@
       "url": "https://hidream-ai.github.io/ipvg-challenge-2027.github.io"
     },
     {
-      "name": "HEARTBEAT Challenge",
-      "host": "ICASSP 2027 SP Grand Challenge (GC-15)",
-      "kind": "official",
-      "topic": "Human-centered embodied agent evaluation",
-      "date": "2026-12-19 08:59",
-      "predicted": false,
-      "url": "https://heartbeat-challenge.github.io/"
-    },
-    {
       "name": "Lunar Pathloss Radio Map Prediction Challenge",
       "host": "ICASSP 2027 SP Grand Challenge (GC-1)",
       "kind": "official",
@@ -751,6 +707,24 @@
       "url": "https://roboheard.github.io/"
     },
     {
+      "name": "RMS-AQA",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-18)",
+      "kind": "official",
+      "topic": "Real-world multi-hop spatial audio question answering in smart homes",
+      "date": "2026-12-25 20:59",
+      "predicted": true,
+      "url": "https://rmsaqachallenge.github.io/"
+    },
+    {
+      "name": "HEARTBEAT Challenge",
+      "host": "ICASSP 2027 SP Grand Challenge (GC-15)",
+      "kind": "official",
+      "topic": "Human-centered embodied agent evaluation",
+      "date": "2026-12-26 08:59",
+      "predicted": false,
+      "url": "https://heartbeat-challenge.github.io/"
+    },
+    {
       "name": "Slavic NLP 2027 Shared Tasks",
       "host": "Slavic NLP @ EACL 2027",
       "kind": "workshop",
@@ -758,6 +732,15 @@
       "date": "2027-01-08 20:59",
       "predicted": true,
       "url": "https://slavicnlp.github.io/"
+    },
+    {
+      "name": "AMIYA Shared Task",
+      "host": "VarDial @ EACL 2027",
+      "kind": "workshop",
+      "topic": "Training and evaluating LLMs for Arabic dialects",
+      "date": "2027-01-09 20:59",
+      "predicted": true,
+      "url": "https://aclsigvar.org/vardial2027/shared-task"
     },
     {
       "name": "The Smart Buildings Challenge",
@@ -776,6 +759,24 @@
       "date": "2027-01-25 20:59",
       "predicted": false,
       "url": "https://langcode2027.github.io/"
+    },
+    {
+      "name": "BanglaKnight (BLP Task 1)",
+      "host": "BLP @ NAACL 2027",
+      "kind": "workshop",
+      "topic": "Four-level risk classification of Bangla prompts (jailbreak detection)",
+      "date": "2027-01-25 20:59",
+      "predicted": false,
+      "url": "https://banglaknight.github.io/"
+    },
+    {
+      "name": "Multilingual Cultural QA (BLP Task 2)",
+      "host": "BLP @ NAACL 2027",
+      "kind": "workshop",
+      "topic": "Culturally grounded QA in Bangla, English, Assamese and Hindi",
+      "date": "2027-02-01 20:59",
+      "predicted": true,
+      "url": "https://multilingual-qa.github.io/"
     }
   ],
   "conferences": [
@@ -1359,23 +1360,22 @@
       "url_pattern": "https://www{YYYY}.thewebconf.org/",
       "url_fallback": "https://thewebconf.org/",
       "upcoming": {
-        "year": "2027",
-        "label": "Short Paper",
-        "date": "2026-11-17 20:59",
-        "venue": "Dublin, Ireland",
+        "year": "2028",
+        "date": "2027-10-26 20:59",
+        "venue": "Edmonton, Canada",
         "venue_confirmed": true,
-        "url": "https://acmweb2027.org/important-dates/",
-        "predicted": false,
-        "sub_events": [
-          {
-            "label": "Abstract",
-            "date": "2026-11-10 20:59",
-            "predicted": false,
-            "url": "https://acmweb2027.org/important-dates/"
-          }
-        ]
+        "url": "https://thewebconf.org/",
+        "predicted": true,
+        "sub_events": []
       },
       "history": [
+        {
+          "year": "2027",
+          "label": "Short Paper",
+          "date": "2026-11-17 20:59",
+          "venue": "Dublin, Ireland",
+          "url": "https://acmweb2027.org/important-dates/"
+        },
         {
           "year": "2027",
           "label": "Main Track",
@@ -1453,22 +1453,21 @@
       "url_pattern": "https://cvpr.thecvf.com/Conferences/{YYYY}",
       "url_fallback": "https://cvpr.thecvf.com/",
       "upcoming": {
-        "year": "2027",
-        "date": "2026-11-17 20:59",
-        "venue": "Seattle, USA",
-        "venue_confirmed": true,
-        "url": "https://cvpr.thecvf.com/Conferences/2027/CallForPapers",
-        "predicted": false,
-        "sub_events": [
-          {
-            "label": "Abstract",
-            "date": "2026-11-11 20:59",
-            "predicted": false,
-            "url": "https://cvpr.thecvf.com/Conferences/2027/CallForPapers"
-          }
-        ]
+        "year": "2028",
+        "date": "2027-11-17 20:59",
+        "venue": "TBD",
+        "venue_confirmed": false,
+        "url": "https://cvpr.thecvf.com/",
+        "predicted": true,
+        "sub_events": []
       },
       "history": [
+        {
+          "year": "2027",
+          "date": "2026-11-17 20:59",
+          "venue": "Seattle, USA",
+          "url": "https://cvpr.thecvf.com/Conferences/2027"
+        },
         {
           "year": "2026",
           "date": "2025-11-14 20:59",
@@ -1603,13 +1602,19 @@
       "url_fallback": "https://icml.cc/",
       "upcoming": {
         "year": "2027",
-        "date": "2027-01-29 20:59",
-        "venue": "South America",
-        "venue_confirmed": false,
-        "url": "https://icml.cc/",
-        "predicted": true,
-        "sub_events": [],
-        "venue_source_url": "https://icml.cc/Conferences/FutureMeetings"
+        "date": "2027-01-23 20:59",
+        "venue": "Rio de Janeiro, Brazil",
+        "venue_confirmed": true,
+        "url": "https://icml.cc/Conferences/2027/CallForPapers",
+        "predicted": false,
+        "sub_events": [
+          {
+            "label": "Abstract",
+            "date": "2027-01-15 20:59",
+            "predicted": false,
+            "url": "https://icml.cc/Conferences/2027/CallForPapers"
+          }
+        ]
       },
       "history": [
         {
@@ -1780,7 +1785,7 @@
       "history": [
         {
           "year": "2026",
-          "date": "2026-03-06 20:59",
+          "date": "2026-03-06 07:00",
           "venue": "Malmö, Sweden",
           "url": "https://eccv.ecva.net/Conferences/2026"
         },
@@ -1970,8 +1975,15 @@
         "venue": "Kyoto, Japan",
         "venue_confirmed": true,
         "url": "https://iwslt.org/2027/",
-        "predicted": true,
-        "sub_events": []
+        "predicted": false,
+        "sub_events": [
+          {
+            "label": "Paper",
+            "date": "2027-05-08 20:59",
+            "predicted": false,
+            "url": "https://iwslt.org/2027/"
+          }
+        ]
       },
       "history": [
         {

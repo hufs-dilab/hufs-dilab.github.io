@@ -664,7 +664,7 @@ JSON 최상위에 `journals_verified` + `journals`.
 ### 갱신 절차 (deadlines 갱신 때 함께)
 
 1. 지난 `presentation_deadlines` 제거
-2. 새 마감 확인 — J2C 페이지 `neurips.cc/public/JournalToConference` (NeurIPS·ICLR·ICML 차회 신청 마감), ICASSP 차회 CFP 의 "Published Journal Papers and Letters Due", TACL 메인 페이지의 발표 컷오프 공지, ICDE 차회 `important-dates.html` 의 TKDE Poster 행 (2026-09-15 기준 ICDE 2027 은 TBD. `icde2027.github.io/cf-tkde-poster.html` 은 2026 문구가 그대로 남은 템플릿이라 근거로 쓰지 말 것. ICDE 2026 은 2025-12-09 23:59 PT 마감이었음)
+2. 새 마감 확인 — J2C 페이지 `neurips.cc/public/JournalToConference` (NeurIPS·ICLR·ICML 차회 신청 마감), ICASSP 차회 CFP 의 "Published Journal Papers and Letters Due", TACL 메인 페이지의 발표 컷오프 공지, ICDE 차회 `important-dates.html` 의 TKDE Poster 행. ICDE 사이트는 차회 `cf-tkde-poster.html` 을 전년 문구 템플릿으로 먼저 열어 두므로, 그 페이지는 회차 연도·자격 기간이 바뀐 것을 확인한 뒤에만 근거로 쓴다 (2026-11-20 기준 ICDE 2027 판은 갱신됨. 단 important-dates 는 "5:00 p.m. Pacific Time", cf-tkde-poster 는 "11:59PM PST" 로 시각이 달라 이른 쪽 important-dates 를 따랐다)
 3. `journals_verified` 를 오늘 날짜로 갱신
 4. 모든 `url`·`presentation_url`·`presentation_deadlines[].url` HTTP 200 확인
 
